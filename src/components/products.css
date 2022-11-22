@@ -1,0 +1,15 @@
+.productBox {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px 10px;
+    width: 300px;
+}
+
+#productImage   {
+    width: 300px;
+}
+
+#container {
+    display:flex;
+    flex-direction: row;
+}
