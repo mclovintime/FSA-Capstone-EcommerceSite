@@ -27,7 +27,7 @@ const Products = () => {
                   Description: {product.description}
                 </div>
                 <div className="productInStock">
-                  In stock: {product.inStock}
+                  In stock: {product.stock}
                 </div>
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
