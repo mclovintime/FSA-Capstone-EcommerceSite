@@ -4,9 +4,10 @@ import { loginUser } from "../api-adapter";
 import { toast } from "react-toastify";
 
 
-const LoginPage = () => {
+const LoginPage = ({ setUser, setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
   const navigate = useNavigate();
   // let token = ""
 
@@ -19,16 +20,19 @@ const LoginPage = () => {
     localStorage.setItem("username", username);
     setUsername("");
     setPassword("");
-  }
+    setUser(user);
+    setIsLoggedIn(true);
+  
 
   if (token) {
     toast.success("Login Successful");
-    navigate("/Home");
+    navigate("/Products");
   } else {
     toast.error("Login Failed");
     navigate("/Login");
 
   }
+}
 
   return (
     <div className="login-container">
