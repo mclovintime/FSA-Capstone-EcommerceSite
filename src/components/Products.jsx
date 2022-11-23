@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../api-adapter";
 import "./products.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -22,25 +22,22 @@ const Products = () => {
         {products.length ? (
           products.map((product) => {
             return (
-              
-              <div  key={`product-${product.id}`} className="productBox">
-                
-
+              <div key={`product-${product.id}`} className="productBox">
                 <div className="productName">{product.name}</div>
                 <div className="productDescription">
                   Description: {product.description}
                 </div>
                 <div className="productDescription">
-                {` testing product id ${product.id}`}
+                  {` testing product id ${product.id}`}
                 </div>
-                
-                <div className="productInStock">
-                  In stock: {product.stock}
-                </div>
+
+                <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
                 <button>Add to cart</button>
-                <Link to={`/product/${product.id}`}><button>Display More Info</button></Link>
+                <Link to={`/product/${product.id}`}>
+                  <button>Display More Info</button>
+                </Link>
               </div>
             );
           })
