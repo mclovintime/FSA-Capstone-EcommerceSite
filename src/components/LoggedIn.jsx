@@ -1,6 +1,7 @@
 import React from "react";
 
 const LoggedIn = (props) => {
+  console.log(props.user)
   const user = props.user;
 
   return (

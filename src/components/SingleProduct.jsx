@@ -3,6 +3,7 @@ import { getProductsById } from "../api-adapter";
 import { useParams } from "react-router-dom";
 
 const SingleProduct = (props) => {
+
   const { productId } = useParams();
   console.log(productId, "productID");
   const [product, setProduct] = useState("");
@@ -15,6 +16,15 @@ const SingleProduct = (props) => {
     }
     getSingleProduct();
   }, []);
+
+  const [count, setCount] = useState(0);
+  let incrementCount = () => {
+    setCount(count + 1);
+  };
+  
+  let decrementCount = () => {
+    setCount(count - 1);
+  };
 
   return product ? (
     <div>
@@ -30,7 +40,18 @@ const SingleProduct = (props) => {
         <div className="productInStock">In stock: {product.stock}</div>
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
+        <div>
+      <div class="count">
+        
+        <h1>{count}</h1>
+      </div>
+      <div class="buttons">
+        <button title={"-"} action={decrementCount} />
+        <button title={"+"} action={incrementCount} />
+      </div>
+    </div>
         <button>Add to cart</button>
+
       </div>
     </div>
   ) : (
