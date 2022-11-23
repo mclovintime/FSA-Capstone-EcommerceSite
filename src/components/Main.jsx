@@ -4,6 +4,9 @@ import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
 import { authUser } from "../api-adapter";
+import { ToastContainer, toast } from "react-toastify";
+import SingleProduct from "./SingleProduct";
+
 
 import {
   RouterProvider,
@@ -40,6 +43,7 @@ const Main = () => {
           <Route path="/login" element={<LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn}/>}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/products" element={<Products/>}></Route>
+          <Route path="/product/:productId" element={<SingleProduct/>}></Route>
         </Route>
       )
     );
@@ -48,6 +52,8 @@ const Main = () => {
       <main>
           <div id="main">
               <RouterProvider router={router}></RouterProvider>
+              <ToastContainer />
+
           </div>
       </main>
   )
