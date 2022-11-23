@@ -20,6 +20,7 @@ import {
 
 const Main = () => {
   const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
