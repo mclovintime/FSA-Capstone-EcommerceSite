@@ -3,7 +3,7 @@ import {Navbar} from './'
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { getProducts, authUser } from "../api-adapter";
+import { authUser } from "../api-adapter";
 
 import {
   RouterProvider,
