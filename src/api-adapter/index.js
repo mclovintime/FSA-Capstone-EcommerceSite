@@ -1,17 +1,92 @@
+export async function getProductsById(productId) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/products/${productId}`);
+    const result = await response.json();
+    console.log(result, "result from getProductsById")
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
+export async function getProducts() {
+  try {
+    const response = await fetch("http://localhost:3000/api/products");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-export async function getProducts(){
-    console.log("testing")
-    fetch('http://localhost:3000/api/products', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(response => response.json())
-        .then(result => {
-          console.log("testing", result);
-        //   if (result)   {
-            
-        //   }
-        })
-        .catch(console.error);
+export async function authUser(token) {
+  try {
+    const response = await fetch("http://localhost:3000/api/users/me", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function registerUser(username, password, setRegisterUser) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  };
+  try {
+    const response = await fetch(
+      "http://localhost:3000/api/users/register",
+      options
+    );
+    const result = await response.json();
+    console.log(result);
+    if (result.message) {
+      setRegisterUser(result.message)
+    }
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function loginUser(username, password, setLoginMessage) {
+  console.log(username)
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  };
+  try {
+    const response = await fetch(
+      "http://localhost:3000/api/users/login",
+      options
+    );
+    const result = await response.json();
+    console.log(result);
+    
+    if (result.message) {
+      setLoginMessage(result.message)
+    }
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }

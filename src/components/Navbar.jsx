@@ -1,15 +1,29 @@
 import React from "react";
-import {Outlet} from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+import { LoggedIn, Logout } from "./";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const user = props.user;
+  const setUser = props.setUser
+  const handleLogout = props.handleLogout
+  const isLoggedIn = props.isLoggedIn
+  const setIsLoggedIn = props.setIsLoggedIn
+  console.log(user);
   return (
-    <>
-     <div id="navbar">
-    <h2>I am navbar</h2>
-  </div>
-    <Outlet></Outlet>
-    </>
-   
+    <div>
+      <div>
+        <h2>DimTech</h2>
+        <LoggedIn user={user}/>
+      {isLoggedIn ? <Logout handleLogout={handleLogout} setUser={setUser} setIsLoggedIn={setIsLoggedIn}/> : null}
+      
+      </div>
+      <div id="navbar">
+        <Link to="/Products">Home</Link>
+        <Link to="/Login">Login</Link>
+        <Link to="/Register">Register</Link>
+      </div>
+      <Outlet></Outlet>
+    </div>
   );
 };
 
