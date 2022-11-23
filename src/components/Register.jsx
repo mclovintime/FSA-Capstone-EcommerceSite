@@ -1,23 +1,29 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../api-adapter";
+import { toast } from "react-toastify";
 
 const Register = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-    // const [registerMessage, setRegisterMessage] = useState("");
-    // const [loginMessage, setLoginMessage] = useState("");
+  async function handleRegister(e) {
+    e.preventDefault();
+    const { token } = await registerUser(username, password);
+    localStorage.removeItem("token");
+    localStorage.setItem("token", token);
+    setUsername("");
+    setPassword("");
 
-    async function handleRegister(e) {
-        e.preventDefault();
-        const { token } = await registerUser(username, password);
-        localStorage.removeItem("token");
-        localStorage.setItem("token", token);
-        setUsername(""); 
-        setPassword("");
+    if (token) {
+      toast.success("Register Successful");
+      navigate("/Home");
+    } else {
+      toast.error("Register Failed");
+      navigate("/Register");
     }
+  }
   return (
     <div className="register-container">
       <h2 className="register-header">Register</h2>
@@ -46,7 +52,7 @@ const Register = () => {
           Register
         </button>
       </form>
-      <small>*password must be 8 characters or more</small> 
+      <small>*password must be 8 characters or more</small>
       {/*can you toastify to create an error message of short password */}
       <br />
       <h3>Already a User?</h3>
@@ -54,9 +60,6 @@ const Register = () => {
         Login
       </Link>
     </div>
-  )
-  
-
-
-  }
-export default Register
+  );
+};
+export default Register;

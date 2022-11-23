@@ -7,9 +7,7 @@ import { toast } from "react-toastify";
 const LoginPage = ({ setUser, setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
   const navigate = useNavigate();
-  // let token = ""
 
   async function handleLogin(e) {
     e.preventDefault();
