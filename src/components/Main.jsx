@@ -3,7 +3,7 @@ import {Navbar} from './'
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { getProducts } from "../api-adapter";
+import { authUser } from "../api-adapter";
 
 import {
   RouterProvider,
@@ -16,15 +16,28 @@ import {
 
 
 const Main = () => {
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    if (localToken && !isLoggedIn) {
+      async function fetchUser() {
+        const me = await authUser(localToken);
+        setUser(me);
+        setIsLoggedIn(true)
+      }
+      fetchUser();
+    }
+  }, [isLoggedIn]);
 
 
   const router = createBrowserRouter(
       createRoutesFromElements(
-        <Route path="/" element={<Navbar />} >
+        <Route path="/" element={<Navbar setUser={setUser} user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} >
        
   
-          <Route path="/login" element={<LoginPage/>}></Route>
+          <Route path="/login" element={<LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn}/>}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/products" element={<Products/>}></Route>
         </Route>
