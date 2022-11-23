@@ -8,10 +8,12 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [loginMessage, setLoginMessage] = useState("");
+
 
   async function handleLogin(e) {
     e.preventDefault();
-    const { token, user } = await loginUser(username, password);
+    const { token, user } = await loginUser(username, password, setLoginMessage);
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     localStorage.removeItem("username");
@@ -57,6 +59,7 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
       <Link to="/register" className="link">
         Register
       </Link>
+      <div id="loginMessage">{loginMessage}</div>
     </div>
   );
 };

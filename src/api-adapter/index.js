@@ -34,7 +34,7 @@ export async function authUser(token) {
   }
 }
 
-export async function registerUser(username, password) {
+export async function registerUser(username, password, setRegisterUser) {
   const options = {
     method: "POST",
     headers: {
@@ -52,13 +52,16 @@ export async function registerUser(username, password) {
     );
     const result = await response.json();
     console.log(result);
+    if (result.message) {
+      setRegisterUser(result.message)
+    }
     return result;
   } catch (error) {
     console.error(error);
   }
 }
 
-export async function loginUser(username, password) {
+export async function loginUser(username, password, setLoginMessage) {
   console.log(username)
   const options = {
     method: "POST",
@@ -77,6 +80,11 @@ export async function loginUser(username, password) {
     );
     const result = await response.json();
     console.log(result);
+    
+    if (result.message) {
+      setLoginMessage(result.message)
+    }
+
     return result;
   } catch (error) {
     console.error(error);

@@ -8,9 +8,11 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const [registerMessage, setRegisterMessage] = useState("");
+
   async function handleRegister(e) {
     e.preventDefault();
-    const { token } = await registerUser(username, password);
+    const { token } = await registerUser(username, password, setRegisterMessage);
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     setUsername("");
@@ -59,6 +61,8 @@ const Register = () => {
       <Link to="/login" className="link">
         Login
       </Link>
+      <div id="registerMessage">{registerMessage}</div>
+     
     </div>
   );
 };
