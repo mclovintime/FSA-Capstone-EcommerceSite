@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../api-adapter";
 import "./products.css";
+import {Link} from "react-router-dom"
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -26,12 +27,17 @@ const Products = () => {
                 <div className="productDescription">
                   Description: {product.description}
                 </div>
+                <div className="productDescription">
+                {` testing product id ${product.id}`}
+                </div>
+                
                 <div className="productInStock">
                   In stock: {product.stock}
                 </div>
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
                 <button>Add to cart</button>
+                <Link to={`/${product.id}`}><button>Display More Info</button></Link>
               </div>
             );
           })

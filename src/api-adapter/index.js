@@ -48,6 +48,7 @@ export async function registerUser(username, password) {
 }
 
 export async function loginUser(username, password) {
+  console.log(username)
   const options = {
     method: "POST",
     headers: {

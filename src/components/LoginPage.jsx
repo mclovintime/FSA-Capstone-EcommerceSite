@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
+import { toast } from "react-toastify";
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  // let token = ""
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -16,6 +19,15 @@ const LoginPage = () => {
     localStorage.setItem("username", username);
     setUsername("");
     setPassword("");
+  }
+
+  if (token) {
+    toast.success("Login Successful");
+    navigate("/Home");
+  } else {
+    toast.error("Login Failed");
+    navigate("/Login");
+
   }
 
   return (
