@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Navbar} from './'
 import LoginPage from "./LoginPage";
 import Products from "./Products";
+import Register from "./Register";
 import { getProducts } from "../api-adapter";
 
 import {
@@ -15,6 +16,7 @@ import {
 
 
 const Main = () => {
+  const [user, setUser] = useState("")
 
 
   const router = createBrowserRouter(
@@ -23,6 +25,7 @@ const Main = () => {
        
   
           <Route path="/login" element={<LoginPage/>}></Route>
+          <Route path="/register" element={<Register/>}></Route>
           <Route path="/products" element={<Products/>}></Route>
         </Route>
       )
