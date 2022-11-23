@@ -7,6 +7,9 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    // const [registerMessage, setRegisterMessage] = useState("");
+    // const [loginMessage, setLoginMessage] = useState("");
+
     async function handleRegister(e) {
         e.preventDefault();
         const { token } = await registerUser(username, password);
@@ -52,6 +55,7 @@ const Register = () => {
       </Link>
     </div>
   )
+  
 
 
   }

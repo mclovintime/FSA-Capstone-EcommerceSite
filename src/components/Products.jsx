@@ -22,7 +22,10 @@ const Products = () => {
         {products.length ? (
           products.map((product) => {
             return (
-              <div className="productBox">
+              
+              <div  key={`product-${product.id}`} className="productBox">
+                
+
                 <div className="productName">{product.name}</div>
                 <div className="productDescription">
                   Description: {product.description}
@@ -37,7 +40,7 @@ const Products = () => {
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
                 <button>Add to cart</button>
-                <Link to={`/${product.id}`}><button>Display More Info</button></Link>
+                <Link to={`/product/${product.id}`}><button>Display More Info</button></Link>
               </div>
             );
           })

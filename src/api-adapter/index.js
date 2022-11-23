@@ -1,3 +1,14 @@
+export async function getProductsById(productId) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/products/${productId}`);
+    const result = await response.json();
+    console.log(result, "result from getProductsById")
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getProducts() {
   try {
     const response = await fetch("http://localhost:3000/api/products");
