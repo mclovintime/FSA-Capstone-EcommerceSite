@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getProductsById } from "../api-adapter";
-import { useParams } from "react-router-dom";
+import { getProductsById, addProductToUserCart} from "../api-adapter";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 const SingleProduct = (props) => {
 
   const { productId } = useParams();
   console.log(productId, "productID");
   const [product, setProduct] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function getSingleProduct() {
@@ -17,14 +19,30 @@ const SingleProduct = (props) => {
     getSingleProduct();
   }, []);
 
-  const [count, setCount] = useState(0);
+
+
+  const [quantity, setCount] = useState(0);
   let incrementCount = () => {
-    setCount(count + 1);
+    setCount(quantity + 1);
   };
   
   let decrementCount = () => {
-    setCount(count - 1);
+    setCount(quantity - 1);
   };
+
+  function handleBack(){
+    navigate("/products")
+  }
+  function handleBackToMyCart(){
+    navigate("/mycart/cart_items")
+  }
+const addProduct = async (e)  => {
+  e.preventDefault()
+  const price = product.price
+ 
+  const addedToCart = await addProductToUserCart(productId, price, quantity)
+  console.log(addedToCart)
+}
 
   return product ? (
     <div>
@@ -43,14 +61,17 @@ const SingleProduct = (props) => {
         <div>
       <div class="count">
         
-        <h1>{count}</h1>
+        <h1>{quantity}</h1>
       </div>
       <div class="buttons">
         <button title={"-"} action={decrementCount} />
         <button title={"+"} action={incrementCount} />
+        
       </div>
     </div>
-        <button>Add to cart</button>
+        <button onClick={addProduct}>Add to cart</button>
+        <button onClick={handleBack}>Back To Products</button>
+        <button onClick={handleBackToMyCart}>My Cart</button>
 
       </div>
     </div>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Navbar } from "./";
+import { Navbar, UserCart } from "./";
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { authUser } from "../api-adapter";
+import { authUser,getProducts } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
+
 
 import {
   RouterProvider,
@@ -21,6 +22,19 @@ const Main = () => {
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      let placeholder = await getProducts();
+      console.log(placeholder);
+      setProducts(placeholder.products);
+    }
+    fetchProducts();
+  }, []);
+
+ 
+
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
@@ -33,6 +47,8 @@ const Main = () => {
       fetchUser();
     }
   }, [isLoggedIn]);
+
+
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -56,6 +72,7 @@ const Main = () => {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/product/:productId" element={<SingleProduct />}></Route>
+        <Route path="/mycart/cart_items" element={<UserCart products= {products} setProducts ={setProducts}/>}></Route>
       </Route>
     )
   );

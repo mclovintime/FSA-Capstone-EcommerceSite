@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "NODE_ENV='development' react-scripts start",
+    "start-dev": "NODE_ENV='development' PORT=4000 react-scripts start",
     "start": "react-scripts start"
   },
   "keywords": [],

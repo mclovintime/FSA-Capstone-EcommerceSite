@@ -4,5 +4,6 @@ export {default as LoginPage} from './LoginPage'
 export {default as Register} from './Register'
 export {default as LoggedIn} from  './LoggedIn'
 export {default as Logout} from  './Logout'
+export {default as UserCart} from './UserCart'
 
 

@@ -21,6 +21,7 @@ const Navbar = (props) => {
         <Link to="/Products">Home</Link>
         <Link to="/Login">Login</Link>
         <Link to="/Register">Register</Link>
+        <Link to="/mycart/cart_items">My Cart</Link>
       </div>
       <Outlet></Outlet>
     </div>
