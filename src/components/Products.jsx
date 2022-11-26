@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../api-adapter";
 import "./products.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchProducts() {
@@ -15,6 +18,12 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+ 
+  function handleBackToMyCart(e){
+    e.preventDefault()
+    navigate("/mycart/cart_items")
+  }
+  
   return (
     <div>
       <h1>products</h1>
@@ -38,6 +47,8 @@ const Products = () => {
                 <Link to={`/product/${product.id}`}>
                   <button>Display More Info</button>
                 </Link>
+                
+                <button onClick={handleBackToMyCart}>My Cart</button>
               </div>
             );
           })
