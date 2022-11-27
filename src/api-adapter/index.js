@@ -162,3 +162,52 @@ export async function deleteCartItem(cartItemId) {
   console.log(result);
   return result;
 }
+
+export async function updateProduct(name, description, inStock, price, image) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name, 
+      description,
+      inStock,
+      price, 
+      image
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}/api/routines/${id}`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function createProduct (name, description, inStock, price, image) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name, 
+      description,
+      inStock,
+      price, 
+      image
+    }),
+  };
+  try {
+    const response = await fetch(`http://localhost:3000/api/products`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+  }
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import { LoggedIn, Logout } from "./";
+import "./Navbar.css";
+
 
 const Navbar = (props) => {
   const user = props.user;
@@ -19,9 +21,10 @@ const Navbar = (props) => {
       </div>
       <div id="navbar">
         <Link to="/Products">Home</Link>
-        <Link to="/Login">Login</Link>
-        <Link to="/Register">Register</Link>
-        <Link to="/mycart/cart_items">My Cart</Link>
+        <Link to="/Products">Products</Link>
+        <Link to="/Login"><i class="fa-solid fa-user"></i></Link>
+        {/* <Link to="/Register">Register</Link> */}
+        <Link to="/mycart/cart_items"><i class="fa-solid fa-cart-shopping"></i></Link>
       </div>
       <Outlet></Outlet>
     </div>
