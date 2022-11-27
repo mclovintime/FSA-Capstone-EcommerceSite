@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const SingleProduct = (props) => {
 
-  const { productId } = useParams();
+  const { productId, quantity, setCount } = useParams();
   console.log(productId, "productID");
   const [product, setProduct] = useState("");
   const navigate = useNavigate()
@@ -21,13 +21,13 @@ const SingleProduct = (props) => {
 
 
 
-  const [quantity, setCount] = useState(0);
+  
   let incrementCount = () => {
-    setCount(quantity + 1);
+    props.setCount(props.quantity + 1);
   };
   
   let decrementCount = () => {
-    setCount(quantity - 1);
+    if(props.quantity > 0){props.setCount(props.quantity - 1)};
   };
 
   function handleBack(){
@@ -40,7 +40,7 @@ const addProduct = async (e)  => {
   e.preventDefault()
   const price = product.price
  
-  const addedToCart = await addProductToUserCart(productId, price, quantity)
+  const addedToCart = await addProductToUserCart(productId, price, props.quantity)
   console.log(addedToCart)
 }
 
@@ -59,13 +59,13 @@ const addProduct = async (e)  => {
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
         <div>
-      <div class="count">
+      <div className="count">
         
-        <h1>{quantity}</h1>
+        <h1>Quantity: {props.quantity}</h1>
       </div>
-      <div class="buttons">
-        <button title={"-"} action={decrementCount} />
-        <button title={"+"} action={incrementCount} />
+      <div className="buttons">
+        <button title={"-"} onClick={decrementCount} >-</button>
+        <button title={"+"} onClick={incrementCount} >+</button>
         
       </div>
     </div>
