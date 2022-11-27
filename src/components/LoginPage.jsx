@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
 import { toast } from "react-toastify";
+import "./LoginPage.css";
+
 
 
 const LoginPage = ({ setUser, setIsLoggedIn }) => {
@@ -36,10 +38,11 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-    <form onSubmit={handleLogin}>
+      <h2 className="login-header">Login
+    <form onSubmit={handleLogin} className="login-form">
       <h3>Username:</h3>
       <input
+        id="usernameLogin"
         type="text"
         required
         value={username}
@@ -47,19 +50,23 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
       />
       <h3>Password:</h3>
       <input
+        id="loginPassword"
         type="password"
         required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-button" type="submit">Login</button>
+      <button className="loginButton" type="submit">Login</button>
       </form>
+      </h2>
       <br />
+      <div className="register-link-container">
       <h3>Not Yet a User?</h3>
       <Link to="/register" className="link">
         Register
       </Link>
       <div id="loginMessage">{loginMessage}</div>
+      </div>
     </div>
   );
 };
