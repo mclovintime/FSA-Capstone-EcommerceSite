@@ -41,6 +41,18 @@ const UserCart = (props) => {
     // }
   }
 
+
+  
+  async function handleNewDelete(productId) {
+console.log(productId,"DELETE PRODUCTID")
+    const cartItemId = Number(productId);
+    const deleted = await deleteCartItem(cartItemId);
+    console.log(deleted, "here is deleted")
+    if (deleted.success) {
+      navigate("/mycart/cart_items");
+    }
+  }
+
   let incrementCount = () => {
     props.setCount(props.quantity + 1);
   };
@@ -48,6 +60,7 @@ const UserCart = (props) => {
   let decrementCount = () => {
     if(props.quantity > 0){props.setCount(props.quantity - 1)};
   };
+
 
   return (
     <div>
@@ -91,6 +104,7 @@ const UserCart = (props) => {
                           <div className="productID">
                             Price: {product.price / 100}
                           </div>
+                          <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
                           <img id="productImage" src={`${product.image_url}`} />
                           {/* <button>Add to cart</button> */}
                           <Link to={`/product/${product.id}`}>
