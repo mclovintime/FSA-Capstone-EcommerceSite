@@ -74,7 +74,7 @@ const Products = (props) => {
     console.log(tester, "tester right here");
   }
 
-  return (
+  return !user.is_admin ? (
 
     <div>
       <h1>products</h1>
