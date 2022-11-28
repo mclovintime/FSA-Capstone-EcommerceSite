@@ -69,7 +69,10 @@ const Main = () => {
           }
         ></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/products" element={<Products user={user}/>}></Route>
+
+        <Route path="/products" element={<Products
+        user = {user} />}></Route>
+
 
         <Route path="/guestcart" element={<GuestCart />}></Route>
         <Route

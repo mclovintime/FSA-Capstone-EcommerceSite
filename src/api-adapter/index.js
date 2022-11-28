@@ -161,6 +161,9 @@ export async function deleteCartItem(cartItemId) {
   const response = await fetch(`http://localhost:3000/api/users/mycart/cart_items/${cartItemId}`, options);
   const result = await response.json();
   console.log(result);
+  
+  console.log("TRIGGER")
+  window.location.reload();
   return result;
 }
 

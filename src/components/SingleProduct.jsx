@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 
 const SingleProduct = (props) => {
+  let existingItems = []
   const user = props.user;
   console.log(user, "testing user")
 
@@ -27,14 +28,28 @@ const SingleProduct = (props) => {
   }, []);
 
   function addProductToGuestCart()  {
+    const tempID = product.id
     const newCartItem = 
-    {price: product.price, 
-     image_url: product.image_url,
-     name: product.name,
-    //  quantity: 
-    }
+    
+    {tempID: tempID, product:
+   {price: product.price, 
+    image_url: product.image_url,
+    name: product.name,
+    id: product.id
+   }}
+   console.log(newCartItem, "newCartItem")
+  
+  
+    console.log(localStorage.getItem('guestCart'), "testing response empty pointer")
 
-    let existingItems = JSON.parse(localStorage.getItem('guestCart'))
+    if (localStorage.getItem('guestCart') == "")  {
+      existingItems = []
+    
+  } else{
+    existingItems = JSON.parse(localStorage.getItem('guestCart'))
+  }
+    
+
     console.log(typeof existingItems, "existing items type")
 
     if (!existingItems)  {

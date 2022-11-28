@@ -11,6 +11,15 @@ const UserCart = (props) => {
   const products = props.products;
   const navigate = useNavigate();
 
+  async function handleNewDelete(productId) {
+console.log(productId,"DELETE PRODUCTID")
+    const cartItemId = Number(productId);
+    const deleted = await deleteCartItem(cartItemId);
+    
+    
+  }
+
+
   useEffect(() => {
     async function fetchUserCart() {
       const allCart = await getUserCart();
@@ -125,7 +134,7 @@ console.log(productId,"DELETE PRODUCTID")
                             </button>
                           </h3>
                           </div>
-                          <button onClick={handleDelete}>Delete</button>
+                         
                         </div>
                       );
                     }
