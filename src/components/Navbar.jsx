@@ -22,12 +22,12 @@ const Navbar = (props) => {
       <div id="navbar">
         <Link to="/Products">Home</Link>
         <Link to="/Products">Products</Link>
-        <Link to="/Login"><i class="fa-solid fa-user"></i></Link>
+        <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
         <Link to="/mycart/cart_items"></Link>
         
-        {user ? <Link to="/mycart/cart_items"><i class="fa-solid fa-cart-shopping"></i></Link>  :
-        <Link to="/guestcart"><i class="fa-solid fa-cart-shopping"></i></Link>
+        {user ? <Link to="/mycart/cart_items"><i className="fa-solid fa-cart-shopping"></i></Link>  :
+        <Link to="/guestcart"><i className="fa-solid fa-cart-shopping"></i></Link>
         }
 
 

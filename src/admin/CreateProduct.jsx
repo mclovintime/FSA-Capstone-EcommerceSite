@@ -19,7 +19,7 @@ async function handleSubmit(e) {
 //useNavigate once figured out
   return (
     <div className="myRoutines-container">
-      <h2>Create New Routine</h2>
+      <h2>Create New Product</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -40,7 +40,7 @@ async function handleSubmit(e) {
         <input
           type="text"
           name="inStock"
-        //   placeholder="description"
+          placeholder="How many are in stock?"
           value={inStock}
           onChange={(e) => setInStock(e.target.value)}
           label="Product InStock"
@@ -58,6 +58,7 @@ async function handleSubmit(e) {
         <input
           type="text"
           name="image"
+          placeholder="image url"
           value={image}
           onChange={(e) => setImage(e.target.value)}
           label="Product Image"
