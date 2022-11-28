@@ -34,13 +34,14 @@ export async function authUser(token) {
   }
 }
 
-export async function registerUser(username, password, setRegisterUser) {
+export async function registerUser(email, username, password, setRegisterUser) {
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      email, 
       username,
       password,
     }),
@@ -188,6 +189,23 @@ export async function updateProduct(name, description, inStock, price, image) {
     return result;
   } catch (error) {
     console.error(error);
+  }
+}
+
+export async function deleteProduct(id, token) {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  try {
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
   }
 }
 

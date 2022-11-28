@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { addProductToUserCart, getProducts, getProductsById } from "../api-adapter";
 import "./products.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import AdminProducts from "../admin/AdminProducts";
+
 
 const Products = (props) => {
   let user = props.user;
   let existingItems = [];
+
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
@@ -72,6 +75,7 @@ const Products = (props) => {
   }
 
   return (
+
     <div>
       <h1>products</h1>
       <div id="container">
@@ -114,7 +118,7 @@ const Products = (props) => {
         )}
       </div>
     </div>
-  );
+  ) : <AdminProducts/>;
 };
 
 export default Products;
