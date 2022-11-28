@@ -3,12 +3,17 @@ import { Navbar, UserCart } from "./";
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { authUser,getProducts } from "../api-adapter";
+import { authUser, getProducts } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
+<<<<<<< HEAD
 import GuestCart from "./GuestCart";
 
+=======
+import Footer from "./Footer";
+import ContactForm from "./ContactForm";
+>>>>>>> 2790684e8dc5b200534acb801f530cfe9428f639
 
 import {
   RouterProvider,
@@ -35,9 +40,6 @@ const Main = () => {
     fetchProducts();
   }, []);
 
- 
-
-
   useEffect(() => {
     const localToken = localStorage.getItem("token");
     if (localToken && !isLoggedIn) {
@@ -49,8 +51,6 @@ const Main = () => {
       fetchUser();
     }
   }, [isLoggedIn]);
-
-
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -73,9 +73,29 @@ const Main = () => {
         ></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/products" element={<Products />}></Route>
+<<<<<<< HEAD
         <Route path="/guestcart" element={<GuestCart />}></Route>
         <Route path="/product/:productId" element={<SingleProduct user={user} quantity={quantity} setCount={setCount}/>}></Route>
         <Route path="/mycart/cart_items" element={<UserCart products= {products} setProducts ={setProducts} quantity={quantity} setCount={setCount}/>}></Route>
+=======
+        <Route
+          path="/product/:productId"
+          element={<SingleProduct quantity={quantity} setCount={setCount} />}
+        ></Route>
+        <Route
+          path="/mycart/cart_items"
+          element={
+            <UserCart
+              products={products}
+              setProducts={setProducts}
+              quantity={quantity}
+              setCount={setCount}
+            />
+          }
+        ></Route>
+        <Route path="/contactform" element={<ContactForm />}></Route>
+        <Route path="/" element={<Footer />}></Route>
+>>>>>>> 2790684e8dc5b200534acb801f530cfe9428f639
       </Route>
     )
   );
