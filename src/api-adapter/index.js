@@ -156,7 +156,7 @@ export async function deleteCartItem(cartItemId) {
       "Authorization": `Bearer ${localStorage.getItem("token")} `
     },
   };
-
+  console.log(cartItemId, "cartItemId in delete fetch call")
   const response = await fetch(`http://localhost:3000/api/users/mycart/cart_items/${cartItemId}`, options);
   const result = await response.json();
   console.log(result);

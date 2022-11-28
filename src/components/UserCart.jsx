@@ -39,6 +39,17 @@ const UserCart = (props) => {
     }
   }
 
+  
+  async function handleNewDelete(productId) {
+console.log(productId,"DELETE PRODUCTID")
+    const cartItemId = Number(productId);
+    const deleted = await deleteCartItem(cartItemId);
+    console.log(deleted, "here is deleted")
+    if (deleted.success) {
+      navigate("/mycart/cart_items");
+    }
+  }
+
   return (
     <div>
       <h1>My Cart</h1>
@@ -80,6 +91,7 @@ const UserCart = (props) => {
                           <div className="productID">
                             Price: {product.price}
                           </div>
+                          <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
                           <img id="productImage" src={`${product.image_url}`} />
                           <button>Add to cart</button>
                           <Link to={`/product/${product.id}`}>
