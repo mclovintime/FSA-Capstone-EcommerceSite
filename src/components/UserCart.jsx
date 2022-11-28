@@ -1,10 +1,14 @@
 import { React, useState, useEffect } from "react";
 import { getUserCart, deleteCartItem } from "../api-adapter";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UserCart = (props) => {
-  const products = props.products;
+  const {quantity, setCount} = useParams;
+  console.log(props, "wassup")
   const [userCart, setUserCart] = useState([]);
+  const [cartItemId, setCartItemId] = useState(0);
+  const [selectedItem, setSelectedItem] = useState();
+  const products = props.products;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,9 +24,6 @@ const UserCart = (props) => {
     navigate("/products");
   }
 
-  const [cartItemId, setCartItemId] = useState(0);
-
-  const [selectedItem, setSelectedItem] = useState();
 
   const handleSelectChange = (event) => {
     const id = event.target.value;
@@ -32,12 +33,14 @@ const UserCart = (props) => {
 
   async function handleDelete(e) {
     e.preventDefault();
-    const cartItemId = Number(selectedItem.id);
-    const deleted = await deleteCartItem(cartItemId);
-    if (deleted.success) {
-      navigate("/mycart/cart_items");
-    }
+    // const cartItemId = Number(selectedItem.id);
+    const deletedCartItem = await deleteCartItem(cartItemId);
+    // if (deleted.success) {
+      
+      // navigate("/mycart/cart_items");
+    // }
   }
+
 
   
   async function handleNewDelete(productId) {
@@ -50,10 +53,20 @@ console.log(productId,"DELETE PRODUCTID")
     }
   }
 
+  let incrementCount = () => {
+    props.setCount(props.quantity + 1);
+  };
+  
+  let decrementCount = () => {
+    if(props.quantity > 0){props.setCount(props.quantity - 1)};
+  };
+
+
   return (
     <div>
       <h1>My Cart</h1>
-      <select onChange={handleSelectChange}>
+          <button onClick={handleBack}>Continue Shopping</button>
+      {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
           <option key={item.id} value={item.id}>
             price: {item.price}
@@ -61,8 +74,8 @@ console.log(productId,"DELETE PRODUCTID")
             Product Id: {item.id}
           </option>
         ))}
-      </select>
-      <button onClick={handleDelete}>Delete</button>
+      </select> */}
+      
 
       <div id="container">
         {userCart.length ? (
@@ -78,26 +91,41 @@ console.log(productId,"DELETE PRODUCTID")
                           className="productBox"
                         >
                           <div className="productName">{product.name}</div>
-                          <div className="productDescription">
+                          {/* <div className="productDescription">
                             Description: {product.description}
-                          </div>
-                          <div className="productDescription">
+                          </div> */}
+                          {/* <div className="productDescription">
                             {` testing product id ${product.id}`}
-                          </div>
+                          </div> */}
 
                           <div className="productInStock">
-                            In stock: {product.stock}
+                            In stock: {product.stock > 0 ? "Yes" : "No"}
                           </div>
                           <div className="productID">
-                            Price: {product.price}
+                            Price: {product.price / 100}
                           </div>
                           <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
                           <img id="productImage" src={`${product.image_url}`} />
-                          <button>Add to cart</button>
+                          {/* <button>Add to cart</button> */}
                           <Link to={`/product/${product.id}`}>
-                            <button>Display More Info</button>
+                            <button>Product Details</button>
                           </Link>
-                          <button onClick={handleBack}>Go Back</button>
+                          {/* <button onClick={handleBack}>Go Back</button> */}
+                          <div>
+                          <h3>
+                            Quantity:
+                            <button onClick={decrementCount}>
+                              -
+                            </button>
+                            <div>
+                              {props.quantity}
+                            </div>
+                            <button onClick={incrementCount}>
+                              +
+                            </button>
+                          </h3>
+                          </div>
+                          <button onClick={handleDelete}>Delete</button>
                         </div>
                       );
                     }

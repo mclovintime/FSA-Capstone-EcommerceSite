@@ -23,6 +23,7 @@ const Main = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
+  const [quantity, setCount] = useState(0);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -71,8 +72,8 @@ const Main = () => {
         ></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/products" element={<Products />}></Route>
-        <Route path="/product/:productId" element={<SingleProduct />}></Route>
-        <Route path="/mycart/cart_items" element={<UserCart products= {products} setProducts ={setProducts}/>}></Route>
+        <Route path="/product/:productId" element={<SingleProduct quantity={quantity} setCount={setCount}/>}></Route>
+        <Route path="/mycart/cart_items" element={<UserCart products= {products} setProducts ={setProducts} quantity={quantity} setCount={setCount}/>}></Route>
       </Route>
     )
   );
