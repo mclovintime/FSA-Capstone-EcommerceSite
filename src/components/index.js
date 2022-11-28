@@ -5,5 +5,7 @@ export {default as Register} from './Register'
 export {default as LoggedIn} from  './LoggedIn'
 export {default as Logout} from  './Logout'
 export {default as UserCart} from './UserCart'
+export {default as ContactForm} from './ContactForm'
+export {default as Footer} from './Footer'
 
 
