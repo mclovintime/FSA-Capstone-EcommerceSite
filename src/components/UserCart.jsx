@@ -102,7 +102,7 @@ console.log(productId,"DELETE PRODUCTID")
                             In stock: {product.stock > 0 ? "Yes" : "No"}
                           </div>
                           <div className="productID">
-                            Price: {product.price / 100}
+                            Price: ${product.price / 100}
                           </div>
                           <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
                           <img id="productImage" src={`${product.image_url}`} />

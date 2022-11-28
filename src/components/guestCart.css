@@ -1,0 +1,12 @@
+
+#guestCartContainer {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#header {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}

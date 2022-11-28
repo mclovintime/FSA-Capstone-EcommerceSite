@@ -24,7 +24,14 @@ const Navbar = (props) => {
         <Link to="/Products">Products</Link>
         <Link to="/Login"><i class="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
-        <Link to="/mycart/cart_items"><i class="fa-solid fa-cart-shopping"></i></Link>
+        <Link to="/mycart/cart_items"></Link>
+        
+        {user ? <Link to="/mycart/cart_items"><i class="fa-solid fa-cart-shopping"></i></Link>  :
+        <Link to="/guestcart"><i class="fa-solid fa-cart-shopping"></i></Link>
+        }
+
+
+        
       </div>
       <Outlet></Outlet>
     </div>

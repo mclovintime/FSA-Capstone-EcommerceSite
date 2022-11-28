@@ -7,6 +7,7 @@ import { authUser,getProducts } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
+import GuestCart from "./GuestCart";
 
 
 import {
@@ -72,7 +73,8 @@ const Main = () => {
         ></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/products" element={<Products />}></Route>
-        <Route path="/product/:productId" element={<SingleProduct quantity={quantity} setCount={setCount}/>}></Route>
+        <Route path="/guestcart" element={<GuestCart />}></Route>
+        <Route path="/product/:productId" element={<SingleProduct user={user} quantity={quantity} setCount={setCount}/>}></Route>
         <Route path="/mycart/cart_items" element={<UserCart products= {products} setProducts ={setProducts} quantity={quantity} setCount={setCount}/>}></Route>
       </Route>
     )
