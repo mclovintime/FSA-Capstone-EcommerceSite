@@ -4,6 +4,27 @@ import "./guestCart.css"
 const GuestCart = () => {
   let cart = JSON.parse(localStorage.getItem('guestCart'))
 
+  async function handleDelete(productID)  {
+    let preexistingCart = JSON.parse(localStorage.getItem('guestCart'))
+    let newCart = []
+    let tempCart = 0
+    
+    for (let i = 0 ; i < preexistingCart.length; i++) {
+      tempCart = preexistingCart[i];
+     
+      console.log(tempCart.tempID, "is temp ID")
+      console.log(productID, "productID")
+      if (tempCart.tempID == productID)  {
+        console.log("entering slice?")
+        preexistingCart.splice(i, 1)
+        break;
+      }
+    }
+    console.log(preexistingCart, "the new cart")
+    let toBeSet = JSON.stringify(preexistingCart)
+    localStorage.setItem("guestCart", toBeSet)
+    window.location.reload();
+  }
 
   return (
    <div>
@@ -13,11 +34,11 @@ const GuestCart = () => {
           cart.map((product) => {
             return (
               <div key={`product-${product.id}`} className="productBox">
-                <div className="productName">{product.name}</div>
+                <div className="productName">{product.product.name}</div>
                 
-                <div className="productPrice">Price: {product.price}</div>
-                <img id="productImage" src={`${product.image_url}`} />
-                
+                <div className="productPrice">Price: {product.product.price}</div>
+                <img id="productImage" src={`${product.product.image_url}`} />
+                <button onClick={() =>  handleDelete(product.product.id)}>Delete</button>
               </div>
             );
           })
@@ -27,6 +48,7 @@ const GuestCart = () => {
         )}
       </div>
       <button>Checkout</button>
+      <button>Clear cart</button>
     </div>
   );
 };
