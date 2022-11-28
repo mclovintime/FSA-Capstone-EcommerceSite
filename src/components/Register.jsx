@@ -6,13 +6,14 @@ import { toast } from "react-toastify";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   const [registerMessage, setRegisterMessage] = useState("");
 
   async function handleRegister(e) {
     e.preventDefault();
-    const { token } = await registerUser(username, password, setRegisterMessage);
+    const { token } = await registerUser(email, username, password, setRegisterMessage);
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     setUsername("");
@@ -20,7 +21,7 @@ const Register = () => {
 
     if (token) {
       toast.success("Register Successful");
-      navigate("/Home");
+      navigate("/Login");
     } else {
       toast.error("Register Failed");
       navigate("/Register");
@@ -30,6 +31,15 @@ const Register = () => {
     <div className="register-container">
       <h2 className="register-header">Register</h2>
       <form onSubmit={handleRegister}>
+      <input
+          type="text"
+          name="email"
+          placeholder="email *"
+          required
+          value={email}
+          onChange={function (e) {
+            setEmail(e.target.value);
+          }}/>
         <input
           type="text"
           name="username"

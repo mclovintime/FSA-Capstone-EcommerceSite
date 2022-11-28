@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../api-adapter";
-import "./products.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import AdminProducts from "../admin/AdminProducts";
+
+import { Link, useNavigate } from "react-router-dom";
+import CreateProduct from "./CreateProduct";
 
 
 
-const Products = (props) => {
-  const user = props.user;
-  console.log(user, "laskjdf;las")
+const AdminProducts = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate()
 
@@ -27,9 +25,10 @@ const Products = (props) => {
     navigate("/mycart/cart_items")
   }
   
-  return !user.is_admin ? (
+  return (
     <div>
       <h1>products</h1>
+      <CreateProduct/>
       <div id="container">
         {products.length ? (
           products.map((product) => {
@@ -52,6 +51,9 @@ const Products = (props) => {
                 </Link>
                 
                 <button onClick={handleBackToMyCart}>My Cart</button>
+              
+              <button>Update Product </button>
+              <button>Delete Product</button>
               </div>
             );
           })
@@ -60,7 +62,7 @@ const Products = (props) => {
         )}
       </div>
     </div>
-  ) : <AdminProducts/>;
+  );
 };
 
-export default Products;
+export default AdminProducts;
