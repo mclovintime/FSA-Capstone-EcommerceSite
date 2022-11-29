@@ -11,6 +11,7 @@ import SingleProduct from "./SingleProduct";
 import GuestCart from "./GuestCart";
 import Footer from "./Footer";
 import ContactForm from "./ContactForm";
+import AdminPage from "../admin/AdminPage";
 
 import {
   RouterProvider,
@@ -99,6 +100,7 @@ const Main = () => {
         ></Route>
         <Route path="/contactform" element={<ContactForm />}></Route>
         <Route path="/" element={<Footer />}></Route>
+        <Route path="/Admin" element={<AdminPage />}></Route>
       </Route>
     )
   );
