@@ -27,7 +27,7 @@ const AdminProducts = () => {
   
   return (
     <div>
-      <h1>products</h1>
+      <h2>All Products</h2>
       <CreateProduct/>
       <div id="container">
         {products.length ? (

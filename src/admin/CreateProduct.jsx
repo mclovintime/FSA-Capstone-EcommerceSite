@@ -19,7 +19,7 @@ async function handleSubmit(e) {
 //useNavigate once figured out
   return (
     <div className="myRoutines-container">
-      <h2>Create New Product</h2>
+      <h3>Create New Product</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

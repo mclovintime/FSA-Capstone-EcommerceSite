@@ -10,7 +10,7 @@ const Navbar = (props) => {
   const handleLogout = props.handleLogout
   const isLoggedIn = props.isLoggedIn
   const setIsLoggedIn = props.setIsLoggedIn
-  console.log(user);
+  console.log(user.is_admin);
   return (
     <div>
       <div>
@@ -30,7 +30,9 @@ const Navbar = (props) => {
         <Link to="/guestcart"><i className="fa-solid fa-cart-shopping"></i></Link>
         }
 
-
+        {user.is_admin === true ? (
+          <Link to="/Admin">Admin</Link>
+        ): null}
         
       </div>
       <Outlet></Outlet>
