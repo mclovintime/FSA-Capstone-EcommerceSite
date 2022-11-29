@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getProductsById, addProductToUserCart} from "../api-adapter";
+import { getProductsById, addProductToUserCart, updateQuantity} from "../api-adapter";
 import { useParams, useNavigate } from "react-router-dom";
 
 
@@ -16,6 +16,7 @@ const SingleProduct = (props) => {
   const { productId, quantity, setCount } = useParams();
   console.log(productId, "productID");
   const [product, setProduct] = useState("");
+  const [updatedQuantity, setUpdatedQuantity] = useState(0);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -26,6 +27,21 @@ const SingleProduct = (props) => {
     }
     getSingleProduct();
   }, []);
+
+async function handleQuantChange(e){
+  let id = product.id
+
+  let recievedQuant = e.target.value;
+const newQuant = Number(recievedQuant)
+setUpdatedQuantity(newQuant)
+
+
+}
+
+async function settingNewQuant(){
+  let id = product.id
+  let blah = await updateQuantity(id, updatedQuantity)
+}
 
   function addProductToGuestCart()  {
     const tempID = product.id
@@ -121,15 +137,18 @@ const addProduct = async (e)  => {
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
         <div>
-      <div className="count">
+
+        <select onChange={ () => handleQuantChange()}>
         
-        <h1>Quantity: {props.quantity}</h1>
-      </div>
-      <div className="buttons">
-        <button title={"-"} onClick={decrementCount} >-</button>
-        <button title={"+"} onClick={incrementCount} >+</button>
-        
-      </div>
+        <option id="selectedQuantity" value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+      </select>
+      <button onClick={() => settingNewQuant()} id="submitnewQuantity">Update Quantity</button>
+
     </div>
       {user ? <button onClick={addProduct}>Add to cart</button> :
       <button onClick={addGuestProduct}>Add to cart</button>
