@@ -209,7 +209,7 @@ export async function deleteProduct(id, token) {
   }
 }
 
-export async function createProduct (name, description, inStock, price, image) {
+export async function createProduct (name, description, stock, image_url, price ) {
   const options = {
     method: "POST",
     headers: {
@@ -219,9 +219,9 @@ export async function createProduct (name, description, inStock, price, image) {
     body: JSON.stringify({
       name, 
       description,
-      inStock,
-      price, 
-      image
+      stock,
+      image_url,
+      price
     }),
   };
   try {

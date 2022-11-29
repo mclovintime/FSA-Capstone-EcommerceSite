@@ -4,19 +4,20 @@ import {createProduct} from "../api-adapter/index"
  const CreateProduct =(props) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [inStock, setInStock] = useState("");
+    const [stock, setStock] = useState("");
     const [price, setPrice] = useState("");
-    const [image, setImage] = useState("");
+    const [ image_URL, setImage_URL] = useState("");
+
 
 
 async function handleSubmit(e) {
     e.preventDefault();
-    const newProduct = await createProduct(name, description, inStock, price, image);
+    const newProduct = await createProduct(name, description, stock, image_URL, price);
 
 } 
 
-//need to figure out how admin's access admin functionality
-//useNavigate once figured out
+
+
   return (
     <div className="myRoutines-container">
       <h3>Create New Product</h3>
@@ -41,10 +42,20 @@ async function handleSubmit(e) {
           type="text"
           name="inStock"
           placeholder="How many are in stock?"
-          value={inStock}
-          onChange={(e) => setInStock(e.target.value)}
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
           label="Product InStock"
         />
+        
+        <input
+          type="text"
+          name="image"
+          placeholder="image url"
+          value={image_URL}
+          onChange={(e) => setImage_URL(e.target.value)}
+          label="Product Image"
+        />
+
         <input
           type="number"
           min="0"
@@ -55,16 +66,9 @@ async function handleSubmit(e) {
           onChange={(e) => setPrice(e.target.value)}
           label="Product Price"
         />
-        <input
-          type="text"
-          name="image"
-          placeholder="image url"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          label="Product Image"
-        />
+
         <button className="editproduct-button" type="submit">
-          Create Product
+          Create Product 
         </button>
       </form>
       </div>
