@@ -167,9 +167,9 @@ export async function deleteCartItem(cartItemId) {
   return result;
 }
 
-export async function updateProduct(name, description, inStock, price, image) {
+export async function updateProduct(name, description, stock, image_url, price ) {
   const options = {
-    method: "POST",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -177,13 +177,13 @@ export async function updateProduct(name, description, inStock, price, image) {
     body: JSON.stringify({
       name, 
       description,
-      inStock,
-      price, 
-      image
+      stock,
+      image_url,
+      price
     }),
   };
   try {
-    const response = await fetch(`${BASE_URL}/api/routines/${id}`, options);
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;

@@ -3,6 +3,7 @@ import { getProducts } from "../api-adapter";
 
 import { Link, useNavigate } from "react-router-dom";
 import CreateProduct from "./CreateProduct";
+import EditProduct from "./EditProduct";
 
 
 
@@ -53,6 +54,7 @@ const AdminProducts = () => {
                 <button onClick={handleBackToMyCart}>My Cart</button>
               
               <button>Update Product </button>
+              <EditProduct product={product}/>
               <button>Delete Product</button>
               </div>
             );
