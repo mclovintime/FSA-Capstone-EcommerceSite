@@ -1,22 +1,23 @@
-import React, {useState, useEffect} from 'react'
-import {createProduct} from "../api-adapter/index"
+import React, { useState, useEffect } from "react";
+import { createProduct } from "../api-adapter/index";
 
- const CreateProduct =(props) => {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [stock, setStock] = useState("");
-    const [price, setPrice] = useState("");
-    const [ image_URL, setImage_URL] = useState("");
+const CreateProduct = (props) => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [stock, setStock] = useState("");
+  const [price, setPrice] = useState("");
+  const [image_URL, setImage_URL] = useState("");
 
-
-
-async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const newProduct = await createProduct(name, description, stock, image_URL, price);
-
-} 
-
-
+    const newProduct = await createProduct(
+      name,
+      description,
+      stock,
+      image_URL,
+      price
+    );
+  }
 
   return (
     <div className="myRoutines-container">
@@ -46,7 +47,7 @@ async function handleSubmit(e) {
           onChange={(e) => setStock(e.target.value)}
           label="Product InStock"
         />
-        
+
         <input
           type="text"
           name="image"
@@ -68,11 +69,11 @@ async function handleSubmit(e) {
         />
 
         <button className="editproduct-button" type="submit">
-          Create Product 
+          Create Product
         </button>
       </form>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default CreateProduct
+export default CreateProduct;

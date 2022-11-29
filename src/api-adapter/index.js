@@ -167,23 +167,23 @@ export async function deleteCartItem(cartItemId) {
   return result;
 }
 
-export async function updateProduct(name, description, inStock, price, image) {
+export async function updateProduct(id, {name, description, stock, image_url, price} ) {
   const options = {
-    method: "POST",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      name, 
-      description,
-      inStock,
-      price, 
-      image
+      name: name,
+      description: description,
+      stock: stock,
+      image_url: image_url,
+      price: price
     }),
   };
   try {
-    const response = await fetch(`${BASE_URL}/api/routines/${id}`, options);
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;
@@ -226,6 +226,27 @@ export async function createProduct (name, description, stock, image_url, price 
   };
   try {
     const response = await fetch(`http://localhost:3000/api/products`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+  }
+}
+
+
+export async function updateQuantity(id, quantity) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    body: JSON.stringify({
+     quantity 
+    }),
+  }
+  try {
+    const response = await fetch(`http://localhost:3000/api/cart_items/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;

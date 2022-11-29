@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getProductsById, addProductToUserCart} from "../api-adapter";
+import { getProductsById, addProductToUserCart, updateQuantity} from "../api-adapter";
 import { useParams, useNavigate } from "react-router-dom";
 
 
@@ -16,6 +16,7 @@ const SingleProduct = (props) => {
   const { productId, quantity, setCount } = useParams();
   console.log(productId, "productID");
   const [product, setProduct] = useState("");
+  const [updatedQuantity, setUpdatedQuantity] = useState(0);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -27,18 +28,38 @@ const SingleProduct = (props) => {
     getSingleProduct();
   }, []);
 
+const [selectedQuantity, setSelectedQuantity] = useState(0)
+console.log(selectedQuantity)
+
+async function handleQuantChange(e){
+const val = Number(e.target.value)
+setSelectedQuantity(val)
+console.log(selectedQuantity, "this is selected")
+const Num = Number(selectedQuantity)
+setUpdatedQuantity(Num)
+console.log(updatedQuantity, "this is updatedQuant")
+
+
+}
+
+async function settingNewQuant(){
+  let id = product.id
+  console.log(selectedQuantity,"trying to feed this quant")
+ await updateQuantity(id, selectedQuantity)
+}
+
   function addProductToGuestCart()  {
     const tempID = product.id
     const newCartItem = 
     
     {tempID: tempID, product:
-   {price: product.price, 
-    image_url: product.image_url,
-    name: product.name,
+    {price: product.price, 
+     image_url: product.image_url,
+     name: product.name,
     id: product.id
    }}
    console.log(newCartItem, "newCartItem")
-  
+
   
     console.log(localStorage.getItem('guestCart'), "testing response empty pointer")
 
@@ -47,10 +68,10 @@ const SingleProduct = (props) => {
     
   } else{
     existingItems = JSON.parse(localStorage.getItem('guestCart'))
-  }
+   }
     
 
-    console.log(typeof existingItems, "existing items type")
+     console.log(typeof existingItems, "existing items type")
 
     if (!existingItems)  {
       existingItems = []
@@ -121,15 +142,18 @@ const addProduct = async (e)  => {
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
         <div>
-      <div className="count">
         
-        <h1>Quantity: {props.quantity}</h1>
-      </div>
-      <div className="buttons">
-        <button title={"-"} onClick={decrementCount} >-</button>
-        <button title={"+"} onClick={incrementCount} >+</button>
+        <select onChange={handleQuantChange}>
         
-      </div>
+        <option id="selectedQuantity" value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+      </select>
+      <button onClick={settingNewQuant} id="submitnewQuantity">Update Quantity</button>
+
     </div>
       {user ? <button onClick={addProduct}>Add to cart</button> :
       <button onClick={addGuestProduct}>Add to cart</button>
