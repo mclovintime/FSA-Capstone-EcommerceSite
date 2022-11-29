@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../api-adapter";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CreateProduct from "./CreateProduct";
-import EditProduct from "./EditProduct";
+
+import DeleteProducts from "./DeleteProducts";
+
 
 
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
+  // console.log(products, "woiehrpow")
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -53,8 +56,10 @@ const AdminProducts = () => {
                 
                 <button onClick={handleBackToMyCart}>My Cart</button>
               
-              <EditProduct product={product}/>
-              <button>Delete Product</button>
+
+              <button>Update Product </button>
+              <DeleteProducts products={products}/>
+
               </div>
             );
           })
