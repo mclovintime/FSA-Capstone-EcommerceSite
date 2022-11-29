@@ -1,13 +1,13 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import AdminProducts from './AdminProducts'
 
- const AdminPage = (props)=> {
-    // const user = props.user
-    // console.log(user)
+ const AdminPage = ()=> {
+
   return (
     <div>
         <h1>Welcome</h1>
-        <AdminProducts/>
+        <AdminProducts />
 
     </div>
   )

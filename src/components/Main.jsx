@@ -27,6 +27,7 @@ const Main = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
+  console.log(products, "products info")
   const [quantity, setCount] = useState(0);
 
   useEffect(() => {

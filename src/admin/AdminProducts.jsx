@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getProducts } from "../api-adapter";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CreateProduct from "./CreateProduct";
+import DeleteProducts from "./DeleteProducts";
 
 
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
+  // console.log(products, "woiehrpow")
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -38,9 +40,9 @@ const AdminProducts = () => {
                 <div className="productDescription">
                   Description: {product.description}
                 </div>
-                <div className="productDescription">
+                {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
-                </div>
+                </div> */}
 
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
@@ -53,7 +55,7 @@ const AdminProducts = () => {
                 <button onClick={handleBackToMyCart}>My Cart</button>
               
               <button>Update Product </button>
-              <button>Delete Product</button>
+              <DeleteProducts products={products}/>
               </div>
             );
           })
