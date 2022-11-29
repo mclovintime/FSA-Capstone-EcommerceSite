@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { getUserCart, deleteCartItem } from "../api-adapter";
+import { getUserCart, deleteCartItem, updateQuantity } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UserCart = (props) => {
@@ -33,13 +33,20 @@ console.log(productId,"DELETE PRODUCTID")
     navigate("/products");
   }
 
-
-  const handleSelectChange = (event) => {
-    const id = event.target.value;
-    const chosenItem = userCart.find((item) => item.id == id);
-    setSelectedItem(chosenItem);
-  };
-
+  const [selectedQuantity, setSelectedQuantity] = useState(0)
+  
+  function handleQuantChange(e){
+    const val = Number(e.target.value)
+    setSelectedQuantity(val)
+    console.log(selectedQuantity, "this is selected")
+  }
+  async function settingNewQuant(cartItemId){
+    
+    console.log(selectedQuantity,"trying to feed this quant")
+    await updateQuantity(cartItemId, selectedQuantity)
+  }
+  
+  
   async function handleDelete(e) {
     e.preventDefault();
     // const cartItemId = Number(selectedItem.id);
@@ -114,26 +121,23 @@ console.log(productId,"DELETE PRODUCTID")
                             Price: ${product.price / 100}
                           </div>
                           <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
+                          <select onChange={handleQuantChange}>
+        
+        <option id="selectedQuantity" value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+      </select>
+      <button onClick={() => settingNewQuant(cartItem.id)} id="submitnewQuantity">Update Quantity</button>
                           <img id="productImage" src={`${product.image_url}`} />
                           {/* <button>Add to cart</button> */}
                           <Link to={`/product/${product.id}`}>
                             <button>Product Details</button>
                           </Link>
                           {/* <button onClick={handleBack}>Go Back</button> */}
-                          <div>
-                          <h3>
-                            Quantity:
-                            <button onClick={decrementCount}>
-                              -
-                            </button>
-                            <div>
-                              {props.quantity}
-                            </div>
-                            <button onClick={incrementCount}>
-                              +
-                            </button>
-                          </h3>
-                          </div>
+                  
                          
                         </div>
                       );

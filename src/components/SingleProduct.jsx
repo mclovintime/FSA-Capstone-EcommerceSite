@@ -28,19 +28,24 @@ const SingleProduct = (props) => {
     getSingleProduct();
   }, []);
 
-async function handleQuantChange(e){
-  let id = product.id
+const [selectedQuantity, setSelectedQuantity] = useState(0)
+console.log(selectedQuantity)
 
-  let recievedQuant = e.target.value;
-const newQuant = Number(recievedQuant)
-setUpdatedQuantity(newQuant)
+async function handleQuantChange(e){
+const val = Number(e.target.value)
+setSelectedQuantity(val)
+console.log(selectedQuantity, "this is selected")
+const Num = Number(selectedQuantity)
+setUpdatedQuantity(Num)
+console.log(updatedQuantity, "this is updatedQuant")
 
 
 }
 
 async function settingNewQuant(){
   let id = product.id
-  let blah = await updateQuantity(id, updatedQuantity)
+  console.log(selectedQuantity,"trying to feed this quant")
+ await updateQuantity(id, selectedQuantity)
 }
 
   function addProductToGuestCart()  {
@@ -48,13 +53,13 @@ async function settingNewQuant(){
     const newCartItem = 
     
     {tempID: tempID, product:
-   {price: product.price, 
-    image_url: product.image_url,
-    name: product.name,
+    {price: product.price, 
+     image_url: product.image_url,
+     name: product.name,
     id: product.id
    }}
    console.log(newCartItem, "newCartItem")
-  
+
   
     console.log(localStorage.getItem('guestCart'), "testing response empty pointer")
 
@@ -63,10 +68,10 @@ async function settingNewQuant(){
     
   } else{
     existingItems = JSON.parse(localStorage.getItem('guestCart'))
-  }
+   }
     
 
-    console.log(typeof existingItems, "existing items type")
+     console.log(typeof existingItems, "existing items type")
 
     if (!existingItems)  {
       existingItems = []
@@ -137,8 +142,8 @@ const addProduct = async (e)  => {
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
         <div>
-
-        <select onChange={ () => handleQuantChange()}>
+        
+        <select onChange={handleQuantChange}>
         
         <option id="selectedQuantity" value="0">0</option>
                           <option value="1">1</option>
@@ -147,7 +152,7 @@ const addProduct = async (e)  => {
                           <option value="4">4</option>
                           <option value="5">5</option>
       </select>
-      <button onClick={() => settingNewQuant()} id="submitnewQuantity">Update Quantity</button>
+      <button onClick={settingNewQuant} id="submitnewQuantity">Update Quantity</button>
 
     </div>
       {user ? <button onClick={addProduct}>Add to cart</button> :
