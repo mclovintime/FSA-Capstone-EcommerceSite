@@ -39,9 +39,9 @@ const AdminProducts = () => {
                 <div className="productDescription">
                   Description: {product.description}
                 </div>
-                <div className="productDescription">
+                {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
-                </div>
+                </div> */}
 
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
@@ -53,7 +53,6 @@ const AdminProducts = () => {
                 
                 <button onClick={handleBackToMyCart}>My Cart</button>
               
-              <button>Update Product </button>
               <EditProduct product={product}/>
               <button>Delete Product</button>
               </div>

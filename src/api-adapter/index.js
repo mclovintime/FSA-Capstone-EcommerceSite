@@ -167,19 +167,19 @@ export async function deleteCartItem(cartItemId) {
   return result;
 }
 
-export async function updateProduct(name, description, stock, image_url, price ) {
+export async function updateProduct(id, {name, description, stock, image_url, price} ) {
   const options = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      name, 
-      description,
-      stock,
-      image_url,
-      price
+      name: name,
+      description: description,
+      stock: stock,
+      image_url: image_url,
+      price: price
     }),
   };
   try {
