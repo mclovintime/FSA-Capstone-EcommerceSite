@@ -107,16 +107,7 @@ const EditProduct = (props) => {
             Edit Product
           </button>
         )}
-        <button
-          className="myproducts-button"
-          type="submit"
-          id={product.id ? `${product.id}` : null}
-          onClick={(e) => {
-            handleDelete(e);
-          }}
-        >
-          Delete
-        </button>
+        
       </div>
     </>
   );
