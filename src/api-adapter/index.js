@@ -253,3 +253,13 @@ export async function updateQuantity(id, quantity) {
   } catch (error) {
   }
 }
+
+export async function getAllUsers() {
+  try {
+    const response = await fetch("http://localhost:3000/api/users");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
