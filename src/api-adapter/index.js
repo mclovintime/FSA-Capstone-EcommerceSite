@@ -1,6 +1,8 @@
+const BASE_URL = "https://dimtechtrue.onrender.com/api/"
+
 export async function getProductsById(productId) {
   try {
-    const response = await fetch(`http://localhost:3000/api/products/${productId}`);
+    const response = await fetch(`${BASE_URL}products/${productId}`);
     const result = await response.json();
     console.log(result, "result from getProductsById")
     return result;
@@ -11,7 +13,7 @@ export async function getProductsById(productId) {
 
 export async function getProducts() {
   try {
-    const response = await fetch("http://localhost:3000/api/products");
+    const response = await fetch(`${BASE_URL}products`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -21,7 +23,7 @@ export async function getProducts() {
 
 export async function authUser(token) {
   try {
-    const response = await fetch("http://localhost:3000/api/users/me", {
+    const response = await fetch(`${BASE_URL}users/me`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -48,7 +50,7 @@ export async function registerUser(email, username, password, setRegisterUser) {
   };
   try {
     const response = await fetch(
-      "http://localhost:3000/api/users/register",
+      `${BASE_URL}users/register`,
       options
     );
     const result = await response.json();
@@ -76,7 +78,7 @@ export async function loginUser(username, password, setLoginMessage) {
   };
   try {
     const response = await fetch(
-      "http://localhost:3000/api/users/login",
+      `${BASE_URL}users/login`,
       options
     );
     const result = await response.json();
@@ -106,7 +108,7 @@ export async function getUserCart() {
       
     };
     const response = await fetch(
-      "http://localhost:3000/api/users/mycart/cart_items",
+      `${BASE_URL}users/mycart/cart_items`,
       options
     );
     const result = await response.json();
@@ -137,7 +139,7 @@ export async function addProductToUserCart(productId, price, quantity) {
   };
   try {
     const response = await fetch(
-      "http://localhost:3000/api/users/mycart/cart_items",
+      `${BASE_URL}users/mycart/cart_items`,
       options
     );
     const result = await response.json();
@@ -158,7 +160,7 @@ export async function deleteCartItem(cartItemId) {
     },
   };
   console.log(cartItemId, "cartItemId in delete fetch call")
-  const response = await fetch(`http://localhost:3000/api/users/mycart/cart_items/${cartItemId}`, options);
+  const response = await fetch(`${BASE_URL}users/mycart/cart_items/${cartItemId}`, options);
   const result = await response.json();
   console.log(result);
   
@@ -183,7 +185,7 @@ export async function updateProduct(id, {name, description, stock, image_url, pr
     }),
   };
   try {
-    const response = await fetch(`http://localhost:3000/api/products/${id}`, options);
+    const response = await fetch(`${BASE_URL}products/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;
@@ -201,7 +203,7 @@ export async function deleteProduct(id, token) {
     },
   }
   try {
-    const response = await fetch(`http://localhost:3000/api/products/${id}`, options);
+    const response = await fetch(`${BASE_URL}products/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;
@@ -225,7 +227,7 @@ export async function createProduct (name, description, stock, image_url, price 
     }),
   };
   try {
-    const response = await fetch(`http://localhost:3000/api/products`, options);
+    const response = await fetch(`${BASE_URL}products`, options);
     const result = await response.json();
     console.log(result);
     return result;
@@ -246,7 +248,7 @@ export async function updateQuantity(id, quantity) {
     }),
   }
   try {
-    const response = await fetch(`http://localhost:3000/api/cart_items/${id}`, options);
+    const response = await fetch(`${BASE_URL}cart_items/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;
@@ -256,7 +258,7 @@ export async function updateQuantity(id, quantity) {
 
 export async function getAllUsers() {
   try {
-    const response = await fetch("http://localhost:3000/api/users");
+    const response = await fetch(`${BASE_URL}users`);
     const result = await response.json();
     return result;
   } catch (error) {
