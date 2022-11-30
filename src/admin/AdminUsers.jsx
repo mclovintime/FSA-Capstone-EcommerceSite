@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { getAllUsers } from '../api-adapter'
+import { getAllUsers, getAllEmails } from '../api-adapter'
 
  const AdminUsers = () => {
     const [users, setUsers] = useState([])
@@ -12,6 +12,8 @@ useEffect(() => {
     }
     fetchUsers()
 },[])
+
+
     
     
   return (
@@ -21,7 +23,10 @@ useEffect(() => {
             users.map((user) => {
                 return (
                     <div key={`adminuser-${user.id}`}>
-                    <div className="userName">{user.username}</div>
+                    <div className="userId">User: #{`${user.id}`.padStart(4,'0')}</div>
+                    <div className="userName">Username: {user.username}</div>
+                    <div className="email">Email: {user.email}</div>
+                    <br></br>
                     </div>
                 )
             })
