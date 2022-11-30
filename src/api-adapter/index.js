@@ -263,3 +263,13 @@ export async function getAllUsers() {
     console.error(error);
   }
 }
+
+export async function getAllEmails() {
+  try {
+    const response = await fetch("http://localhost:3000/api/users");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
