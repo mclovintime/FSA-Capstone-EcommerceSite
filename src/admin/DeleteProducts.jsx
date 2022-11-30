@@ -9,10 +9,7 @@ const DeleteProducts = (props) => {
   async function handleDelete(productId) {
     console.log(productId, "DELETE PRODUCTID");
     const adminProductId = Number(productId);
-    const token = localStorage.getItem("token");
-
-    const deleted = await deleteProduct(adminProductId, token);
-
+    const deleted = await deleteProduct(adminProductId);
     console.log(deleted, "here is deleted");
     // if (deleted.success) {
     //   navigate("/mycart/cart_items");
