@@ -74,7 +74,7 @@ const Products = (props) => {
     console.log(tester, "tester right here");
   }
 
-  return !user.is_admin ? (
+  return (
 
     <div>
       <h1>products</h1>
@@ -117,8 +117,7 @@ const Products = (props) => {
           <div>Loading your products... </div>
         )}
       </div>
-    </div>
-  ) : <AdminProducts/>;
+    </div>)
 };
 
 export default Products;
