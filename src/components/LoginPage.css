@@ -5,7 +5,7 @@
     width: 360px;
     margin: auto;
     padding: 15px;
-    /* color: white; */
+    flex-wrap:wrap;
 }
 
 .login-form {

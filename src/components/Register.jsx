@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../api-adapter";
 import { toast } from "react-toastify";
+import "./register.css";
+
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-
   const [registerMessage, setRegisterMessage] = useState("");
 
   async function handleRegister(e) {
     e.preventDefault();
-    const { token } = await registerUser(email, username, password, setRegisterMessage);
+    const { token } = await registerUser(
+      email,
+      username,
+      password,
+      setRegisterMessage
+    );
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     setUsername("");
@@ -30,8 +36,8 @@ const Register = () => {
   return (
     <div className="register-container">
       <h2 className="register-header">Register</h2>
-      <form onSubmit={handleRegister}>
-      <input
+      <form onSubmit={handleRegister} className="register-form">
+        <input
           type="text"
           name="email"
           placeholder="email *"
@@ -39,7 +45,8 @@ const Register = () => {
           value={email}
           onChange={function (e) {
             setEmail(e.target.value);
-          }}/>
+          }}
+        />
         <input
           type="text"
           name="username"
@@ -72,7 +79,6 @@ const Register = () => {
         Login
       </Link>
       <div id="registerMessage">{registerMessage}</div>
-     
     </div>
   );
 };

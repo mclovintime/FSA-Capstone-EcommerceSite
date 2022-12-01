@@ -107,7 +107,6 @@ const EditProduct = (props) => {
             Edit Product
           </button>
         )}
-        
       </div>
     </>
   );

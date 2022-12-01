@@ -7,13 +7,9 @@ const DeleteProducts = (props) => {
   console.log(products, "happy");
 
   async function handleDelete(productId) {
-    console.log(productId, "DELETE PRODUCTID");
     const adminProductId = Number(productId);
     const deleted = await deleteProduct(adminProductId);
-    console.log(deleted, "here is deleted");
-    // if (deleted.success) {
-    //   navigate("/mycart/cart_items");
-    // }
+
   }
 
   return (
@@ -25,8 +21,7 @@ const DeleteProducts = (props) => {
               <button
               id={product.id ? `${product.id}` : null}
                onClick={() => handleDelete(product.id)}>
-                {" "}
-                Delete DELETEPRODUCT
+                Delete Product
               </button>
             </div>
           );
