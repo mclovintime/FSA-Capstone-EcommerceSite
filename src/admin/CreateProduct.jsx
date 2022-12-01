@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { createProduct } from "../api-adapter/index";
 
-const CreateProduct = () => {
+const CreateProduct = (props) => {
+  const products = props.products;
+  const setProducts = props.setProducts;
+  const fetchProducts = props.fetchProducts;
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
   const [image_URL, setImage_URL] = useState("");
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,6 +22,13 @@ const CreateProduct = () => {
       image_URL,
       price
     );
+    if (products) {
+      let allProducts = await fetchProducts();
+      if (allProducts) {
+        setProducts(allProducts.products);
+        fetchProducts();
+      }
+    }
   }
 
   return (
