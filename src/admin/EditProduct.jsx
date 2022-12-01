@@ -3,12 +3,17 @@ import { updateProduct } from "../api-adapter/index";
 
 const EditProduct = (props) => {
   const product = props.product;
+  const products = props.products;
+  const setProducts = props.setProducts;
+  const fetchProducts = props.fetchProducts;
+
   const [newName, setNewName] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [newStock, setNewStock] = useState("");
   const [newImage_URL, setNewImage_URL] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [update, setUpdate] = useState(false);
+ 
 
   useEffect(() => {
     setNewName(product.name);
@@ -17,6 +22,7 @@ const EditProduct = (props) => {
     setNewImage_URL(product.image_url);
     setNewPrice(product.price);
   }, [product]);
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +34,14 @@ const EditProduct = (props) => {
       image_url: newImage_URL,
       price: newPrice,
     });
+    if (products) {
+      let allProducts = await fetchProducts();
+      if (allProducts) {
+        setProducts(allProducts.products);
+        fetchProducts();
+      }
+    }
+    setUpdate(false)
   }
 
   return (
@@ -87,7 +101,6 @@ const EditProduct = (props) => {
               className="myproducts-button"
               onClick={() => {
                 setUpdate(false);
-                refreshPage;
               }}
             >
               Undo

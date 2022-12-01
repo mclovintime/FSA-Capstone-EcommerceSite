@@ -7,7 +7,6 @@ const AdminUsers = () => {
   useEffect(() => {
     async function fetchUsers() {
       let allUsers = await getAllUsers();
-      console.log(allUsers);
       setUsers(allUsers.users);
     }
     fetchUsers();
