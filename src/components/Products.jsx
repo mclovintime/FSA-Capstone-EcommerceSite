@@ -6,7 +6,7 @@ import AdminProducts from "../admin/AdminProducts";
 
 
 const Products = (props) => {
-  let user = props.user;
+  const user = props.user;
   let existingItems = [];
 
   const [products, setProducts] = useState([]);
@@ -27,8 +27,9 @@ const Products = (props) => {
   }
 
   const addProduct = async (productId, price)  => {
- 
+   console.log("HELLO???")
     // pass props.quantitity into APTUC later, once that is fixed
+   
     const addedToCart = await addProductToUserCart(productId, price)
     //fix quantitity 
     console.log(addedToCart)
@@ -74,7 +75,9 @@ const Products = (props) => {
     console.log(tester, "tester right here");
   }
 
-  return (
+
+  return  (
+
 
     <div>
       <h1>products</h1>
@@ -96,8 +99,8 @@ const Products = (props) => {
                 <img id="productImage" src={`${product.image_url}`} />
 
                 {user ? (
-                  <button onClick={() => addProduct(product.id)}>
-                    Add to cart
+                  <button onClick={() => addProduct(product.id, product.price)}>
+                    Add to cart bingbong
                   </button>
                 ) : (
                   <button onClick={() => addToCart(product.id, product.price)}>
@@ -117,7 +120,10 @@ const Products = (props) => {
           <div>Loading your products... </div>
         )}
       </div>
-    </div>)
+
+    </div>
+  ) 
+
 };
 
 export default Products;
