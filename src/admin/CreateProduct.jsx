@@ -8,6 +8,7 @@ const CreateProduct = (props) => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [detailed_description, setDetailedDescription] = useState("")
   const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
   const [image_URL, setImage_URL] = useState("");
@@ -18,6 +19,7 @@ const CreateProduct = (props) => {
     const newProduct = await createProduct(
       name,
       description,
+      detailed_description,
       stock,
       image_URL,
       price
@@ -50,6 +52,15 @@ const CreateProduct = (props) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           label="Product Description"
+        />
+
+<input
+          type="text"
+          name="detailed_description"
+          placeholder="Detailed Description"
+          value={detailed_description}
+          onChange={(e) => setDetailedDescription(e.target.value)}
+          label="Detailed Product Description"
         />
         <input
           type="text"

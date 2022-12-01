@@ -9,6 +9,7 @@ const EditProduct = (props) => {
 
   const [newName, setNewName] = useState("");
   const [newDescription, setNewDescription] = useState("");
+  const [newDetailedDescription, setNewDetailedDescription] =useState("")
   const [newStock, setNewStock] = useState("");
   const [newImage_URL, setNewImage_URL] = useState("");
   const [newPrice, setNewPrice] = useState("");
@@ -18,6 +19,7 @@ const EditProduct = (props) => {
   useEffect(() => {
     setNewName(product.name);
     setNewDescription(product.description);
+    setNewDetailedDescription(product.detailed_description);
     setNewStock(product.stock);
     setNewImage_URL(product.image_url);
     setNewPrice(product.price);
@@ -30,6 +32,7 @@ const EditProduct = (props) => {
     const updated = await updateProduct(update, {
       name: newName,
       description: newDescription,
+      detailed_description: newDetailedDescription,
       stock: newStock,
       image_url: newImage_URL,
       price: newPrice,
@@ -66,6 +69,16 @@ const EditProduct = (props) => {
               placeholder="description"
               onChange={(e) => {
                 setNewDescription(e.target.value);
+              }}
+            ></input>
+
+<input
+              name="detailed description"
+              type="text"
+              value={newDetailedDescription}
+              placeholder="detailed description"
+              onChange={(e) => {
+                setNewDetailedDescription(e.target.value);
               }}
             ></input>
             <input

@@ -170,7 +170,7 @@ export async function deleteCartItem(cartItemId) {
   return result;
 }
 
-export async function updateProduct(id, {name, description, stock, image_url, price} ) {
+export async function updateProduct(id, {name, description, detailed_description, stock, image_url, price} ) {
   const options = {
     method: "PATCH",
     headers: {
@@ -180,6 +180,7 @@ export async function updateProduct(id, {name, description, stock, image_url, pr
     body: JSON.stringify({
       name: name,
       description: description,
+      detailed_description: detailed_description,
       stock: stock,
       image_url: image_url,
       price: price
@@ -212,7 +213,7 @@ export async function deleteProduct(id) {
   }
 }
 
-export async function createProduct (name, description, stock, image_url, price ) {
+export async function createProduct (name, description, detailed_description, stock, image_url, price ) {
   const options = {
     method: "POST",
     headers: {
@@ -222,6 +223,7 @@ export async function createProduct (name, description, stock, image_url, price 
     body: JSON.stringify({
       name, 
       description,
+      detailed_description,
       stock,
       image_url,
       price
