@@ -75,7 +75,9 @@ const Products = (props) => {
     console.log(tester, "tester right here");
   }
 
+
   return  (
+
 
     <div>
       <h1>products</h1>
@@ -88,9 +90,9 @@ const Products = (props) => {
                 <div className="productDescription">
                   Description: {product.description}
                 </div>
-                <div className="productDescription">
+                {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
-                </div>
+                </div> */}
 
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
@@ -118,8 +120,10 @@ const Products = (props) => {
           <div>Loading your products... </div>
         )}
       </div>
+
     </div>
   ) 
+
 };
 
 export default Products;

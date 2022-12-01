@@ -12,6 +12,8 @@ import GuestCart from "./GuestCart";
 import Footer from "./Footer";
 import ContactForm from "./ContactForm";
 import AdminPage from "../admin/AdminPage";
+import AdminUsers from "../admin/AdminUsers";
+import AdminProducts from "../admin/AdminProducts";
 
 import {
   RouterProvider,
@@ -27,12 +29,13 @@ const Main = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
+  // console.log(products, "products info")
   const [quantity, setCount] = useState(0);
 
   useEffect(() => {
     async function fetchProducts() {
       let placeholder = await getProducts();
-      console.log(placeholder);
+      // console.log(placeholder);
       setProducts(placeholder.products);
     }
     fetchProducts();
@@ -100,7 +103,9 @@ const Main = () => {
         ></Route>
         <Route path="/contactform" element={<ContactForm />}></Route>
         <Route path="/" element={<Footer />}></Route>
-        <Route path="/Admin" element={<AdminPage />}></Route>
+        <Route path="/Admin" element={<AdminPage user={user}/>}></Route>
+        <Route path="/AdminUsers" element={<AdminUsers user={user}/>}></Route>
+        <Route path="/AdminProducts" element={<AdminProducts/>}></Route>
       </Route>
     )
   );

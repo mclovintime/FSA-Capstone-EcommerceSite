@@ -1,14 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AdminProducts from './AdminProducts'
+import AdminUsers from './AdminUsers'
+import "./Admin.css"
 
- const AdminPage = (props)=> {
-    // const user = props.user
-    // console.log(user)
+ const AdminPage = ()=> {
+
   return (
     <div>
-        <h1>Welcome</h1>
-        <AdminProducts/>
-
+        <h2 className="adminpage-header">Welcome Admin</h2>
+        <div><Link to="/AdminProducts" className="adminpage-link">Products</Link></div>
+        <span><Link to="/AdminUsers" className="adminpage-link">User Data</Link></span>
     </div>
   )
 }

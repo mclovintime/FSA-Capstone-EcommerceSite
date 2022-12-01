@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "../api-adapter";
+import { getProducts, deleteProduct } from "../api-adapter";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CreateProduct from "./CreateProduct";
+import EditProduct from "./EditProduct";
+import DeleteProducts from "./DeleteProducts";
+
 
 
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
+  // console.log(products, "woiehrpow")
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -24,11 +28,25 @@ const AdminProducts = () => {
     e.preventDefault()
     navigate("/mycart/cart_items")
   }
+
+  async function handleDelete(productId) {
+    console.log(productId, "DELETE PRODUCTID");
+    const adminProductId = Number(productId);
+    const token = localStorage.getItem("token")
+    const deleted = await deleteProduct(adminProductId, token);
+    console.log(deleted, "here is deleted");
+    // if (deleted.success) {
+    //   navigate("/mycart/cart_items");
+    // }
+  }
   
   return (
     <div>
       <h2>All Products</h2>
       <CreateProduct/>
+
+      
+
       <div id="container">
         {products.length ? (
           products.map((product) => {
@@ -38,9 +56,9 @@ const AdminProducts = () => {
                 <div className="productDescription">
                   Description: {product.description}
                 </div>
-                <div className="productDescription">
+                {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
-                </div>
+                </div> */}
 
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
@@ -52,8 +70,14 @@ const AdminProducts = () => {
                 
                 <button onClick={handleBackToMyCart}>My Cart</button>
               
-              <button>Update Product </button>
-              <button>Delete Product</button>
+
+              <EditProduct product={product}/>
+              <button
+              id={product.id ? `${product.id}` : null}
+               onClick={() => handleDelete(product.id)}>
+                
+                Delete Product
+              </button>
               </div>
             );
           })
