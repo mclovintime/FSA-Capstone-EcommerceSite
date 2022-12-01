@@ -162,8 +162,8 @@ export async function deleteCartItem(cartItemId) {
   const result = await response.json();
   console.log(result);
   
-  console.log("TRIGGER")
-  window.location.reload();
+
+ 
   return result;
 }
 

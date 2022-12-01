@@ -19,13 +19,14 @@ console.log(productId,"DELETE PRODUCTID")
     
   }
 
+  //USED BY REFRESH TECHNIQUE
+  async function fetchUserCart() {
+    const allCart = await getUserCart();
+    console.log(allCart);
+    setUserCart(allCart);
+  }
 
   useEffect(() => {
-    async function fetchUserCart() {
-      const allCart = await getUserCart();
-      console.log(allCart);
-      setUserCart(allCart);
-    }
     fetchUserCart();
   }, []);
 
@@ -43,7 +44,14 @@ console.log(productId,"DELETE PRODUCTID")
   async function settingNewQuant(cartItemId){
     
     console.log(selectedQuantity,"trying to feed this quant")
-    await updateQuantity(cartItemId, selectedQuantity)
+   const updatedQuant = await updateQuantity(cartItemId, selectedQuantity)
+   console.log(updatedQuant)
+
+   /// REFRESH TECHNIQUE
+   let placeholder = await fetchUserCart();
+    setUserCart(placeholder)
+    fetchUserCart()
+    /// REFRESH TECHNIQUE
   }
   
   
@@ -64,10 +72,14 @@ console.log(productId,"DELETE PRODUCTID")
     const cartItemId = Number(productId);
     const deleted = await deleteCartItem(cartItemId);
     console.log(deleted, "here is deleted")
-    if (deleted.success) {
-      navigate("/mycart/cart_items");
+
+    //REFRESH TECHNIQUE
+    let placeholder = await fetchUserCart();
+    setUserCart(placeholder)
+    fetchUserCart()
+      //REFRESH TECHNIQUE
     }
-  }
+  
 
   let incrementCount = () => {
     props.setCount(props.quantity + 1);
@@ -94,7 +106,7 @@ console.log(productId,"DELETE PRODUCTID")
       
 
       <div id="container">
-        {userCart.length ? (
+        {userCart ? (
           userCart.map((cartItem) => {
             return (
               <div key={`cartItem-${cartItem.id}`}>
@@ -120,6 +132,7 @@ console.log(productId,"DELETE PRODUCTID")
                           <div className="productID">
                             Price: ${product.price / 100}
                           </div>
+                          <div>Quantity: {cartItem.quantity}</div>
                           <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
                           <select onChange={handleQuantChange}>
         
