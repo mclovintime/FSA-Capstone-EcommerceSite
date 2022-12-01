@@ -4,6 +4,7 @@
     justify-content: space-evenly;
     background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/seamless-repeating-background-tile-terryfic3d.jpg");
     box-shadow: 3px 3px 3px 3px #2222;
+    text-decoration: none;
     
 }
 
@@ -16,4 +17,20 @@
 
 #cartIcon  {
  
+}
+
+#homeThing  {
+    text-decoration: none;
+    color:white;
+    font-family: 'Poller One', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#productsThing  {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poller One', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
 }

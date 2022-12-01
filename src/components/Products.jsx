@@ -3,6 +3,7 @@ import { addProductToUserCart, getProducts, getProductsById } from "../api-adapt
 import "./products.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
+import Footer from "./Footer";
 
 
 const Products = (props) => {
@@ -120,7 +121,7 @@ const Products = (props) => {
           <div>Loading your products... </div>
         )}
       </div>
-
+<Footer />
     </div>
   ) 
 

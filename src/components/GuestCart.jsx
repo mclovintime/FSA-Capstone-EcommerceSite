@@ -90,7 +90,7 @@ const GuestCart = () => {
                 <div className="productName">{product.product.name}</div>
 
                 <div className="productPrice">
-                  Price: {product.product.price}
+                  Price: ${product.product.price / 100}
                 </div>
                 <div className="quantity">Quantity: {product.quantity}</div>
                 <img id="productImage" src={`${product.product.image_url}`} />
