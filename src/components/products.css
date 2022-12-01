@@ -28,6 +28,8 @@
 
 .productName    {
     text-transform: capitalize;
+    display: flex;
+    justify-content: center;
     font-weight: bold;
     font-size: 20px;
     border-bottom: 2px solid black;
@@ -45,4 +47,8 @@
 
 .productDescription {
    padding-top: 10px;
+}
+
+.productPrice{
+    padding-top: 10px;
 }
