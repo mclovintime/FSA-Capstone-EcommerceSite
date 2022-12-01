@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./guestCart.css";
+import Footer from "./Footer";
 
 const GuestCart = () => {
 
@@ -122,6 +123,7 @@ const GuestCart = () => {
       </div>
       <button >Checkout</button>
       <button onClick={() => clearCart()}>Clear cart</button>
+      <Footer></Footer>
     </div>
   );
 };

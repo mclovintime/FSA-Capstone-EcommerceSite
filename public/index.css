@@ -17,3 +17,8 @@ body {
   align-items: center;
 }
 
+#footer {
+  color: red;
+  position: fixed;
+  bottom: '0'
+}
