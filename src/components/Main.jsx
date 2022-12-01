@@ -57,12 +57,15 @@ const Main = () => {
       <Route
         path="/"
         element={
+          <div>
           <Navbar
             setUser={setUser}
             user={user}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
+<Home />
+          </div>  
         }
       >
         <Route
@@ -101,7 +104,7 @@ const Main = () => {
         <Route path="/Admin" element={<AdminPage user={user}/>}></Route>
         <Route path="/AdminUsers" element={<AdminUsers user={user}/>}></Route>
         <Route path="/AdminProducts" element={<AdminProducts/>}></Route>
-        <Route path="/Home" element={<Home/>}></Route>
+        <Route path="/" element={<Home/>}></Route>
 
         
         {/* <Route

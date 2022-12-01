@@ -5,3 +5,13 @@ video {
     /* position: fixed; */
     z-index: -1;
   }
+
+  #testing  {
+    float: center;
+  }
+
+  #wholeContainer {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
