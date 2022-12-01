@@ -174,7 +174,7 @@ export async function updateProduct(id, {name, description, stock, image_url, pr
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")} `
     },
     body: JSON.stringify({
       name: name,
@@ -194,12 +194,12 @@ export async function updateProduct(id, {name, description, stock, image_url, pr
   }
 }
 
-export async function deleteProduct(id, token) {
+export async function deleteProduct(id) {
   const options = {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")} `
     },
   }
   try {
