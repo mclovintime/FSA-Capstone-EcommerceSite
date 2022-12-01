@@ -38,7 +38,7 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
 
   return (
     <div className="login-container">
-      <h2 className="login-header">Login
+      <h1 className="login-header">Login</h1>
     <form onSubmit={handleLogin} className="login-form">
       <h3>Username:</h3>
       <input
@@ -58,10 +58,9 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
       />
       <button className="loginButton" type="submit">Login</button>
       </form>
-      </h2>
-      <br />
+      
       <div className="register-link-container">
-      <h3>Not Yet a User?</h3>
+      <h3>Not Yet a User? </h3>
       <Link to="/register" className="link">
         Register
       </Link>
