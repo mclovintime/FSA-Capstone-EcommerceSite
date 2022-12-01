@@ -10,6 +10,8 @@ const Footer = () => {
         <Link to= "/ContactForm">Contact Us</Link>
         <Outlet></Outlet>
 
+        <div> testing footir</div>
+
     </footer>
     
     )

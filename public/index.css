@@ -15,5 +15,11 @@ body {
   color: white;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
+#footer {
+  color: red;
+  position: fixed;
+  bottom: '0'
+}

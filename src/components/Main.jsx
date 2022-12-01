@@ -7,7 +7,12 @@ import { authUser, getProducts } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
+
 import Home from "./Home";
+
+import "./Footer.css";
+
+
 import GuestCart from "./GuestCart";
 import Footer from "./Footer";
 import ContactForm from "./ContactForm";
@@ -58,12 +63,14 @@ const Main = () => {
       <Route
         path="/"
         element={
+         
           <Navbar
             setUser={setUser}
             user={user}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
+        
         }
       >
         <Route
@@ -106,7 +113,19 @@ const Main = () => {
         <Route path="/Admin" element={<AdminPage user={user}/>}></Route>
         <Route path="/AdminUsers" element={<AdminUsers user={user}/>}></Route>
         <Route path="/AdminProducts" element={<AdminProducts/>}></Route>
+
         <Route path="/Home" element={<Home/>}></Route>
+
+        
+        {/* <Route
+          path="/"
+          
+          element={
+            <Footer />
+          }
+        ></Route> */}
+
+
       </Route>
     )
   );

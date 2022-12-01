@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
 import { toast } from "react-toastify";
 import "./LoginPage.css";
+import Footer from "./Footer";
 
 
 
@@ -66,6 +67,7 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
       </Link>
       <div id="loginMessage">{loginMessage}</div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

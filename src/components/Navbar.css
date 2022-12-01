@@ -2,5 +2,35 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/seamless-repeating-background-tile-terryfic3d.jpg");
+    box-shadow: 3px 3px 3px 3px #2222;
+    text-decoration: none;
+    
+}
 
+#logo   {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    -webkit-text-stroke: .5px  black;
+    font-size: 25px;
+    margin-left: -60px;
+}
+
+#cartIcon  {
+ 
+}
+
+#homeThing  {
+    text-decoration: none;
+    color:white;
+    font-family: 'Poller One', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#productsThing  {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poller One', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
 }

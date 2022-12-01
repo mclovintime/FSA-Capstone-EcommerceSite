@@ -14,20 +14,27 @@ const Navbar = (props) => {
   return (
     <div>
       <div>
-        <h2>DimTech</h2>
-        <LoggedIn user={user}/>
+        
+      
       {isLoggedIn ? <Logout handleLogout={handleLogout} setUser={setUser} setIsLoggedIn={setIsLoggedIn}/> : null}
       
       </div>
       <div id="navbar">
+
         <Link to="/Home">Home</Link>
         <Link to="/Products">Products</Link>
+
+      <h2 id="logo">DimTech</h2>
+      <LoggedIn user={user}/>
+        <Link id="homeThing" to="/Products">Home</Link>
+        <Link id="productsThing" to="/Products">Products</Link>
+
         <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
         <Link to="/mycart/cart_items"></Link>
         
         {user ? <Link to="/mycart/cart_items"><i className="fa-solid fa-cart-shopping"></i></Link>  :
-        <Link to="/guestcart"><i className="fa-solid fa-cart-shopping"></i></Link>
+        <Link to="/guestcart"><i id="cartIcon" className="fa-solid fa-cart-shopping"></i></Link>
         }
 
         {user && user.is_admin === true ? (
