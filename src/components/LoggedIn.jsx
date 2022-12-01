@@ -6,7 +6,7 @@ const LoggedIn = (props) => {
 
   return (
     <div>
-      <h3> Welcome, {user.username ? user.username : "Guest"} </h3>
+      <h3> Welcome, {user && user.username ? user.username : "Guest"} </h3>
     </div>
   );
 };
