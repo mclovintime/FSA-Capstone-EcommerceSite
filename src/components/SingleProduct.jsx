@@ -141,14 +141,13 @@ const SingleProduct = (props) => {
           Description: {product.description}
         </div>
 
-        <div className="productInStockH">In stock: {product.stock}</div>
-        <div className="productPriceH">Price: {product.price}</div>
+
+        <div className="productInStock">In stock: {product.stock}</div>
+        <div className="productID">Price: {product.price}</div>
+        <img id="productImage" src={`${product.image_url}`} />
+        <div>{product.detailed_description}</div>
 
 
-        <img id="productImageH" src={`${product.image_url}`} />
-        <div id="detailedDesc">{product.detailed_description}</div>
-        
-        <div id="bottomPanel">
         <div>
           <select onChange={handleQuantChange}>
             <option id="selectedQuantity" value="0">
