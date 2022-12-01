@@ -15,17 +15,14 @@ const Navbar = (props) => {
     <div>
       <div>
         
-      
-      {isLoggedIn ? <Logout handleLogout={handleLogout} setUser={setUser} setIsLoggedIn={setIsLoggedIn}/> : null}
+
       
       </div>
       <div id="navbar">
-
       <h2 id="logo">DimTech</h2>
       <LoggedIn user={user}/>
-        <Link id="homeThing" to="/Home">Home</Link>
+        <Link id="homeThing" to="/Products">Home</Link>
         <Link id="productsThing" to="/Products">Products</Link>
-
         <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
         <Link to="/mycart/cart_items"></Link>
@@ -38,6 +35,7 @@ const Navbar = (props) => {
           <Link to="/Admin">Admin</Link>
         ): null}
         
+        {isLoggedIn ? <Logout handleLogout={handleLogout} setUser={setUser} setIsLoggedIn={setIsLoggedIn}/> : null}
       </div>
       <Outlet></Outlet>
     </div>
