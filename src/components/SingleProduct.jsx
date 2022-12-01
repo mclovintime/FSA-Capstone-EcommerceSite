@@ -145,6 +145,7 @@ const SingleProduct = (props) => {
         <div className="productInStock">In stock: {product.stock}</div>
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
+        <div>{product.detailed_description}</div>
         <div>
           <select onChange={handleQuantChange}>
             <option id="selectedQuantity" value="0">
