@@ -19,9 +19,9 @@ const Navbar = (props) => {
       
       </div>
       <div id="navbar">
-      <h2 id="logo">DimTech</h2>
+      <Link to="/" id="logo">DimTech</Link>
       <LoggedIn user={user}/>
-        <Link id="homeThing" to="/Products">Home</Link>
+        <Link id="homeThing" to="/Home">Home</Link>
         <Link id="productsThing" to="/Products">Products</Link>
         <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
