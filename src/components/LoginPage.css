@@ -6,6 +6,11 @@
     margin: auto;
     padding: 15px;
     flex-wrap:wrap;
+    border: 2px solid black;
+    margin-top: 50px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px #7777;
+    background-color: rgb(255, 255, 255);
 }
 
 .login-form {
@@ -35,4 +40,8 @@
     width: 360px;
     margin: auto;
     padding: 15px;
+}
+
+body{
+    background: linear-gradient(132deg, rgba(245, 109, 164, 1) 0%, rgba(188, 185, 254, 1) 50%, rgba(112, 227, 204, 1) 100%);
 }

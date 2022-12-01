@@ -88,14 +88,14 @@ const Products = (props) => {
               <div key={`product-${product.id}`} className="productBox">
                 <div className="productName">{product.name}</div>
                 <div className="productDescription">
-                  Description: {product.description}
+                 {product.description}
                 </div>
                 {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
                 </div> */}
 
-                <div className="productInStock">In stock: {product.stock}</div>
-                <div className="productID">Price: {product.price}</div>
+                <div className="productInStock">{product.stock} In Stock</div>
+                <div className="productPrice">Price: ${product.price / 100}</div>
                 <img id="productImage" src={`${product.image_url}`} />
 
                 {user ? (
@@ -104,7 +104,7 @@ const Products = (props) => {
                   </button>
                 ) : (
                   <button onClick={() => addToCart(product.id, product.price)}>
-                    Add to cart testing guest
+                    Add to Cart
                   </button>
                 )}
 
