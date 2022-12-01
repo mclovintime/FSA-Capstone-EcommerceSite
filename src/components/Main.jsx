@@ -7,12 +7,8 @@ import { authUser, getProducts } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
-
 import Home from "./Home";
-
 import "./Footer.css";
-
-
 import GuestCart from "./GuestCart";
 import Footer from "./Footer";
 import ContactForm from "./ContactForm";
@@ -34,13 +30,11 @@ const Main = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
-  // console.log(products, "products info")
   const [quantity, setCount] = useState(0);
 
   useEffect(() => {
     async function fetchProducts() {
       let placeholder = await getProducts();
-      // console.log(placeholder);
       setProducts(placeholder.products);
     }
     fetchProducts();
@@ -63,14 +57,12 @@ const Main = () => {
       <Route
         path="/"
         element={
-         
           <Navbar
             setUser={setUser}
             user={user}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
-        
         }
       >
         <Route
@@ -80,11 +72,8 @@ const Main = () => {
           }
         ></Route>
         <Route path="/register" element={<Register />}></Route>
-
         <Route path="/products" element={<Products
         user = {user} />}></Route>
-
-
         <Route path="/guestcart" element={<GuestCart />}></Route>
         <Route
           path="/product/:productId"
@@ -96,7 +85,6 @@ const Main = () => {
             />
           }
         ></Route>
-
         <Route
           path="/mycart/cart_items"
           element={
@@ -113,7 +101,6 @@ const Main = () => {
         <Route path="/Admin" element={<AdminPage user={user}/>}></Route>
         <Route path="/AdminUsers" element={<AdminUsers user={user}/>}></Route>
         <Route path="/AdminProducts" element={<AdminProducts/>}></Route>
-
         <Route path="/Home" element={<Home/>}></Route>
 
         
