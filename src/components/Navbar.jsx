@@ -20,10 +20,15 @@ const Navbar = (props) => {
       
       </div>
       <div id="navbar">
+
+        <Link to="/Home">Home</Link>
+        <Link to="/Products">Products</Link>
+
       <h2 id="logo">DimTech</h2>
       <LoggedIn user={user}/>
         <Link id="homeThing" to="/Products">Home</Link>
         <Link id="productsThing" to="/Products">Products</Link>
+
         <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
         <Link to="/mycart/cart_items"></Link>
