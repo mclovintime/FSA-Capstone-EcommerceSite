@@ -1,4 +1,5 @@
-const BASE_URL = "https://dimtechtrue.onrender.com/api/"
+// const BASE_URL = "https://dimtechtrue.onrender.com/api/"
+const BASE_URL = "http://localhost:3000/api/"
 
 export async function getProductsById(productId) {
   try {

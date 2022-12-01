@@ -30,7 +30,7 @@ const Navbar = (props) => {
         <Link to="/guestcart"><i className="fa-solid fa-cart-shopping"></i></Link>
         }
 
-        {user.is_admin === true ? (
+        {user && user.is_admin === true ? (
           <Link to="/Admin">Admin</Link>
         ): null}
         

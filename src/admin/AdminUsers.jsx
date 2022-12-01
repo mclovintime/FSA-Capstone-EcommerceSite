@@ -16,7 +16,7 @@ const AdminUsers = () => {
   return (
     <div className="adminusers-container">
       <h3>User Data</h3>
-      {users.length ? (
+      {users && users.length ? (
         users.map((user) => {
           return (
             <div key={`adminuser-${user.id}`}>
