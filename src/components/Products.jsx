@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { addProductToUserCart, getProducts, getProductsById } from "../api-adapter";
 import "./products.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
 import Footer from "./Footer";
-
+import { toast } from "react-toastify";
 
 const Products = (props) => {
   const user = props.user;
   let existingItems = [];
+   const successNotify = () => toast("Added to cart!")
+
 
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -16,7 +18,6 @@ const Products = (props) => {
   useEffect(() => {
     async function fetchProducts() {
       let placeholder = await getProducts();
-      // console.log(placeholder);
       setProducts(placeholder.products);
     }
     fetchProducts();
@@ -28,17 +29,17 @@ const Products = (props) => {
   }
 
   const addProduct = async (productId, price)  => {
-   console.log("HELLO???")
+  //  console.log("HELLO???")
     // pass props.quantitity into APTUC later, once that is fixed
    
     const addedToCart = await addProductToUserCart(productId, price)
     //fix quantitity 
-    console.log(addedToCart)
+    // console.log(addedToCart)
   }
   
 
   async function addToCart(productId) {
-    console.log(productId, "id of the thing we clicked");
+    // console.log(productId, "id of the thing we clicked");
     let holder = await getProductsById(productId);
     let product = holder.products;
     const tempID = productId;
@@ -50,12 +51,14 @@ const Products = (props) => {
         name: product.name,
         id: product.id,
       },
+
+      
     };
 
-    console.log(
-      localStorage.getItem("guestCart"),
-      "testing response empty pointer"
-    );
+    // console.log(
+    //   localStorage.getItem("guestCart"),
+    //   "testing response empty pointer"
+    // );
 
     if (localStorage.getItem("guestCart") == "") {
       existingItems = [];
@@ -63,7 +66,7 @@ const Products = (props) => {
       existingItems = JSON.parse(localStorage.getItem("guestCart"));
     }
 
-    console.log(typeof existingItems, "existing items type");
+    // console.log(typeof existingItems, "existing items type");
 
     if (!existingItems) {
       existingItems = [];
@@ -73,13 +76,13 @@ const Products = (props) => {
     localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
     let tester = localStorage.getItem("guestCart");
-    console.log(tester, "tester right here");
+    // console.log(tester, "tester right here");
+
+     
   }
 
 
   return  (
-
-
     <div>
       <h1>products</h1>
       <div id="container">
@@ -91,20 +94,17 @@ const Products = (props) => {
                 <div className="productDescription">
                  {product.description}
                 </div>
-                {/* <div className="productDescription">
-                  {` testing product id ${product.id}`}
-                </div> */}
 
                 <div className="productInStock">{product.stock} In Stock</div>
                 <div className="productPrice">Price: ${product.price / 100}</div>
                 <img id="productImage" src={`${product.image_url}`} />
 
                 {user ? (
-                  <button onClick={() => addProduct(product.id, product.price)}>
+                  <button onClick= {() =>  {addProduct(product.id, product.price); successNotify();}}>
                     Add to cart bingbong
                   </button>
                 ) : (
-                  <button onClick={() => addToCart(product.id, product.price)}>
+                  <button onClick={() => {addToCart(product.id, product.price); successNotify(); }}>
                     Add to Cart
                   </button>
                 )}
