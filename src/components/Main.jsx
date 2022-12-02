@@ -15,6 +15,7 @@ import ContactForm from "./ContactForm";
 import AdminPage from "../admin/AdminPage";
 import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
+import MyProfile from "./MyProfile";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -160,6 +161,7 @@ const Main = () => {
               <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
               <Route path="/AdminProducts" element={<AdminProducts user={user} />} />
               <Route path="/Home" element={<Home />} />
+              <Route path="/MyProfile" element={<MyProfile user={user}/>} />
             </Routes>
              <Footer/>
           </Router>
