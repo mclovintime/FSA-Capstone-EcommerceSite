@@ -173,7 +173,6 @@ const SingleProduct = (props) => {
         <button class="buttons" onClick={handleBackToMyCart}>My Cart</button>
       </div>
       </div>
-    </div>
   ) : (
     <div>Loading your product... </div>
   );
