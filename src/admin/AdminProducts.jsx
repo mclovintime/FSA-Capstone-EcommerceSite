@@ -3,6 +3,8 @@ import { getProducts, deleteProduct } from "../api-adapter";
 import { Link } from "react-router-dom";
 import CreateProduct from "./CreateProduct";
 import EditProduct from "./EditProduct";
+import "./loading.css"
+
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -74,7 +76,7 @@ const AdminProducts = () => {
             );
           })
         ) : (
-          <div>Loading your products... </div>
+          <div id="loadingProducts">Loading your products... </div>
         )}
       </div>
     </div>

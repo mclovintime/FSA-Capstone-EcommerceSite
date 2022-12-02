@@ -11,3 +11,12 @@
     border-top: 2px solid rgba(255, 255, 255, 0.226);
     box-shadow: 2px 2px 2px 2px;
 }
+
+#contactLink    {
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+-webkit-text-stroke: .5px black;
+font-size: 25px;
+margin-left: 30px;
+text-decoration: none;
+}
