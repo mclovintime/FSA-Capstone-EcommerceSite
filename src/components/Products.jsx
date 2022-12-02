@@ -80,8 +80,8 @@ const Products = (props) => {
   return  (
 
 
-    <div>
-      <h1>products</h1>
+    <div >
+      <h1 className="WholeProducts">products</h1>
       <div id="container">
         {products.length ? (
           products.map((product) => {
