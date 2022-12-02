@@ -121,6 +121,7 @@ const Main = () => {
               element={<AdminProducts user={user} />}
             />
             <Route path="/Home" element={<Home />} />
+            <Route path="/MyProfile" element={<MyProfile user={user}/>} />
           </Routes>
           <Footer />
         </Router>

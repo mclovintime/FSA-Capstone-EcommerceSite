@@ -278,3 +278,27 @@ export async function getAllEmails() {
     console.error(error);
   }
 }
+
+export async function updateUser(id, {username, email, address}) {
+  console.log(username, email, address)
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")} `
+    },
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      address: address
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}users/me/${id}`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -5,11 +5,14 @@ import {
   getProductsById,
 } from "../api-adapter";
 import "./products.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
 import Footer from "./Footer";
+
 import "./loading.css";
 import { RingLoader } from "react-spinners";
+import { toast } from "react-toastify";
+
 
 const Products = (props) => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +26,8 @@ const Products = (props) => {
 
   const user = props.user;
   let existingItems = [];
+   const successNotify = () => toast("Added to cart!")
+
 
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -30,7 +35,6 @@ const Products = (props) => {
   useEffect(() => {
     async function fetchProducts() {
       let placeholder = await getProducts();
-      // console.log(placeholder);
       setProducts(placeholder.products);
     }
     fetchProducts();
@@ -40,6 +44,7 @@ const Products = (props) => {
     e.preventDefault();
     navigate("/mycart/cart_items");
   }
+
 
   const addProduct = async (productId, price) => {
     console.log("HELLO???");
@@ -51,7 +56,7 @@ const Products = (props) => {
   };
 
   async function addToCart(productId) {
-    console.log(productId, "id of the thing we clicked");
+    // console.log(productId, "id of the thing we clicked");
     let holder = await getProductsById(productId);
     let product = holder.products;
     const tempID = productId;
@@ -63,12 +68,14 @@ const Products = (props) => {
         name: product.name,
         id: product.id,
       },
+
+      
     };
 
-    console.log(
-      localStorage.getItem("guestCart"),
-      "testing response empty pointer"
-    );
+    // console.log(
+    //   localStorage.getItem("guestCart"),
+    //   "testing response empty pointer"
+    // );
 
     if (localStorage.getItem("guestCart") == "") {
       existingItems = [];
@@ -76,7 +83,7 @@ const Products = (props) => {
       existingItems = JSON.parse(localStorage.getItem("guestCart"));
     }
 
-    console.log(typeof existingItems, "existing items type");
+    // console.log(typeof existingItems, "existing items type");
 
     if (!existingItems) {
       existingItems = [];
@@ -86,8 +93,11 @@ const Products = (props) => {
     localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
     let tester = localStorage.getItem("guestCart");
-    console.log(tester, "tester right here");
+    // console.log(tester, "tester right here");
+
+     
   }
+
 
   return (
     <div>
@@ -160,6 +170,7 @@ const Products = (props) => {
           )}
         </div>
         <Footer />
+
       </div>
 }
     </div>

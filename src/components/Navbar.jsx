@@ -31,6 +31,11 @@ const Navbar = (props) => {
         <Link to="/guestcart"><i id="cartIcon" className="fa-solid fa-cart-shopping"></i></Link>
         }
 
+        {user ? <Link to="/MyProfile"><i className="fa-solid fa-address-card"></i></Link>  : 
+                <Link to="/Home"><i className="fa-solid fa-address-card"></i></Link>
+
+        }
+
         {user && user.is_admin === true ? (
           <Link to="/Admin">Admin</Link>
         ): null}
