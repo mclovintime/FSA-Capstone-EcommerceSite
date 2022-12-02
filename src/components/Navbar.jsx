@@ -21,7 +21,7 @@ const Navbar = (props) => {
       <div id="navbar">
       <Link to="/" id="logo">DimTech</Link>
       <LoggedIn user={user}/>
-        <Link id="homeThing" to="/Home">Home</Link>
+       
         <Link id="productsThing" to="/Products">Products</Link>
         <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}

@@ -16,11 +16,23 @@ import AdminPage from "../admin/AdminPage";
 import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
 import MyProfile from "./MyProfile";
+import "./loading.css"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Checkout from "./Checkout";
+import { RingLoader } from "react-spinners";
 
 const Main = () => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() =>  {
+      setLoading(false)
+    }, 2700)
+  }, [])
+
+
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,8 +59,18 @@ const Main = () => {
     }
   }, [isLoggedIn]);
 
+  
+
   return (
     <main>
+      {
+        loading ? <div id="theLoader"><RingLoader id="ringer"
+        
+        size={150}
+        color={"#d636d0"}
+        loading={loading}
+        /> </div>: 
+      
       <div id="main">
         <Router>
           <Navbar
@@ -105,8 +127,11 @@ const Main = () => {
 
         <ToastContainer />
       </div>
+      }
     </main>
+    
   );
+  
 };
 
 export default Main;

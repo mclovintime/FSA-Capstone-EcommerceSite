@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./guestCart.css";
 import Footer from "./Footer";
+import { RingLoader } from "react-spinners";
 
 const GuestCart = () => {
+  const [loading, setLoading] = useState(false);
 
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("guestCart")))
-  
-  
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 600);
+  }, []);
+
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("guestCart"))
+  );
+
   // let cart = ;
   console.log(cart);
 
@@ -30,7 +40,7 @@ const GuestCart = () => {
     let toBeSet = JSON.stringify(preexistingCart);
     localStorage.setItem("guestCart", toBeSet);
 
-    setCart(JSON.parse(localStorage.getItem("guestCart")))
+    setCart(JSON.parse(localStorage.getItem("guestCart")));
   }
 
   const [quantityToSend, setQuantityToSend] = useState("");
@@ -40,8 +50,8 @@ const GuestCart = () => {
     setQuantityToSend(e.target.value);
   }
 
-  async function clearCart(){
-    setCart([])
+  async function clearCart() {
+    setCart([]);
   }
 
   async function handleUpdateQuantity(productID) {
@@ -75,55 +85,65 @@ const GuestCart = () => {
     console.log(preexistingCart, "new cart out of loop");
     let toBeSet = JSON.stringify(preexistingCart);
     localStorage.setItem("guestCart", toBeSet);
-    
-    setCart(JSON.parse(localStorage.getItem("guestCart")))
+
+    setCart(JSON.parse(localStorage.getItem("guestCart")));
   }
 
   return (
     <div>
-      <h1 id="header">Cart</h1>
-      <div id="guestCartContainer">
-        {cart.length ? (
-          cart.map((product) => {
-            return (
-              <div key={`product-${product.id}`} className="productBox">
-                <div className="productName">{product.product.name}</div>
+      {
+        loading ? <div id="theLoader"><RingLoader id="ringer"
+        
+        size={150}
+        color={"#d636d0"}
+        loading={loading}
+        /> </div>: 
+      <div id="newWhole">
+        <h1 id="header">Cart</h1>
+        <div id="guestCartContainer">
+          {cart.length ? (
+            cart.map((product) => {
+              return (
+                <div key={`product-${product.id}`} className="productBox">
+                  <div className="productName">{product.product.name}</div>
 
-                <div className="productPrice">
-                  Price: ${product.product.price / 100}
+                  <div className="productPrice">
+                    Price: ${product.product.price / 100}
+                  </div>
+                  <div className="quantity">Quantity: {product.quantity}</div>
+                  <img id="productImage" src={`${product.product.image_url}`} />
+                  <button onClick={() => handleDelete(product.product.id)}>
+                    Delete
+                  </button>
+
+                  <select onChange={handleQuantityChange}>
+                    <option id="selectedQuantity" value="0">
+                      0
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <button
+                    onClick={() => handleUpdateQuantity(product.product.id)}
+                    id="submitnewQuantity"
+                  >
+                    Update Quantity
+                  </button>
                 </div>
-                <div className="quantity">Quantity: {product.quantity}</div>
-                <img id="productImage" src={`${product.product.image_url}`} />
-                <button onClick={() => handleDelete(product.product.id)}>
-                  Delete
-                </button>
-
-                <select onChange={handleQuantityChange}>
-                  <option id="selectedQuantity" value="0">
-                    0
-                  </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <button
-                  onClick={() => handleUpdateQuantity(product.product.id)}
-                  id="submitnewQuantity"
-                >
-                  Update Quantity
-                </button>
-              </div>
-            );
-          })
-        ) : (
-          <div>Loading your cart... </div>
-        )}
+              );
+            })
+          ) : (
+            <div>Loading your cart... </div>
+          )}
+        </div>
+        <button>Checkout</button>
+        <button onClick={() => clearCart()}>Clear cart</button>
+        <Footer></Footer>
       </div>
-      <button >Checkout</button>
-      <button onClick={() => clearCart()}>Clear cart</button>
-      <Footer></Footer>
+}
     </div>
   );
 };
