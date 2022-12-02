@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./SingleProduct.css"
 import {
   getProductsById,
   addProductToUserCart,
@@ -133,18 +134,20 @@ const SingleProduct = (props) => {
 
   return product ? (
     <div>
-      <div key={`product-${product.id}`} className="productBox">
-        <div className="productName">{product.name}</div>
-        <div className="productDescription">
+      
+      <div key={`product-${product.id}`} className="productBoxH">
+        <div className="productNameH">{product.name}</div>
+        <div className="productDescriptionH">
           Description: {product.description}
         </div>
-        <div className="productDescription">
-          {` testing product id ${product.id}`}
-        </div>
+
 
         <div className="productInStock">In stock: {product.stock}</div>
         <div className="productID">Price: {product.price}</div>
         <img id="productImage" src={`${product.image_url}`} />
+        <div>{product.detailed_description}</div>
+
+
         <div>
           <select onChange={handleQuantChange}>
             <option id="selectedQuantity" value="0">
@@ -156,20 +159,20 @@ const SingleProduct = (props) => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <button onClick={settingNewQuant} id="submitnewQuantity">
+          <button class="buttons" onClick={settingNewQuant} id="submitnewQuantity">
             Update Quantity
           </button>
         </div>
         {user ? (
-          <button onClick={addProduct}>Add to cart</button>
+          <button class="buttons" onClick={addProduct}>Add to cart</button>
         ) : (
-          <button onClick={addGuestProduct}>Add to cart</button>
+          <button class="buttons"onClick={addGuestProduct}>Add to cart</button>
         )}
 
-        <button onClick={handleBack}>Back To Products</button>
-        <button onClick={handleBackToMyCart}>My Cart</button>
+        <button class="buttons" onClick={handleBack}>Back To Products</button>
+        <button class="buttons" onClick={handleBackToMyCart}>My Cart</button>
       </div>
-    </div>
+      </div>
   ) : (
     <div>Loading your product... </div>
   );

@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { getUserCart, deleteCartItem, updateQuantity } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Checkout from "./Checkout";
+
 
 const UserCart = (props) => {
   const {quantity, setCount} = useParams;
@@ -94,6 +96,7 @@ console.log(productId,"DELETE PRODUCTID")
     <div>
       <h1>My Cart</h1>
           <button onClick={handleBack}>Continue Shopping</button>
+          
       {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
           <option key={item.id} value={item.id}>
@@ -150,9 +153,10 @@ console.log(productId,"DELETE PRODUCTID")
                             <button>Product Details</button>
                           </Link>
                           {/* <button onClick={handleBack}>Go Back</button> */}
-                  
+                          
                          
                         </div>
+                        
                       );
                     }
                   })
@@ -166,6 +170,8 @@ console.log(productId,"DELETE PRODUCTID")
           <div>Loading your userCart... </div>
         )}
       </div>
+      
+      <Link to="/checkout"><button>Ready To Checkout</button></Link>
     </div>
   );
 };

@@ -40,7 +40,7 @@
     border-top-right-radius: 20px;
     background-color: rgba(238, 84, 84, 0.467);
     /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
-    background: linear-gradient(132deg, rgba(245, 109, 164, 1) 0%, rgba(188, 185, 254, 1) 50%, rgba(112, 227, 204, 1) 100%);
+    /* background: linear-gradient(132deg, rgba(245, 109, 164, 1) 0%, rgba(188, 185, 254, 1) 50%, rgba(112, 227, 204, 1) 100%); */
 
     background: linear-gradient( 132deg, rgba(112, 227, 204, 1) 100%, 132deg, rgba(188, 185, 254, 1) 50%,  rgba(245, 109, 164, 1) 0%);
 }
