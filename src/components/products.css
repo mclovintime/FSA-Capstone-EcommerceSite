@@ -9,6 +9,7 @@
     border-radius: 20px;
     padding: 10px;
     background-color: rgb(255, 255, 255);
+    margin-bottom: 40px;
 }
 
 #productImage   {
@@ -51,6 +52,7 @@
 
 .productDescription {
    padding-top: 10px;
+   
 }
 
 .productPrice{

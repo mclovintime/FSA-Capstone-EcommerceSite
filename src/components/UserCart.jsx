@@ -2,11 +2,11 @@ import { React, useState, useEffect } from "react";
 import { getUserCart, deleteCartItem, updateQuantity } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Checkout from "./Checkout";
-
+import "./userCart.css";
 
 const UserCart = (props) => {
-  const {quantity, setCount} = useParams;
-  console.log(props, "wassup")
+  const { quantity, setCount } = useParams;
+  console.log(props, "wassup");
   const [userCart, setUserCart] = useState([]);
   const [cartItemId, setCartItemId] = useState(0);
   const [selectedItem, setSelectedItem] = useState();
@@ -14,11 +14,9 @@ const UserCart = (props) => {
   const navigate = useNavigate();
 
   async function handleNewDelete(productId) {
-console.log(productId,"DELETE PRODUCTID")
+    console.log(productId, "DELETE PRODUCTID");
     const cartItemId = Number(productId);
     const deleted = await deleteCartItem(cartItemId);
-    
-    
   }
 
   //USED BY REFRESH TECHNIQUE
@@ -36,67 +34,63 @@ console.log(productId,"DELETE PRODUCTID")
     navigate("/products");
   }
 
-  const [selectedQuantity, setSelectedQuantity] = useState(0)
-  
-  function handleQuantChange(e){
-    const val = Number(e.target.value)
-    setSelectedQuantity(val)
-    console.log(selectedQuantity, "this is selected")
-  }
-  async function settingNewQuant(cartItemId){
-    
-    console.log(selectedQuantity,"trying to feed this quant")
-   const updatedQuant = await updateQuantity(cartItemId, selectedQuantity)
-   console.log(updatedQuant)
+  const [selectedQuantity, setSelectedQuantity] = useState(0);
 
-   /// REFRESH TECHNIQUE
-   let placeholder = await fetchUserCart();
-    setUserCart(placeholder)
-    fetchUserCart()
+  function handleQuantChange(e) {
+    const val = Number(e.target.value);
+    setSelectedQuantity(val);
+    console.log(selectedQuantity, "this is selected");
+  }
+  async function settingNewQuant(cartItemId) {
+    console.log(selectedQuantity, "trying to feed this quant");
+    const updatedQuant = await updateQuantity(cartItemId, selectedQuantity);
+    console.log(updatedQuant);
+
+    /// REFRESH TECHNIQUE
+    let placeholder = await fetchUserCart();
+    setUserCart(placeholder);
+    fetchUserCart();
     /// REFRESH TECHNIQUE
   }
-  
-  
+
   async function handleDelete(e) {
     e.preventDefault();
     // const cartItemId = Number(selectedItem.id);
     const deletedCartItem = await deleteCartItem(cartItemId);
     // if (deleted.success) {
-      
-      // navigate("/mycart/cart_items");
+
+    // navigate("/mycart/cart_items");
     // }
   }
 
-
-  
   async function handleNewDelete(productId) {
-console.log(productId,"DELETE PRODUCTID")
+    console.log(productId, "DELETE PRODUCTID");
     const cartItemId = Number(productId);
     const deleted = await deleteCartItem(cartItemId);
-    console.log(deleted, "here is deleted")
+    console.log(deleted, "here is deleted");
 
     //REFRESH TECHNIQUE
     let placeholder = await fetchUserCart();
-    setUserCart(placeholder)
-    fetchUserCart()
-      //REFRESH TECHNIQUE
-    }
-  
+    setUserCart(placeholder);
+    fetchUserCart();
+    //REFRESH TECHNIQUE
+  }
 
   let incrementCount = () => {
     props.setCount(props.quantity + 1);
   };
-  
-  let decrementCount = () => {
-    if(props.quantity > 0){props.setCount(props.quantity - 1)};
-  };
 
+  let decrementCount = () => {
+    if (props.quantity > 0) {
+      props.setCount(props.quantity - 1);
+    }
+  };
 
   return (
     <div>
       <h1>My Cart</h1>
-          <button onClick={handleBack}>Continue Shopping</button>
-          
+      <button onClick={handleBack}>Continue Shopping</button>
+
       {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
           <option key={item.id} value={item.id}>
@@ -106,7 +100,7 @@ console.log(productId,"DELETE PRODUCTID")
           </option>
         ))}
       </select> */}
-      
+
 
       <div id="container">
         {userCart ? (
@@ -136,27 +130,38 @@ console.log(productId,"DELETE PRODUCTID")
                             Price: ${product.price / 100}
                           </div>
                           <div>Quantity: {cartItem.quantity}</div>
-                          <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
-                          <select onChange={handleQuantChange}>
-        
-        <option id="selectedQuantity" value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-      </select>
-      <button onClick={() => settingNewQuant(cartItem.id)} id="submitnewQuantity">Update Quantity</button>
+
                           <img id="productImage" src={`${product.image_url}`} />
                           {/* <button>Add to cart</button> */}
-                          <Link to={`/product/${product.id}`}>
-                            <button>Product Details</button>
-                          </Link>
-                          {/* <button onClick={handleBack}>Go Back</button> */}
-                          
-                         
+
+                          <div id="bottomRowContainer">
+                            <button id="deleteButton" class="cartButtons"
+                              onClick={() => handleNewDelete(cartItem.id)}
+                            >
+                              {" "}
+                              Delete{" "}
+                            </button>
+                            <div id="quantityStuff">
+                              <button class="cartButtons"
+                                onClick={() => settingNewQuant(cartItem.id)}
+                                id="submitnewQuantity"
+                              >
+                                Update Count
+                              </button>
+                              <select id="dropdown" class="cartButtons"onChange={handleQuantChange}>
+                                <option id="selectedQuantity" value="0">
+                                  0
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+                            </div>
+                            
+                          </div>
                         </div>
-                        
                       );
                     }
                   })
@@ -170,8 +175,10 @@ console.log(productId,"DELETE PRODUCTID")
           <div>Loading your userCart... </div>
         )}
       </div>
-      
-      <Link to="/checkout"><button>Ready To Checkout</button></Link>
+
+      <Link to="/checkout">
+        <button>Ready To Checkout</button>
+      </Link>
     </div>
   );
 };
