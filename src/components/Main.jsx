@@ -15,6 +15,7 @@ import ContactForm from "./ContactForm";
 import AdminPage from "../admin/AdminPage";
 import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
+import MyProfile from "./MyProfile";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Checkout from "./Checkout";
@@ -116,6 +117,48 @@ const Main = () => {
       <div id="main">
         {/* <RouterProvider router={router}></RouterProvider> */}
 
+
+              <Route
+                path="/login"
+                element={
+                  <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
+                }
+              />
+              <Route path="/register" element={<Register />} />
+              <Route path="/products" element={<Products user={user} />} />
+              <Route path="/guestcart" element={<GuestCart />} />
+              <Route
+                path="/product/:productId"
+                element={
+                  <SingleProduct
+                    user={user}
+                    quantity={quantity}
+                    setCount={setCount}
+                  />
+                }
+              />
+              <Route
+                path="/mycart/cart_items"
+                element={
+                  <UserCart
+                    products={products}
+                    setProducts={setProducts}
+                    quantity={quantity}
+                    setCount={setCount}
+                  />
+                }
+              />
+              <Route path="/contactform" element={<ContactForm />} />
+              <Route path="/Admin" element={<AdminPage user={user} />} />
+              <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
+              <Route path="/AdminProducts" element={<AdminProducts user={user} />} />
+              <Route path="/Home" element={<Home />} />
+              <Route path="/MyProfile" element={<MyProfile user={user}/>} />
+            </Routes>
+             <Footer/>
+          </Router>
+        
+
         <Router>
           <Navbar
             setUser={setUser}
@@ -168,6 +211,7 @@ const Main = () => {
           </Routes>
           <Footer />
         </Router>
+
 
         <ToastContainer />
       </div>
