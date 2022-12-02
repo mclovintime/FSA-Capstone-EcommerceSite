@@ -81,7 +81,7 @@ const Products = (props) => {
 
 
     <div >
-      <h1 className="WholeProducts">products</h1>
+      <h1 className="WholeProducts"></h1>
       <div id="container">
         {products.length ? (
           products.map((product) => {
@@ -102,7 +102,7 @@ const Products = (props) => {
                 <div id="buttonContainer">
                 {user ? (
                   <button id="leftButton" class="productButton" onClick={() => addProduct(product.id, product.price)}>
-                    Add to cart bingbong
+                    Add to Cart
                   </button>
                 ) : (
                   <button id="leftButton" class="productButton" onClick={() => addToCart(product.id, product.price)}>
