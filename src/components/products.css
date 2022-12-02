@@ -1,3 +1,5 @@
+
+
 .productBox {
     border: 1px solid black;
     padding: 5px;
@@ -7,6 +9,7 @@
     border-radius: 20px;
     padding: 10px;
     background-color: rgb(255, 255, 255);
+    margin-bottom: 40px;
 }
 
 #productImage   {
@@ -20,6 +23,8 @@
 #container {
     display:flex;
     flex-direction: row;
+    /* display: flex; */
+    flex-wrap: wrap;
 }
 
 .productPrice  {
@@ -47,6 +52,7 @@
 
 .productDescription {
    padding-top: 10px;
+   
 }
 
 .productPrice{
