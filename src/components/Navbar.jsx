@@ -6,7 +6,7 @@ import "./Navbar.css";
 
 const Navbar = (props) => {
   const user = props.user;
-  console.log(user)
+  
   const setUser = props.setUser
   const handleLogout = props.handleLogout
   const isLoggedIn = props.isLoggedIn

@@ -1,59 +1,45 @@
 import { React, useState, useEffect } from "react";
-import { getUserCart, deleteCartItem, updateQuantity } from "../api-adapter";
+import { getUserCart, deleteCartItem, updateQuantity, checkoutCart } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Checkout from "./Checkout";
 
 
 const UserCart = (props) => {
-  const {quantity, setCount} = useParams;
-  console.log(props, "wassup")
-  const [userCart, setUserCart] = useState([]);
-  const [cartItemId, setCartItemId] = useState(0);
-  const [selectedItem, setSelectedItem] = useState();
+  //--------PROPS--------//
+  const userCart = props.userCart
+  const setUserCart = props.setUserCart
   const products = props.products;
-  const navigate = useNavigate();
-
-  async function handleNewDelete(productId) {
-console.log(productId,"DELETE PRODUCTID")
-    const cartItemId = Number(productId);
-    const deleted = await deleteCartItem(cartItemId);
-    
-    
-  }
-
-  //USED BY REFRESH TECHNIQUE
-  async function fetchUserCart() {
-    const allCart = await getUserCart();
-    console.log(allCart);
-    setUserCart(allCart);
-  }
-
-  useEffect(() => {
-    fetchUserCart();
-  }, []);
-
+  //--------PARAMS AND NAV--------//
+  const navigate = useNavigate(); 
   function handleBack() {
     navigate("/products");
   }
-
+  //--------STATE--------//
   const [selectedQuantity, setSelectedQuantity] = useState(0)
-  
+  const [cartItemId, setCartItemId] = useState(0);
+  const [selectedItem, setSelectedItem] = useState();
+  //--------FUNCTIONS--------//
+  async function handleNewDelete(productId) {
+    console.log(productId,"DELETE PRODUCTID")
+    const cartItemId = Number(productId);
+    const deleted = await deleteCartItem(cartItemId);  
+  }
+
   function handleQuantChange(e){
     const val = Number(e.target.value)
     setSelectedQuantity(val)
-    console.log(selectedQuantity, "this is selected")
   }
   async function settingNewQuant(cartItemId){
     
-    console.log(selectedQuantity,"trying to feed this quant")
    const updatedQuant = await updateQuantity(cartItemId, selectedQuantity)
-   console.log(updatedQuant)
-
-   /// REFRESH TECHNIQUE
-   let placeholder = await fetchUserCart();
-    setUserCart(placeholder)
-    fetchUserCart()
-    /// REFRESH TECHNIQUE
+        const mappedForUpdate = userCart.map((item) => {
+          if (item.id == cartItemId) {
+              return updatedQuant
+          } else {
+            return item;
+          }
+        });
+        setUserCart(mappedForUpdate);
   }
   
   
@@ -61,25 +47,25 @@ console.log(productId,"DELETE PRODUCTID")
     e.preventDefault();
     // const cartItemId = Number(selectedItem.id);
     const deletedCartItem = await deleteCartItem(cartItemId);
-    // if (deleted.success) {
-      
-      // navigate("/mycart/cart_items");
-    // }
+    
   }
 
 
   
-  async function handleNewDelete(productId) {
-console.log(productId,"DELETE PRODUCTID")
-    const cartItemId = Number(productId);
+  async function handleNewDelete(cartItemId) {
+  
     const deleted = await deleteCartItem(cartItemId);
-    console.log(deleted, "here is deleted")
-
-    //REFRESH TECHNIQUE
-    let placeholder = await fetchUserCart();
-    setUserCart(placeholder)
-    fetchUserCart()
-      //REFRESH TECHNIQUE
+    if(deleted.success){
+      const newCart = userCart.filter((item)=>{
+        const bool = !(item.id == cartItemId)
+        console.log("IAM IRONMAN", item.id, cartItemId, bool)
+       return bool
+      })
+      setUserCart(newCart)
+    }
+    else{
+      //send notification that contains deleted.message
+    }
     }
   
 
@@ -91,6 +77,11 @@ console.log(productId,"DELETE PRODUCTID")
     if(props.quantity > 0){props.setCount(props.quantity - 1)};
   };
 
+ async function handleCheckout() {
+  const checkout = await checkoutCart();
+  console.log(checkout)
+
+ }
 
   return (
     <div>
@@ -172,6 +163,7 @@ console.log(productId,"DELETE PRODUCTID")
       </div>
       
       <Link to="/checkout"><button>Ready To Checkout</button></Link>
+      <button onClick={handleCheckout}>Checkout Backend Test</button>
     </div>
   );
 };

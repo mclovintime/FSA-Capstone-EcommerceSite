@@ -3,7 +3,7 @@ import { Navbar, UserCart } from "./";
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { authUser, getProducts } from "../api-adapter";
+import { authUser, getProducts,getUserCart } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
@@ -26,6 +26,18 @@ const Main = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
   const [quantity, setCount] = useState(0);
+  const [userCart, setUserCart] = useState([]);
+ 
+
+  async function fetchUserCart() {
+    const allCart = await getUserCart();
+    setUserCart(allCart);
+  }
+
+  useEffect(() => {
+    fetchUserCart();
+  }, []);
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -47,65 +59,67 @@ const Main = () => {
     }
   }, [isLoggedIn]);
 
+  
   return (
     <main>
-      <div id="main">
-        <Router>
-          <Navbar
-            setUser={setUser}
-            user={user}
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
+    <div id="main">
+      <Router>
+        <Navbar
+          setUser={setUser}
+          user={user}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+
+          <Route
+            path="/login"
+            element={
+              <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
+            }
           />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/products" element={<Products user={user} userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart} />} />
+          <Route path="/guestcart" element={<GuestCart />} />
+          <Route
+            path="/product/:productId"
+            element={
+              <SingleProduct
+                user={user}
+                quantity={quantity}
+                setCount={setCount}
+              />
+            }
+          />
+          <Route
+            path="/mycart/cart_items"
+            element={
+              <UserCart
+                products={products}
+                setProducts={setProducts}
+                quantity={quantity}
+                setCount={setCount}
+                userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart}
+              />
+            }
+          />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/contactform" element={<ContactForm />} />
+          <Route path="/Admin" element={<AdminPage user={user} />} />
+          <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
+          <Route
+            path="/AdminProducts"
+            element={<AdminProducts user={user} />}
+          />
+          <Route path="/Home" element={<Home />} />
+        </Routes>
+        <Footer />
+      </Router>
 
-            <Route
-              path="/login"
-              element={
-                <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
-              }
-            />
-            <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<Products user={user} />} />
-            <Route path="/guestcart" element={<GuestCart />} />
-            <Route
-              path="/product/:productId"
-              element={
-                <SingleProduct
-                  user={user}
-                  quantity={quantity}
-                  setCount={setCount}
-                />
-              }
-            />
-            <Route
-              path="/mycart/cart_items"
-              element={
-                <UserCart
-                  products={products}
-                  setProducts={setProducts}
-                  quantity={quantity}
-                  setCount={setCount}
-                />
-              }
-            />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/contactform" element={<ContactForm />} />
-            <Route path="/Admin" element={<AdminPage user={user} />} />
-            <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
-            <Route
-              path="/AdminProducts"
-              element={<AdminProducts user={user} />}
-            />
-            <Route path="/Home" element={<Home />} />
-          </Routes>
-          <Footer />
-        </Router>
-
-        <ToastContainer />
-      </div>
-    </main>
+      <ToastContainer />
+    </div>
+  </main>
   );
 };
 

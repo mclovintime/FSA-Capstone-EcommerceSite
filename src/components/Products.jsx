@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { addProductToUserCart, getProducts, getProductsById } from "../api-adapter";
+import {
+  addProductToUserCart,
+  getProducts,
+  getProductsById,
+  getUserCart,
+  updateQuantity
+} from "../api-adapter";
 import "./products.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
 import Footer from "./Footer";
-
 
 const Products = (props) => {
   const user = props.user;
   let existingItems = [];
 
   const [products, setProducts] = useState([]);
+  const userCart = props.userCart;
+  const setUserCart = props.setUserCart;
+  const fetchUserCart = props.fetchUserCart;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,15 +35,33 @@ const Products = (props) => {
     navigate("/mycart/cart_items");
   }
 
-  const addProduct = async (productId, price)  => {
-   console.log("HELLO???")
+  const addProduct = async (productId, price) => {
+    console.log("HELLO???");
     // pass props.quantitity into APTUC later, once that is fixed
-   
-    const addedToCart = await addProductToUserCart(productId, price)
-    //fix quantitity 
-    console.log(addedToCart)
-  }
-  
+    if (userCart) {
+      const quantity = 1;
+      const addedToCart = await addProductToUserCart(
+        productId,
+        price,
+        quantity
+      );
+      console.log("addedToCart", addedToCart);
+      if (addedToCart.message) {
+        const mappedForUpdate = await Promise.all(userCart.map(async (item) => {
+          if (item.productId == productId) {
+            console.log(item, "item ")
+            const updated = await  updateQuantity(item.id, item.quantity + 1)
+                  return updated
+          } else {
+            return item;
+          }
+        }));
+        setUserCart(mappedForUpdate);
+      } else {
+        setUserCart([...userCart, addedToCart]);
+      }
+    }
+  };
 
   async function addToCart(productId) {
     console.log(productId, "id of the thing we clicked");
@@ -76,11 +102,8 @@ const Products = (props) => {
     console.log(tester, "tester right here");
   }
 
-
-  return  (
-
-
-    <div >
+  return (
+    <div>
       <h1 className="WholeProducts">products</h1>
       <div id="container">
         {products.length ? (
@@ -88,15 +111,15 @@ const Products = (props) => {
             return (
               <div key={`product-${product.id}`} className="productBox">
                 <div className="productName">{product.name}</div>
-                <div className="productDescription">
-                 {product.description}
-                </div>
+                <div className="productDescription">{product.description}</div>
                 {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
                 </div> */}
 
                 <div className="productInStock">{product.stock} In Stock</div>
-                <div className="productPrice">Price: ${product.price / 100}</div>
+                <div className="productPrice">
+                  Price: ${product.price / 100}
+                </div>
                 <img id="productImage" src={`${product.image_url}`} />
 
                 {user ? (
@@ -121,10 +144,9 @@ const Products = (props) => {
           <div>Loading your products... </div>
         )}
       </div>
-<Footer />
+      <Footer />
     </div>
-  ) 
-
+  );
 };
 
 export default Products;
