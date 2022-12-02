@@ -47,118 +47,9 @@ const Main = () => {
     }
   }, [isLoggedIn]);
 
-  // const router = createBrowserRouter(
-  //   createRoutesFromElements(
-  //     <Route
-  //       path="/"
-  //       element={
-  //         <div>
-  //           {/* <Navbar
-  //           setUser={setUser}
-  //           user={user}
-  //           isLoggedIn={isLoggedIn}
-  //           setIsLoggedIn={setIsLoggedIn}
-  //         /> */}
-  //           {/* <Home /> */}
-  //         </div>
-  //       }
-  //     >
-  //       {/* <Route
-  //         path="/login"
-  //         element={
-  //           <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
-  //         }
-  //       ></Route> */}
-  //       {/* <Route path="/register" element={<Register />}></Route>
-  //       <Route path="/products" element={<Products
-  //       user = {user} />}></Route>
-  //       <Route path="/guestcart" element={<GuestCart />}></Route>
-  //       <Route
-  //         path="/product/:productId"
-  //         element={
-  //           <SingleProduct
-  //             user={user}
-  //             quantity={quantity}
-  //             setCount={setCount}
-  //           />
-  //         }
-  //       ></Route> */}
-  //       <Route
-  //         path="/mycart/cart_items"
-  //         element={
-  //           <UserCart
-  //             products={products}
-  //             setProducts={setProducts}
-  //             quantity={quantity}
-  //             setCount={setCount}
-  //           />
-  //         }
-  //       ></Route>
-  //       <Route path="/contactform" element={<ContactForm />}></Route>
-  //       <Route path="/" element={<Footer />}></Route>
-  //       <Route path="/Admin" element={<AdminPage user={user} />}></Route>
-  //       <Route path="/AdminUsers" element={<AdminUsers user={user} />}></Route>
-  //       <Route path="/AdminProducts" element={<AdminProducts />}></Route>
-  //       <Route path="/" element={<Home />}></Route>
-
-  //       {/* <Route
-  //         path="/"
-
-  //         element={
-  //           <Footer />
-  //         }
-  //       ></Route> */}
-  //     </Route>
-  //   )
-  // );
-
   return (
     <main>
       <div id="main">
-        {/* <RouterProvider router={router}></RouterProvider> */}
-
-
-              <Route
-                path="/login"
-                element={
-                  <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
-                }
-              />
-              <Route path="/register" element={<Register />} />
-              <Route path="/products" element={<Products user={user} />} />
-              <Route path="/guestcart" element={<GuestCart />} />
-              <Route
-                path="/product/:productId"
-                element={
-                  <SingleProduct
-                    user={user}
-                    quantity={quantity}
-                    setCount={setCount}
-                  />
-                }
-              />
-              <Route
-                path="/mycart/cart_items"
-                element={
-                  <UserCart
-                    products={products}
-                    setProducts={setProducts}
-                    quantity={quantity}
-                    setCount={setCount}
-                  />
-                }
-              />
-              <Route path="/contactform" element={<ContactForm />} />
-              <Route path="/Admin" element={<AdminPage user={user} />} />
-              <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
-              <Route path="/AdminProducts" element={<AdminProducts user={user} />} />
-              <Route path="/Home" element={<Home />} />
-              <Route path="/MyProfile" element={<MyProfile user={user}/>} />
-            </Routes>
-             <Footer/>
-          </Router>
-        
-
         <Router>
           <Navbar
             setUser={setUser}
@@ -199,7 +90,7 @@ const Main = () => {
                 />
               }
             />
-            <Route path="/checkout" element={<Checkout/>}/>
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/contactform" element={<ContactForm />} />
             <Route path="/Admin" element={<AdminPage user={user} />} />
             <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
@@ -211,7 +102,6 @@ const Main = () => {
           </Routes>
           <Footer />
         </Router>
-
 
         <ToastContainer />
       </div>
