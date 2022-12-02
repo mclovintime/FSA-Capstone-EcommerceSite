@@ -99,21 +99,23 @@ const Products = (props) => {
                 <div className="productPrice">Price: ${product.price / 100}</div>
                 <img id="productImage" src={`${product.image_url}`} />
 
+                <div id="buttonContainer">
                 {user ? (
-                  <button onClick={() => addProduct(product.id, product.price)}>
+                  <button id="leftButton" class="productButton" onClick={() => addProduct(product.id, product.price)}>
                     Add to cart bingbong
                   </button>
                 ) : (
-                  <button onClick={() => addToCart(product.id, product.price)}>
+                  <button id="leftButton" class="productButton" onClick={() => addToCart(product.id, product.price)}>
                     Add to Cart
                   </button>
                 )}
 
                 <Link to={`/product/${product.id}`}>
-                  <button>Display More Info</button>
+                  <button id="middleButton" class="productButton">More Info</button>
                 </Link>
 
-                <button onClick={handleBackToMyCart}>My Cart</button>
+                <button id="rightButton" class="productButton" onClick={handleBackToMyCart}>My Cart</button>
+              </div>
               </div>
             );
           })
