@@ -17,6 +17,7 @@ import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Checkout from "./Checkout";
 
 const Main = () => {
   const [user, setUser] = useState("");
@@ -101,7 +102,7 @@ const Main = () => {
 
   //       {/* <Route
   //         path="/"
-          
+
   //         element={
   //           <Footer />
   //         }
@@ -114,56 +115,59 @@ const Main = () => {
     <main>
       <div id="main">
         {/* <RouterProvider router={router}></RouterProvider> */}
-        
-          <Router>
-            <Navbar
-              setUser={setUser}
-              user={user}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-            <Routes>
-              <Route exact path="/" element={<Home />} />
 
-              <Route
-                path="/login"
-                element={
-                  <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
-                }
-              />
-              <Route path="/register" element={<Register />} />
-              <Route path="/products" element={<Products user={user} />} />
-              <Route path="/guestcart" element={<GuestCart />} />
-              <Route
-                path="/product/:productId"
-                element={
-                  <SingleProduct
-                    user={user}
-                    quantity={quantity}
-                    setCount={setCount}
-                  />
-                }
-              />
-              <Route
-                path="/mycart/cart_items"
-                element={
-                  <UserCart
-                    products={products}
-                    setProducts={setProducts}
-                    quantity={quantity}
-                    setCount={setCount}
-                  />
-                }
-              />
-              <Route path="/contactform" element={<ContactForm />} />
-              <Route path="/Admin" element={<AdminPage user={user} />} />
-              <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
-              <Route path="/AdminProducts" element={<AdminProducts user={user} />} />
-              <Route path="/Home" element={<Home />} />
-            </Routes>
-             <Footer/>
-          </Router>
-        
+        <Router>
+          <Navbar
+            setUser={setUser}
+            user={user}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+
+            <Route
+              path="/login"
+              element={
+                <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
+              }
+            />
+            <Route path="/register" element={<Register />} />
+            <Route path="/products" element={<Products user={user} />} />
+            <Route path="/guestcart" element={<GuestCart />} />
+            <Route
+              path="/product/:productId"
+              element={
+                <SingleProduct
+                  user={user}
+                  quantity={quantity}
+                  setCount={setCount}
+                />
+              }
+            />
+            <Route
+              path="/mycart/cart_items"
+              element={
+                <UserCart
+                  products={products}
+                  setProducts={setProducts}
+                  quantity={quantity}
+                  setCount={setCount}
+                />
+              }
+            />
+            <Route path="/checkout" element={<Checkout/>}/>
+            <Route path="/contactform" element={<ContactForm />} />
+            <Route path="/Admin" element={<AdminPage user={user} />} />
+            <Route path="/AdminUsers" element={<AdminUsers user={user} />} />
+            <Route
+              path="/AdminProducts"
+              element={<AdminProducts user={user} />}
+            />
+            <Route path="/Home" element={<Home />} />
+          </Routes>
+          <Footer />
+        </Router>
 
         <ToastContainer />
       </div>

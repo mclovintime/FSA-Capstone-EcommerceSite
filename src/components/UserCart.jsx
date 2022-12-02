@@ -94,6 +94,7 @@ console.log(productId,"DELETE PRODUCTID")
     <div>
       <h1>My Cart</h1>
           <button onClick={handleBack}>Continue Shopping</button>
+          <Link to="/checkout">Ready To Checkout</Link>
       {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
           <option key={item.id} value={item.id}>
@@ -150,9 +151,10 @@ console.log(productId,"DELETE PRODUCTID")
                             <button>Product Details</button>
                           </Link>
                           {/* <button onClick={handleBack}>Go Back</button> */}
-                  
+                          
                          
                         </div>
+                        
                       );
                     }
                   })
