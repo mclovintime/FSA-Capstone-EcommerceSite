@@ -29,7 +29,7 @@ const Main = () => {
     setLoading(true)
     setTimeout(() =>  {
       setLoading(false)
-    }, 2700)
+    }, 1500)
   }, [])
 
 
