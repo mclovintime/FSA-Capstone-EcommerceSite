@@ -7,10 +7,10 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-        <Link to= "/ContactForm">Contact Us</Link>
+        <Link id="contactLink" to= "/ContactForm">Contact Us</Link>
         <Outlet></Outlet>
 
-        <div> testing footir</div>
+        
 
     </footer>
     

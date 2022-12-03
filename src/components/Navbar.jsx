@@ -21,7 +21,7 @@ const Navbar = (props) => {
       <div id="navbar">
       <Link to="/" id="logo">DimTech</Link>
       <LoggedIn user={user}/>
-        <Link id="homeThing" to="/Home">Home</Link>
+       
         <Link id="productsThing" to="/Products">Products</Link>
         <Link to="/Login"><i className="fa-solid fa-user"></i></Link>
         {/* <Link to="/Register">Register</Link> */}
@@ -29,6 +29,11 @@ const Navbar = (props) => {
         
         {user ? <Link to="/mycart/cart_items"><i className="fa-solid fa-cart-shopping"></i></Link>  :
         <Link to="/guestcart"><i id="cartIcon" className="fa-solid fa-cart-shopping"></i></Link>
+        }
+
+        {user ? <Link to="/MyProfile"><i className="fa-solid fa-address-card"></i></Link>  : 
+                <Link to="/Home"><i className="fa-solid fa-address-card"></i></Link>
+
         }
 
         {user && user.is_admin === true ? (

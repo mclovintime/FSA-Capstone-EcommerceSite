@@ -1,0 +1,54 @@
+
+#bottomRowContainer {
+    display:flex;
+    justify-content: space-between;
+    width: 320px;
+    height: 20px;
+    margin-left: -10px;
+    margin-bottom: -5px;
+}
+#quantityStuff  {
+    display: flex;
+   justify-content: space-around;
+   width: 175px;
+
+}
+
+#dropdown   {
+    border-bottom-right-radius: 20px;
+    width: 50px;
+    border: 5px outset violet;
+}
+
+.cartButtons    {
+    background-color: rgb(243, 239, 233);
+    height: 40px;
+    margin-top: -15px;
+    
+}
+
+.cartButtons:hover{
+    color:rgb(51, 51, 51);
+    transform: scale(1.10);
+}
+#dropdown:hover{
+    color:rgb(51, 51, 51);
+    transform: none;
+}
+
+#details    {
+    color:blue;
+    
+}
+
+#deleteButton   {
+    width: 175px;
+    border-bottom-left-radius: 20px;
+    border: 5px outset violet;
+}
+
+#submitnewQuantity  {
+border-radius: 0px;
+width: 110px;
+border: 5px outset violet;
+}

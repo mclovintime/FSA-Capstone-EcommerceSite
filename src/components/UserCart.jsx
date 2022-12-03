@@ -2,9 +2,10 @@ import { React, useState, useEffect } from "react";
 import { getUserCart, deleteCartItem, updateQuantity, checkoutCart } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Checkout from "./Checkout";
-
+// import "./userCart.css";
 
 const UserCart = (props) => {
+
   //--------PROPS--------//
   const userCart = props.userCart
   const setUserCart = props.setUserCart
@@ -16,10 +17,12 @@ const UserCart = (props) => {
   }
   //--------STATE--------//
   const [selectedQuantity, setSelectedQuantity] = useState(0)
+
   const [cartItemId, setCartItemId] = useState(0);
   const [selectedItem, setSelectedItem] = useState();
   //--------FUNCTIONS--------//
   async function handleNewDelete(productId) {
+
     console.log(productId,"DELETE PRODUCTID")
     const cartItemId = Number(productId);
     const deleted = await deleteCartItem(cartItemId);  
@@ -40,18 +43,9 @@ const UserCart = (props) => {
           }
         });
         setUserCart(mappedForUpdate);
-  }
-  
-  
-  async function handleDelete(e) {
-    e.preventDefault();
-    // const cartItemId = Number(selectedItem.id);
-    const deletedCartItem = await deleteCartItem(cartItemId);
     
   }
-
-
-  
+ 
   async function handleNewDelete(cartItemId) {
   
     const deleted = await deleteCartItem(cartItemId);
@@ -67,15 +61,9 @@ const UserCart = (props) => {
       //send notification that contains deleted.message
     }
     }
-  
+ 
 
-  let incrementCount = () => {
-    props.setCount(props.quantity + 1);
-  };
-  
-  let decrementCount = () => {
-    if(props.quantity > 0){props.setCount(props.quantity - 1)};
-  };
+
 
  async function handleCheckout() {
   const checkout = await checkoutCart();
@@ -83,11 +71,12 @@ const UserCart = (props) => {
 
  }
 
+
   return (
     <div>
       <h1>My Cart</h1>
-          <button onClick={handleBack}>Continue Shopping</button>
-          
+      <button onClick={handleBack}>Continue Shopping</button>
+
       {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
           <option key={item.id} value={item.id}>
@@ -97,7 +86,7 @@ const UserCart = (props) => {
           </option>
         ))}
       </select> */}
-      
+
 
       <div id="container">
         {userCart && userCart.length ? (
@@ -127,27 +116,38 @@ const UserCart = (props) => {
                             Price: ${product.price / 100}
                           </div>
                           <div>Quantity: {cartItem.quantity}</div>
-                          <button onClick={() => handleNewDelete(cartItem.id)}> Delete </button>
-                          <select onChange={handleQuantChange}>
-        
-        <option id="selectedQuantity" value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-      </select>
-      <button onClick={() => settingNewQuant(cartItem.id)} id="submitnewQuantity">Update Quantity</button>
+
                           <img id="productImage" src={`${product.image_url}`} />
                           {/* <button>Add to cart</button> */}
-                          <Link to={`/product/${product.id}`}>
-                            <button>Product Details</button>
-                          </Link>
-                          {/* <button onClick={handleBack}>Go Back</button> */}
-                          
-                         
+
+                          <div id="bottomRowContainer">
+                            <button id="deleteButton" class="cartButtons"
+                              onClick={() => handleNewDelete(cartItem.id)}
+                            >
+                              {" "}
+                              Delete{" "}
+                            </button>
+                            <div id="quantityStuff">
+                              <button class="cartButtons"
+                                onClick={() => settingNewQuant(cartItem.id)}
+                                id="submitnewQuantity"
+                              >
+                                Update Count
+                              </button>
+                              <select id="dropdown" class="cartButtons"onChange={handleQuantChange}>
+                                <option id="selectedQuantity" value="0">
+                                  0
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+                            </div>
+                            
+                          </div>
                         </div>
-                        
                       );
                     }
                   })
@@ -164,6 +164,7 @@ const UserCart = (props) => {
       
       <Link to="/checkout"><button>Ready To Checkout</button></Link>
       <button onClick={handleCheckout}>Checkout Backend Test</button>
+
     </div>
   );
 };
