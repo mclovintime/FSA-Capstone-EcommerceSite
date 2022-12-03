@@ -100,7 +100,7 @@ const Main = () => {
               }
             />
             <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<Products user={user} userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart} />} />
+            <Route path="/products" element={<Products user={user} userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart} products = {products} setProducts = {setProducts} />} />
             <Route path="/guestcart" element={<GuestCart />} />
             <Route
               path="/product/:productId"
