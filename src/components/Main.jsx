@@ -3,7 +3,7 @@ import { Navbar, UserCart } from "./";
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { authUser, getProducts } from "../api-adapter";
+import { authUser, getProducts,getUserCart } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
@@ -16,7 +16,7 @@ import AdminPage from "../admin/AdminPage";
 import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
 import MyProfile from "./MyProfile";
-import "./loading.css"
+// import "./loading.css"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Checkout from "./Checkout";
@@ -38,6 +38,18 @@ const Main = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
   const [quantity, setCount] = useState(0);
+  const [userCart, setUserCart] = useState([]);
+ 
+
+  async function fetchUserCart() {
+    const allCart = await getUserCart();
+    setUserCart(allCart);
+  }
+
+  useEffect(() => {
+    fetchUserCart();
+  }, []);
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -59,7 +71,6 @@ const Main = () => {
     }
   }, [isLoggedIn]);
 
-  
 
   return (
     <main>
@@ -89,7 +100,7 @@ const Main = () => {
               }
             />
             <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<Products user={user} />} />
+            <Route path="/products" element={<Products user={user} userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart} />} />
             <Route path="/guestcart" element={<GuestCart />} />
             <Route
               path="/product/:productId"
@@ -109,6 +120,7 @@ const Main = () => {
                   setProducts={setProducts}
                   quantity={quantity}
                   setCount={setCount}
+                   userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart}
                 />
               }
             />

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import {
   addProductToUserCart,
   getProducts,
-  getProductsById,
+  getProductsById, 
+  getUserCart,
+  updateQuantity
+
 } from "../api-adapter";
 import "./products.css";
 import { Link, useNavigate } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
 import Footer from "./Footer";
 
-import "./loading.css";
+// import "./loading.css";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
@@ -30,6 +33,9 @@ const Products = (props) => {
 
 
   const [products, setProducts] = useState([]);
+  const userCart = props.userCart;
+  const setUserCart = props.setUserCart;
+  const fetchUserCart = props.fetchUserCart;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,10 +55,30 @@ const Products = (props) => {
   const addProduct = async (productId, price) => {
     console.log("HELLO???");
     // pass props.quantitity into APTUC later, once that is fixed
+    if (userCart) {
+      const quantity = 1;
+      const addedToCart = await addProductToUserCart(
+        productId,
+        price,
+        quantity
+      );
+      console.log("addedToCart", addedToCart);
+      if (addedToCart.message) {
+        const mappedForUpdate = await Promise.all(userCart.map(async (item) => {
+          if (item.productId == productId) {
+            console.log(item, "item ")
+            const updated = await  updateQuantity(item.id, item.quantity + 1)
+                  return updated
+          } else {
+            return item;
+          }
+        }));
+        setUserCart(mappedForUpdate);
+      } else {
+        setUserCart([...userCart, addedToCart]);
+      }
+    }
 
-    const addedToCart = await addProductToUserCart(productId, price);
-    //fix quantitity
-    console.log(addedToCart);
   };
 
   async function addToCart(productId) {
@@ -94,9 +120,7 @@ const Products = (props) => {
 
     let tester = localStorage.getItem("guestCart");
     // console.log(tester, "tester right here");
-
-     
-  }
+ }
 
 
   return (
@@ -125,11 +149,8 @@ const Products = (props) => {
                   {` testing product id ${product.id}`}
                 </div> */}
 
-                  <div id="priceAndStock">
-                  <div className="productInStock"><b>{product.stock}</b> In Stock</div>
+                  <div className="productInStock">{product.stock} In Stock</div>
                   <div className="productPrice">${product.price / 100}</div>
-                  </div>
-
                   <img id="productImage" src={`${product.image_url}`} />
 
                   <div id="buttonContainer">
