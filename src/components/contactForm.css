@@ -1,0 +1,22 @@
+#whole  {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    border: 2px solid black;
+    margin-left: 600px;
+    margin-right: 600px;
+    padding: 100px 80px;
+    border-radius: 25px;
+    background: rgba(245, 229, 229, 0.699);
+}
+
+#forms  {
+    flex-direction: row;
+    height: 0px;
+}
+
+#header{
+    margin-top: -50px;
+}

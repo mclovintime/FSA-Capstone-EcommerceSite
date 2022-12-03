@@ -40,8 +40,23 @@
     width: 360px;
     margin: auto;
     padding: 15px;
+    margin-bottom: -50px;
+    justify-content: space-evenly;
 }
 
 body{
     background: linear-gradient(132deg, rgba(245, 109, 164, 1) 0%, rgba(188, 185, 254, 1) 50%, rgba(112, 227, 204, 1) 100%);
+}
+
+#passwordIP {
+    margin-bottom: 20px;
+}
+
+#notYet{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.link   {
+    text-decoration: none;
 }
