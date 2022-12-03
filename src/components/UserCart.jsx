@@ -100,7 +100,7 @@ const UserCart = (props) => {
       
 
       <div id="container">
-        {userCart ? (
+        {userCart && userCart.length ? (
           userCart.map((cartItem) => {
             return (
               <div key={`cartItem-${cartItem.id}`}>
