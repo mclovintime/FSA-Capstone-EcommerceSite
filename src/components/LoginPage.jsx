@@ -50,8 +50,8 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
         onChange={(e) => setUsername(e.target.value)}
       />
       <h3>Password:</h3>
-      <input
-        id="loginPassword"
+      <input id="passwordIP"
+        
         type="password"
         required
         value={password}
@@ -61,7 +61,7 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
       </form>
       
       <div className="register-link-container">
-      <h3>Not Yet a User? </h3>
+      <h3 id="notYet">Not Yet a User? </h3>
       <Link to="/register" className="link">
         Register
       </Link>

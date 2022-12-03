@@ -125,8 +125,11 @@ const Products = (props) => {
                   {` testing product id ${product.id}`}
                 </div> */}
 
-                  <div className="productInStock">{product.stock} In Stock</div>
+                  <div id="priceAndStock">
+                  <div className="productInStock"><b>{product.stock}</b> In Stock</div>
                   <div className="productPrice">${product.price / 100}</div>
+                  </div>
+
                   <img id="productImage" src={`${product.image_url}`} />
 
                   <div id="buttonContainer">

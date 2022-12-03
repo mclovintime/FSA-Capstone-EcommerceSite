@@ -38,6 +38,18 @@
     box-shadow: 2px 2px 4px 3px rgba(119, 119, 119, 0.685);
 }
 
+.productInStock {
+    font-size: 15px;
+    margin-top: 6px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#priceAndStock  {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .productPrice  {
     text-decoration: dashed;
 }
@@ -63,7 +75,8 @@
 
 .productDescription {
    padding-top: 10px;
-   
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: 20px;
 }
 
 .productPrice{
