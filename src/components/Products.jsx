@@ -32,19 +32,14 @@ const Products = (props) => {
    const successNotify = () => toast("Added to cart!")
 
 
-  const [products, setProducts] = useState([]);
+  const products = props.products
+  const setProducts = props.setProducts
   const userCart = props.userCart;
   const setUserCart = props.setUserCart;
   const fetchUserCart = props.fetchUserCart;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchProducts() {
-      let placeholder = await getProducts();
-      setProducts(placeholder.products);
-    }
-    fetchProducts();
-  }, []);
+  
 
   function handleBackToMyCart(e) {
     e.preventDefault();
