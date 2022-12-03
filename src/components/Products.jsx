@@ -24,7 +24,7 @@ const Products = (props) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1200);
   }, []);
 
   const user = props.user;
