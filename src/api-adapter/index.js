@@ -259,6 +259,25 @@ export async function updateQuantity(id, quantity) {
   }
 }
 
+export async function checkoutCart() {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")} `
+    },
+
+  };
+  try {
+    const response = await fetch(`${BASE_URL}users/mycart/checkout`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function getAllUsers() {
   try {
     const response = await fetch(`${BASE_URL}users`);
@@ -279,6 +298,7 @@ export async function getAllEmails() {
   }
 }
 
+
 export async function makePayment(token) {
   const options = {
     method: "POST",
@@ -293,10 +313,35 @@ export async function makePayment(token) {
   };
   try {
     const response = await fetch(`${BASE_URL}payment`, options);
+     const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+   console.error(error);
+  }
+}
+
+export async function updateUser(id, {username, email, address}) {
+  console.log(username, email, address)
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")} `
+    },
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      address: address
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}users/me/${id}`, options);
     const result = await response.json();
     console.log(result);
     return result;
   } catch (error) {
+    console.error(error);
   }
 }
 

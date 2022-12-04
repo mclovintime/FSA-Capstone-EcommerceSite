@@ -1,3 +1,5 @@
+import "./contactForm.css";
+
 import React, {useState} from 'react'
 
  const ContactForm = () => {
@@ -19,8 +21,10 @@ import React, {useState} from 'react'
 
 
   return (
+    <div id="whole">
     <div className="contact-form">
-    <h2>Contact Us</h2>
+    <h2 id="header">We would love to hear from you!</h2>
+    <div id="forms">
     <form onSubmit={handleSubmit}>
     <input
           type="text"
@@ -28,7 +32,7 @@ import React, {useState} from 'react'
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           label="First Name"
-          placeholder="first name"
+          placeholder="First name"
         />
     <input
           type="text"
@@ -36,6 +40,7 @@ import React, {useState} from 'react'
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           label="Last Name"
+          placeholder="Last name"
         />
     <input
           type="text"
@@ -43,6 +48,7 @@ import React, {useState} from 'react'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           label="Email"
+          placeholder="Email"
         />
     <input
           type="text"
@@ -50,11 +56,15 @@ import React, {useState} from 'react'
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           label="Message"
+          placeholder="Message"
         />
+        
+    </form>
     <button className="contact-form-button" type="submit">
           Submit
         </button>
-    </form>
+    </div>
+    </div>
     </div>
   )
 }

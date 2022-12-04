@@ -3,7 +3,7 @@ import { Navbar, UserCart } from "./";
 import LoginPage from "./LoginPage";
 import Products from "./Products";
 import Register from "./Register";
-import { authUser, getProducts } from "../api-adapter";
+import { authUser, getProducts,getUserCart } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SingleProduct from "./SingleProduct";
@@ -16,16 +16,40 @@ import AdminPage from "../admin/AdminPage";
 import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
 import MyProfile from "./MyProfile";
+// import "./loading.css"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Checkout from "./Checkout";
+import { RingLoader } from "react-spinners";
 
 const Main = () => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() =>  {
+      setLoading(false)
+    }, 1500)
+  }, [])
+
+
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
   const [quantity, setCount] = useState(0);
+  const [userCart, setUserCart] = useState([]);
+ 
+
+  async function fetchUserCart() {
+    const allCart = await getUserCart();
+    setUserCart(allCart);
+  }
+
+  useEffect(() => {
+    fetchUserCart();
+  }, []);
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -47,8 +71,17 @@ const Main = () => {
     }
   }, [isLoggedIn]);
 
+
   return (
     <main>
+      {
+        loading ? <div id="theLoader"><RingLoader id="ringer"
+        
+        size={150}
+        color={"#d636d0"}
+        loading={loading}
+        /> </div>: 
+      
       <div id="main">
         <Router>
           <Navbar
@@ -67,7 +100,7 @@ const Main = () => {
               }
             />
             <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<Products user={user} />} />
+            <Route path="/products" element={<Products user={user} userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart} products = {products} setProducts = {setProducts} />} />
             <Route path="/guestcart" element={<GuestCart />} />
             <Route
               path="/product/:productId"
@@ -87,6 +120,7 @@ const Main = () => {
                   setProducts={setProducts}
                   quantity={quantity}
                   setCount={setCount}
+                   userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart}
                 />
               }
             />
@@ -99,14 +133,18 @@ const Main = () => {
               element={<AdminProducts user={user} />}
             />
             <Route path="/Home" element={<Home />} />
+            <Route path="/MyProfile" element={<MyProfile user={user}/>} />
           </Routes>
           <Footer />
         </Router>
 
         <ToastContainer />
       </div>
+      }
     </main>
+    
   );
+  
 };
 
 export default Main;

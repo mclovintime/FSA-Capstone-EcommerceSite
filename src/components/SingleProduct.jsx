@@ -6,21 +6,25 @@ import {
   updateQuantity,
 } from "../api-adapter";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 const SingleProduct = (props) => {
   let existingItems = [];
   const user = props.user;
-  console.log(user, "testing user");
+  // console.log(user, "testing user");
 
   const [quantityCounter, setQuantityCounter] = useState(0);
 
-  console.log(props, "props on single product here");
+  // console.log(props, "props on single product here");
 
   const { productId, quantity, setCount } = useParams();
-  console.log(productId, "productID");
+  // console.log(productId, "productID");
   const [product, setProduct] = useState("");
   const [updatedQuantity, setUpdatedQuantity] = useState(0);
   const navigate = useNavigate();
+  const successNotify = () => toast("Added to cart!")
+
 
   useEffect(() => {
     async function getSingleProduct() {
@@ -32,20 +36,20 @@ const SingleProduct = (props) => {
   }, []);
 
   const [selectedQuantity, setSelectedQuantity] = useState(0);
-  console.log(selectedQuantity);
+  // console.log(selectedQuantity);
 
   async function handleQuantChange(e) {
     const val = Number(e.target.value);
     setSelectedQuantity(val);
-    console.log(selectedQuantity, "this is selected");
+    // console.log(selectedQuantity, "this is selected");
     const Num = Number(selectedQuantity);
     setUpdatedQuantity(Num);
-    console.log(updatedQuantity, "this is updatedQuant");
+    // console.log(updatedQuantity, "this is updatedQuant");
   }
 
   async function settingNewQuant() {
     let id = product.id;
-    console.log(selectedQuantity, "trying to feed this quant");
+    // console.log(selectedQuantity, "trying to feed this quant");
     await updateQuantity(id, selectedQuantity);
   }
 
@@ -60,12 +64,12 @@ const SingleProduct = (props) => {
         id: product.id,
       },
     };
-    console.log(newCartItem, "newCartItem");
+    // console.log(newCartItem, "newCartItem");
 
-    console.log(
-      localStorage.getItem("guestCart"),
-      "testing response empty pointer"
-    );
+    // console.log(
+    //   localStorage.getItem("guestCart"),
+    //   "testing response empty pointer"
+    // );
 
     if (localStorage.getItem("guestCart") == "") {
       existingItems = [];
@@ -73,7 +77,7 @@ const SingleProduct = (props) => {
       existingItems = JSON.parse(localStorage.getItem("guestCart"));
     }
 
-    console.log(typeof existingItems, "existing items type");
+    // console.log(typeof existingItems, "existing items type");
 
     if (!existingItems) {
       existingItems = [];
@@ -119,8 +123,8 @@ const SingleProduct = (props) => {
     navigate("/mycart/cart_items");
   }
 
-  const addProduct = async (e) => {
-    e.preventDefault();
+  const addProduct = async () => {
+    // e.preventDefault();
     const price = product.price;
 
     const addedToCart = await addProductToUserCart(
@@ -164,9 +168,9 @@ const SingleProduct = (props) => {
           </button>
         </div>
         {user ? (
-          <button class="buttons" onClick={addProduct}>Add to cart</button>
+          <button class="buttons" onClick={() => {addProduct(); successNotify(); }}>Add to cart</button>
         ) : (
-          <button class="buttons"onClick={addGuestProduct}>Add to cart</button>
+          <button class="buttons"onClick={()=> {addGuestProduct(); successNotify(); }}>Add to cart</button>
         )}
 
         <button class="buttons" onClick={handleBack}>Back To Products</button>
