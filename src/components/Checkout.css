@@ -1,0 +1,14 @@
+.wholeCheckout {
+    display: flex;
+    align-self: center;
+}
+
+.checkoutButton {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    -webkit-text-stroke: .5px  black;
+    font-size: 25px;
+    background-color: rgb(125, 196, 234);
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px outset rgb(208, 132, 238)
+}

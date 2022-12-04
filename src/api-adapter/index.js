@@ -278,3 +278,25 @@ export async function getAllEmails() {
     console.error(error);
   }
 }
+
+export async function makePayment(token) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      token,
+      product,
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}payment`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+  }
+}
+
