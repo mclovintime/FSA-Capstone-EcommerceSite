@@ -298,6 +298,29 @@ export async function getAllEmails() {
   }
 }
 
+
+export async function makePayment(token) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      token,
+      product,
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}payment`, options);
+     const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+   console.error(error);
+  }
+}
+
 export async function updateUser(id, {username, email, address}) {
   console.log(username, email, address)
   const options = {
@@ -321,3 +344,4 @@ export async function updateUser(id, {username, email, address}) {
     console.error(error);
   }
 }
+
