@@ -10,7 +10,7 @@ import "./Checkout.css";
 import StripeCheckout from "react-stripe-checkout";
 import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
-// import Checkout from "./Checkout";
+
 // import "./userCart.css";
 
 const UserCart = (props) => {

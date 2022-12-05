@@ -19,7 +19,6 @@ import MyProfile from "./MyProfile";
 // import "./loading.css"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Checkout from "./Checkout";
 import { RingLoader } from "react-spinners";
 
 const Main = () => {
