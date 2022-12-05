@@ -29,9 +29,14 @@
     align-items:center
 }
 
-#usernameLogin, #loginPassword, #loginButton {
+#usernameLogin, .loginButton {
     height: 35px;
   } 
+
+  .loginButton {
+    background-color: rgb(191, 248, 229);
+    
+  }
 
   .register-link-container {
     display:flex;

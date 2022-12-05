@@ -1,7 +1,11 @@
 import { React, useState, useEffect } from "react";
 import { getUserCart, deleteCartItem, updateQuantity, checkoutCart } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Checkout from "./Checkout";
+import "./Checkout.css";
+import StripeCheckout from "react-stripe-checkout";
+import { makePayment } from "../api-adapter";
+import STRIPE_PUBLISHABLE from "../constants/Stripe";
+// import Checkout from "./Checkout";
 // import "./userCart.css";
 
 const UserCart = (props) => {
@@ -43,7 +47,6 @@ const UserCart = (props) => {
           }
         });
         setUserCart(mappedForUpdate);
-    
   }
  
   async function handleNewDelete(cartItemId) {
@@ -68,15 +71,17 @@ const UserCart = (props) => {
  async function handleCheckout() {
   const checkout = await checkoutCart();
   console.log(checkout)
-
  }
+
+ 
 
 
   return (
     <div>
       <h1>My Cart</h1>
-      <button onClick={handleBack}>Continue Shopping</button>
-
+      <button onClick={handleBack} className="checkoutButton">Continue Shopping</button>
+      
+      {/* <Checkout products={products} userCart={userCart}/> */}
       {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
           <option key={item.id} value={item.id}>
@@ -91,10 +96,12 @@ const UserCart = (props) => {
       <div id="container">
         {userCart && userCart.length ? (
           userCart.map((cartItem) => {
+            console.log(cartItem, 'cartItem')
             return (
               <div key={`cartItem-${cartItem.id}`}>
                 {products.length ? (
                   products.map((product) => {
+                    console.log(product, 'product')
                     if (cartItem.productId === product.id) {
                       return (
                         <div
@@ -121,20 +128,20 @@ const UserCart = (props) => {
                           {/* <button>Add to cart</button> */}
 
                           <div id="bottomRowContainer">
-                            <button id="deleteButton" class="cartButtons"
+                            <button id="deleteButton" className="cartButtons"
                               onClick={() => handleNewDelete(cartItem.id)}
                             >
                               {" "}
                               Delete{" "}
                             </button>
                             <div id="quantityStuff">
-                              <button class="cartButtons"
+                              <button className="cartButtons"
                                 onClick={() => settingNewQuant(cartItem.id)}
                                 id="submitnewQuantity"
                               >
                                 Update Count
                               </button>
-                              <select id="dropdown" class="cartButtons"onChange={handleQuantChange}>
+                              <select id="dropdown" className="cartButtons"onChange={handleQuantChange}>
                                 <option id="selectedQuantity" value="0">
                                   0
                                 </option>
@@ -145,8 +152,18 @@ const UserCart = (props) => {
                                 <option value="5">5</option>
                               </select>
                             </div>
-                            
                           </div>
+                          <StripeCheckout
+                              stripeKey={STRIPE_PUBLISHABLE}
+                              token={makePayment}
+                              name={product.name}
+                              amount={product.price}
+                              className="wholeCheckout"
+                            >
+                              <button className="checkoutButton">
+                                Checkout Your Cart
+                              </button>
+                            </StripeCheckout>
                         </div>
                       );
                     }
@@ -158,12 +175,12 @@ const UserCart = (props) => {
             );
           })
         ) : (
-          <div>Loading your userCart... </div>
+          <div>No</div>
         )}
-      </div>
       
-      <Link to="/checkout"><button>Ready To Checkout</button></Link>
-      <button onClick={handleCheckout}>Checkout Backend Test</button>
+      </div>
+      {/* <Link to="/checkout"><button>Ready To Checkout</button></Link>
+      <button onClick={handleCheckout}>Checkout Backend Test</button> */}
 
     </div>
   );

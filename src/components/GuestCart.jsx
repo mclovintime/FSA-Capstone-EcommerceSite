@@ -103,6 +103,7 @@ const GuestCart = () => {
         <div id="guestCartContainer">
           {cart.length ? (
             cart.map((product) => {
+              console.log(product)
               return (
                 <div key={`product-${product.id}`} className="productBox">
                   <div className="productName">{product.product.name}</div>
@@ -136,7 +137,7 @@ const GuestCart = () => {
               );
             })
           ) : (
-            <div>Loading your cart... </div>
+            <div>No Items In Your Cart </div>
           )}
         </div>
         <button>Checkout</button>
