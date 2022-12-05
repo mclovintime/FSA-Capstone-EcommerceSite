@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./guestCart.css";
 import Footer from "./Footer";
 import { RingLoader } from "react-spinners";
+import StripeCheckout from "react-stripe-checkout";
+import { makePayment } from "../api-adapter";
+import STRIPE_PUBLISHABLE from "../constants/Stripe";
 
 const GuestCart = () => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +22,16 @@ const GuestCart = () => {
 
   // let cart = ;
   console.log(cart);
+
+  //getting total price
+  let priceForStripe = 0
+  useEffect(() => {
+  
+    for (let i = 0 ; i < cart.length ; i++) {
+      priceForStripe = priceForStripe + (cart[i].product.price * cart[i].quantity)
+      console.log(priceForStripe, "price here")
+    }
+  }, [cart]);
 
   async function handleDelete(productID) {
     let preexistingCart = JSON.parse(localStorage.getItem("guestCart"));
@@ -99,6 +112,17 @@ const GuestCart = () => {
         loading={loading}
         /> </div>: 
       <div id="newWhole">
+        <StripeCheckout
+                    stripeKey={STRIPE_PUBLISHABLE}
+                    token={makePayment}
+                    name="Guest cart"
+                    amount={priceForStripe}
+                    className="wholeCheckout"
+                  >
+                    <button className="checkoutButton">
+                      Checkout Your Cart
+                    </button>
+                  </StripeCheckout>
         <h1 id="header">Cart</h1>
         <div id="guestCartContainer">
           {cart.length ? (

@@ -1,5 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { getUserCart, deleteCartItem, updateQuantity, checkoutCart } from "../api-adapter";
+import {
+  getUserCart,
+  deleteCartItem,
+  updateQuantity,
+  checkoutCart,
+} from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Checkout.css";
 import StripeCheckout from "react-stripe-checkout";
@@ -9,78 +14,91 @@ import STRIPE_PUBLISHABLE from "../constants/Stripe";
 // import "./userCart.css";
 
 const UserCart = (props) => {
-
   //--------PROPS--------//
-  const userCart = props.userCart
-  const setUserCart = props.setUserCart
+  const userCart = props.userCart;
+  const setUserCart = props.setUserCart;
   const products = props.products;
   //--------PARAMS AND NAV--------//
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   function handleBack() {
     navigate("/products");
   }
   //--------STATE--------//
-  const [selectedQuantity, setSelectedQuantity] = useState(0)
+  const [selectedQuantity, setSelectedQuantity] = useState(0);
 
   const [cartItemId, setCartItemId] = useState(0);
   const [selectedItem, setSelectedItem] = useState();
   //--------FUNCTIONS--------//
   async function handleNewDelete(productId) {
-
-    console.log(productId,"DELETE PRODUCTID")
+    console.log(productId, "DELETE PRODUCTID");
     const cartItemId = Number(productId);
-    const deleted = await deleteCartItem(cartItemId);  
+    const deleted = await deleteCartItem(cartItemId);
   }
 
-  function handleQuantChange(e){
-    const val = Number(e.target.value)
-    setSelectedQuantity(val)
+  function handleQuantChange(e) {
+    const val = Number(e.target.value);
+    setSelectedQuantity(val);
   }
-  async function settingNewQuant(cartItemId){
-    
-   const updatedQuant = await updateQuantity(cartItemId, selectedQuantity)
-        const mappedForUpdate = userCart.map((item) => {
-          if (item.id == cartItemId) {
-              return updatedQuant
-          } else {
-            return item;
-          }
-        });
-        setUserCart(mappedForUpdate);
+  async function settingNewQuant(cartItemId) {
+    const updatedQuant = await updateQuantity(cartItemId, selectedQuantity);
+    const mappedForUpdate = userCart.map((item) => {
+      if (item.id == cartItemId) {
+        return updatedQuant;
+      } else {
+        return item;
+      }
+    });
+    setUserCart(mappedForUpdate);
   }
- 
+
   async function handleNewDelete(cartItemId) {
-  
     const deleted = await deleteCartItem(cartItemId);
-    if(deleted.success){
-      const newCart = userCart.filter((item)=>{
-        const bool = !(item.id == cartItemId)
-        console.log("IAM IRONMAN", item.id, cartItemId, bool)
-       return bool
-      })
-      setUserCart(newCart)
-    }
-    else{
+    if (deleted.success) {
+      const newCart = userCart.filter((item) => {
+        const bool = !(item.id == cartItemId);
+        console.log("IAM IRONMAN", item.id, cartItemId, bool);
+        return bool;
+      });
+      setUserCart(newCart);
+    } else {
       //send notification that contains deleted.message
     }
+  }
+
+  async function handleCheckout() {
+    const checkout = await checkoutCart();
+    console.log(checkout);
+  }
+
+  console.log(userCart, " is userCart from user cart ok");
+
+  let totalPrice = 0;
+
+  if (userCart !== []) {
+    for (let i = 0; i < userCart.length; i++) {
+      totalPrice = totalPrice + userCart[i].price;
+      console.log("$", totalPrice / 100, "totalPrice");
     }
- 
-
-
-
- async function handleCheckout() {
-  const checkout = await checkoutCart();
-  console.log(checkout)
- }
-
- 
-
+  }
 
   return (
     <div>
       <h1>My Cart</h1>
-      <button onClick={handleBack} className="checkoutButton">Continue Shopping</button>
-      
+      <button onClick={handleBack} className="checkoutButton">
+        Continue Shopping
+      </button>
+      <StripeCheckout
+                    stripeKey={STRIPE_PUBLISHABLE}
+                    token={makePayment}
+                    name="Guest cart"
+                    amount={totalPrice}
+                    className="wholeCheckout"
+                  >
+                    <button className="checkoutButton">
+                      Checkout Your Cart
+                    </button>
+                  </StripeCheckout>
+
       {/* <Checkout products={products} userCart={userCart}/> */}
       {/* <select onChange={handleSelectChange}>
         {userCart.map((item) => (
@@ -92,16 +110,15 @@ const UserCart = (props) => {
         ))}
       </select> */}
 
-
       <div id="container">
         {userCart && userCart.length ? (
           userCart.map((cartItem) => {
-            console.log(cartItem, 'cartItem')
+            console.log(cartItem, "cartItem");
             return (
               <div key={`cartItem-${cartItem.id}`}>
                 {products.length ? (
                   products.map((product) => {
-                    console.log(product, 'product')
+                    // console.log(product, 'product')
                     if (cartItem.productId === product.id) {
                       return (
                         <div
@@ -128,20 +145,27 @@ const UserCart = (props) => {
                           {/* <button>Add to cart</button> */}
 
                           <div id="bottomRowContainer">
-                            <button id="deleteButton" className="cartButtons"
+                            <button
+                              id="deleteButton"
+                              className="cartButtons"
                               onClick={() => handleNewDelete(cartItem.id)}
                             >
                               {" "}
                               Delete{" "}
                             </button>
                             <div id="quantityStuff">
-                              <button className="cartButtons"
+                              <button
+                                className="cartButtons"
                                 onClick={() => settingNewQuant(cartItem.id)}
                                 id="submitnewQuantity"
                               >
                                 Update Count
                               </button>
-                              <select id="dropdown" className="cartButtons"onChange={handleQuantChange}>
+                              <select
+                                id="dropdown"
+                                className="cartButtons"
+                                onChange={handleQuantChange}
+                              >
                                 <option id="selectedQuantity" value="0">
                                   0
                                 </option>
@@ -153,20 +177,12 @@ const UserCart = (props) => {
                               </select>
                             </div>
                           </div>
-                          <StripeCheckout
-                              stripeKey={STRIPE_PUBLISHABLE}
-                              token={makePayment}
-                              name={product.name}
-                              amount={product.price}
-                              className="wholeCheckout"
-                            >
-                              <button className="checkoutButton">
-                                Checkout Your Cart
-                              </button>
-                            </StripeCheckout>
+                        
                         </div>
                       );
+                      
                     }
+                  
                   })
                 ) : (
                   <div>Loading your products... </div>
@@ -175,13 +191,11 @@ const UserCart = (props) => {
             );
           })
         ) : (
-          <div>No</div>
+          <div>Empty cart!</div>
         )}
-      
       </div>
       {/* <Link to="/checkout"><button>Ready To Checkout</button></Link>
       <button onClick={handleCheckout}>Checkout Backend Test</button> */}
-
     </div>
   );
 };
