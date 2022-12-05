@@ -153,7 +153,7 @@ const Products = (props) => {
                       <button
                         id="leftButton"
                         className="productButton"
-                        onClick={() => addProduct(product.id, product.price)}
+                        onClick={() => {addProduct(product.id, product.price); successNotify();}}
                       >
                         Add to Cart
                       </button>
@@ -161,7 +161,7 @@ const Products = (props) => {
                       <button
                         id="leftButton"
                         className="productButton"
-                        onClick={() => addToCart(product.id, product.price)}
+                        onClick={() => {addToCart(product.id, product.price); successNotify();}}
                       >
                         Add to Cart
                       </button>
