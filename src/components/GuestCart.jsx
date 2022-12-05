@@ -5,6 +5,7 @@ import { RingLoader } from "react-spinners";
 import StripeCheckout from "react-stripe-checkout";
 import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
+import "./loading.css"
 
 const GuestCart = () => {
   const [loading, setLoading] = useState(false);
