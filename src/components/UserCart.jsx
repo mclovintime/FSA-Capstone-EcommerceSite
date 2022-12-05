@@ -18,6 +18,8 @@ const UserCart = (props) => {
   const userCart = props.userCart;
   const setUserCart = props.setUserCart;
   const products = props.products;
+  const user = props.user;
+  
   //--------PARAMS AND NAV--------//
   const navigate = useNavigate();
   function handleBack() {
@@ -76,7 +78,7 @@ const UserCart = (props) => {
 
   if (userCart !== []) {
     for (let i = 0; i < userCart.length; i++) {
-      totalPrice = totalPrice + userCart[i].price;
+      totalPrice = totalPrice + (userCart[i].price * userCart[i].quantity);
       console.log("$", totalPrice / 100, "totalPrice");
     }
   }
@@ -90,7 +92,7 @@ const UserCart = (props) => {
       <StripeCheckout
                     stripeKey={STRIPE_PUBLISHABLE}
                     token={makePayment}
-                    name="Guest cart"
+                    name={`${user.username}'s Cart`}
                     amount={totalPrice}
                     className="wholeCheckout"
                   >

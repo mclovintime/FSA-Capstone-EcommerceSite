@@ -120,7 +120,9 @@ const Main = () => {
                   setProducts={setProducts}
                   quantity={quantity}
                   setCount={setCount}
-                   userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart}
+                  userCart ={userCart} setUserCart={setUserCart} 
+                  fetchUserCart = {fetchUserCart}
+                  user={user}
                 />
               }
             />
