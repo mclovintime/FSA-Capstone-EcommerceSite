@@ -152,7 +152,7 @@ const Products = (props) => {
                     {user ? (
                       <button
                         id="leftButton"
-                        class="productButton"
+                        className="productButton"
                         onClick={() => addProduct(product.id, product.price)}
                       >
                         Add to Cart
@@ -160,7 +160,7 @@ const Products = (props) => {
                     ) : (
                       <button
                         id="leftButton"
-                        class="productButton"
+                        className="productButton"
                         onClick={() => addToCart(product.id, product.price)}
                       >
                         Add to Cart
@@ -168,14 +168,14 @@ const Products = (props) => {
                     )}
 
                     <Link to={`/product/${product.id}`}>
-                      <button id="middleButton" class="productButton">
+                      <button id="middleButton" className="productButton">
                         More Info
                       </button>
                     </Link>
 
                     <button
                       id="rightButton"
-                      class="productButton"
+                      className="productButton"
                       onClick={handleBackToMyCart}
                     >
                       My Cart
