@@ -1,3 +1,7 @@
+:root {
+  --main-color: #333;
+  }
+
 body {
   font-family: 'Raleway', Arial, sans-serif;
   height: 100vh;
