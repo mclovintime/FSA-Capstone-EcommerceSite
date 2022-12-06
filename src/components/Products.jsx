@@ -160,6 +160,7 @@ const Products = (props) => {
                   {` testing product id ${product.id}`}
                 </div> */}
 
+
                     <div className="productInStock">
                       {product.stock} In Stock
                     </div>
@@ -196,6 +197,7 @@ const Products = (props) => {
                           More Info
                         </button>
                       </Link>
+
 
                       <button
                         id="rightButton"
