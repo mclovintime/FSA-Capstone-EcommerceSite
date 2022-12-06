@@ -1,16 +1,16 @@
-import React from 'react'
-import './Home.css';
+import React from "react";
+import "./Home.css";
 
- const Home = () => {
+const Home = () => {
   return (
-    <div id="wholeContainer"> 
-        
-        <video src='/videos/video1.mp4' autoPlay loop muted />
-        <h1 id="testing">DimTECH</h1>
-        <h1 id="h">Products from tomorrow, <u>today!</u></h1>
-        
+    <div id="wholeContainer">
+      <video src="/videos/video1.mp4" autoPlay loop muted />
+      <h1 className="header">DimTECH</h1>
+      <h2 className="subheader">
+        Products from tomorrow, <u>today!</u>
+      </h2>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

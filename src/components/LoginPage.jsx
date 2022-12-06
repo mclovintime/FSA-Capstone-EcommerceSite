@@ -67,7 +67,6 @@ const LoginPage = ({ setUser, setIsLoggedIn }) => {
       </Link>
       <div id="loginMessage">{loginMessage}</div>
       </div>
-      <Footer></Footer>
     </div>
   );
 };

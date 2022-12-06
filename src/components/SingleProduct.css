@@ -67,7 +67,6 @@
 
 .productButton {
   font-weight: bold;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(0, 0, 0, 0.829);
   transition: all 0.2s ease;
   margin-top: -15px;
