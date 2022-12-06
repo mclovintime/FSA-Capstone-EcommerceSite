@@ -36,7 +36,7 @@ const Navbar = (props) => {
           </Link>
         ) : (
           <Link to="/guestcart">
-            <i id="cartIcon" className="fa-solid fa-cart-shopping"></i>
+            <i id="cartIcon" className="fa-solid fa-cart-shopping shoppingIcon"></i>
           </Link>
         )}
 
@@ -46,7 +46,7 @@ const Navbar = (props) => {
           </Link>
         ) : (
           <Link to="/Home">
-            <i className="fa-solid fa-address-card"></i>
+            <i className="fa-solid fa-address-card profileIcon"></i>
           </Link>
         )}
         
