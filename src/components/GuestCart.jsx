@@ -136,7 +136,7 @@ const GuestCart = () => {
                   <div className="productPrice">
                     Price: ${product.product.price / 100}
                   </div>
-                  <div className="quantity">Quantity: {product.quantity}</div>
+                  <div className="quantity">Quantity: {product.product.quantity}</div>
                   <img id="productImage" src={`${product.product.image_url}`} />
                   <button onClick={() => handleDelete(product.product.id)}>
                     Delete
@@ -165,7 +165,6 @@ const GuestCart = () => {
             <div>No Items In Your Cart </div>
           )}
         </div>
-        <button>Checkout</button>
         <button onClick={() => clearCart()}>Clear cart</button>
         <Footer></Footer>
       </div>
