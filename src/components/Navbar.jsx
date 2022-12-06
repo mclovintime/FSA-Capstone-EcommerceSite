@@ -16,7 +16,7 @@ const Navbar = (props) => {
       <div id="navbar">
         {/* <div className="leftNav"> */}
         <Link to="/" id="logo">
-          DimTech
+          DimTECH
         </Link>
         <LoggedIn user={user} />
         {/* </div> */}

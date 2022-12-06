@@ -52,7 +52,7 @@
 
 .adminIcon {
     text-decoration: none;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:'Raleway', Arial, sans-serif;
     -webkit-text-stroke: .5px black;
     font-size: 25px;
     margin-left: 50px;
@@ -77,7 +77,7 @@
 }
 
 #homeThing  {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Raleway', Arial, sans-serif;
     -webkit-text-stroke: .5px black;
     font-size: 25px;
     margin-left: -60px;
@@ -85,7 +85,7 @@
 }
 
 #productsThing  {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Raleway', Arial, sans-serif;
     -webkit-text-stroke: .5px black;
     font-size: 25px;
     margin-left: -60px;
