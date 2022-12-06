@@ -70,6 +70,8 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgba(0, 0, 0, 0.829);
   transition: all 0.2s ease;
+  margin-top: -15px;
+  
 }
 
 .productButton:hover {
@@ -110,6 +112,6 @@
   margin-bottom: -20px;
   justify-content: space-evenly;
   height: 20px;
-  width: 322px;
-  margin-left: -11px;
+  width: 333.5px;
+  margin-left: -17px;
 }

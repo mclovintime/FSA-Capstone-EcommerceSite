@@ -144,9 +144,9 @@ const Products = (props) => {
                   {` testing product id ${product.id}`}
                 </div> */}
 
-                  <div className="productInStock">{product.stock} In Stock</div>
-                  <div className="productPrice">${product.price / 100}</div>
+                  <div className="productInStock"><b>{product.stock}</b> In Stock</div>
                   <img id="productImage" src={`${product.image_url}`} />
+                  <div className="productPrice">${product.price / 100}</div>
 
                   <div id="buttonContainer">
                     {user ? (
