@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Navbar.css";
 
 const Logout = (props) => {
   const user = useState("");
