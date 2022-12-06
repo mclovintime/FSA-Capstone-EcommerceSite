@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createProduct } from "../api-adapter/index";
+import "./createProduct.css"
 
 const CreateProduct = (props) => {
   const products = props.products;
@@ -36,8 +37,9 @@ const CreateProduct = (props) => {
   return (
     <div className="myRoutines-container">
       <h3>Create New Product</h3>
+      <div id="theForms">
       <form onSubmit={handleSubmit}>
-        <input
+        <input class="myInputs"
           type="text"
           name="name"
           placeholder="name"
@@ -45,7 +47,7 @@ const CreateProduct = (props) => {
           onChange={(e) => setName(e.target.value)}
           label="Product Name"
         />
-        <input
+        <input class="myInputs"
           type="text"
           name="description"
           placeholder="description"
@@ -54,7 +56,7 @@ const CreateProduct = (props) => {
           label="Product Description"
         />
 
-<input
+<input class="myInputs"
           type="text"
           name="detailed_description"
           placeholder="Detailed Description"
@@ -62,7 +64,7 @@ const CreateProduct = (props) => {
           onChange={(e) => setDetailedDescription(e.target.value)}
           label="Detailed Product Description"
         />
-        <input
+        <input class="myInputs"
           type="text"
           name="inStock"
           placeholder="How many are in stock?"
@@ -71,7 +73,7 @@ const CreateProduct = (props) => {
           label="Product InStock"
         />
 
-        <input
+        <input class="myInputs"
           type="text"
           name="image"
           placeholder="image url"
@@ -80,7 +82,7 @@ const CreateProduct = (props) => {
           label="Product Image"
         />
 
-        <input
+        <input class="myInputs"
           type="number"
           min="0"
           step="0.01"
@@ -91,10 +93,11 @@ const CreateProduct = (props) => {
           label="Product Price"
         />
 
+      </form>
         <button className="editproduct-button" type="submit">
           Create Product
         </button>
-      </form>
+        </div>
     </div>
   );
 };

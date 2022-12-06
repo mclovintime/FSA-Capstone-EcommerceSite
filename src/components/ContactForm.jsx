@@ -26,7 +26,7 @@ import React, {useState} from 'react'
     <h2 id="header">We would love to hear from you!</h2>
     <div id="forms">
     <form onSubmit={handleSubmit}>
-    <input
+    <input 
           type="text"
           name="first-name"
           value={firstName}

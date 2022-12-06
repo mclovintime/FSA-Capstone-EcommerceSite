@@ -1,0 +1,29 @@
+#contactSingle  {
+    border-bottom: 2px solid black;
+    width: 40%;
+    display:flex;
+    margin-left: 15px;
+   align-items: center;
+   border-left: 8px outset rgb(3, 2, 2);
+   border-bottom: 8px outset rgb(15, 2, 2);
+   padding-left: 10px;
+   padding-top: 5px;
+   margin-top: 10px;
+   border-right: 8px outset black;
+   
+   border-radius: 20px;
+   background-color: rgba(255, 255, 255, 0.438);
+}
+
+#wholeList  {
+    margin-left: 30px;
+    
+}
+
+#userHeader {
+    border-bottom: 2px solid black;
+    width: 12%;
+    text-align: center;
+    float: center;
+    margin-left: 16%
+}
