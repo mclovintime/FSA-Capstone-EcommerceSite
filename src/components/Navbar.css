@@ -4,9 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/seamless-repeating-background-tile-terryfic3d.jpg");
-    box-shadow: 3px 3px 3px 3px #2222;
+    background-image: url("https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    box-shadow: 3px 3px 3px 3px rgba(206, 205, 205, 0.133);
     text-decoration: none;
+    background-size: cover;
+
     
 }
 
@@ -16,7 +18,8 @@
 }
 
 #logo   {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Raleway', Arial, sans-serif;
+
     -webkit-text-stroke: .5px  black;
     font-size: 40px;
     margin-left: -80px;
