@@ -18,12 +18,13 @@ const Navbar = (props) => {
         <Link to="/" id="logo">
           DimTECH
         </Link>
-        <LoggedIn user={user} />
-        {/* </div> */}
-      <div className="mainNav">
         <Link id="productsThing" to="/Products">
           Products
         </Link>
+        {/* </div> */}
+      <div className="mainNav">
+        
+        <LoggedIn user={user} />
         <Link to="/Login">
           <i className="fa-solid fa-user loginIcon"></i>
         </Link>

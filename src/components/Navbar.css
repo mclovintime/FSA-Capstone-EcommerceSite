@@ -8,11 +8,13 @@
   box-shadow: 3px 3px 3px 3px rgba(206, 205, 205, 0.133);
   text-decoration: none;
   background-size: cover;
+  
 }
 
 .mainNav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 #logo {
