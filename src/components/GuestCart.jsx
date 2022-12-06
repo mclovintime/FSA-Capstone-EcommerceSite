@@ -165,7 +165,6 @@ const GuestCart = () => {
             <div>No Items In Your Cart </div>
           )}
         </div>
-        <button>Checkout</button>
         <button onClick={() => clearCart()}>Clear cart</button>
         <Footer></Footer>
       </div>
