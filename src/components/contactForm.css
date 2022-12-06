@@ -7,14 +7,17 @@
     border: 2px solid black;
     margin-left: 600px;
     margin-right: 600px;
-    padding: 100px 80px;
+    padding: 30px;
+    padding-bottom: 50px;
     border-radius: 25px;
     background: rgba(245, 229, 229, 0.699);
 }
 
 #forms  {
+    display: flex;
     flex-direction: row;
-    height: 0px;
+    justify-content: center;
+    
 }
 
 #header{

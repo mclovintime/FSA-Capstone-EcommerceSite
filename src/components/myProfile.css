@@ -1,0 +1,24 @@
+#newIDWrapper   {
+    width: 35%;
+    border: 5px outset violet;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(245, 245, 245, 0.61);
+    border-radius: 20px;
+}
+
+
+#wholeThing{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+#twobuttons {
+margin-top: 20px;
+display:flex;
+justify-content: space-between;
+}
