@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import {
   addProductToUserCart,
   getProducts,
-  getProductsById, 
+  getProductsById,
   getUserCart,
-  updateQuantity
-
+  updateQuantity,
 } from "../api-adapter";
 import "./products.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,9 +15,9 @@ import Footer from "./Footer";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
-
 const Products = (props) => {
   const [loading, setLoading] = useState(false);
+  const [guestCart, setGuestCart] = useState(localStorage.getItem("guestCart"));
 
   useEffect(() => {
     setLoading(true);
@@ -28,24 +27,20 @@ const Products = (props) => {
   }, []);
 
   const user = props.user;
-  let existingItems = [];
-   const successNotify = () => toast("Added to cart!")
 
+  const successNotify = () => toast("Added to cart!");
 
-  const products = props.products
-  const setProducts = props.setProducts
+  const products = props.products;
+  const setProducts = props.setProducts;
   const userCart = props.userCart;
   const setUserCart = props.setUserCart;
   const fetchUserCart = props.fetchUserCart;
   const navigate = useNavigate();
 
-  
-
   function handleBackToMyCart(e) {
     e.preventDefault();
     navigate("/mycart/cart_items");
   }
-
 
   const addProduct = async (productId, price) => {
     console.log("HELLO???");
@@ -59,25 +54,27 @@ const Products = (props) => {
       );
       console.log("addedToCart", addedToCart);
       if (addedToCart.message) {
-        const mappedForUpdate = await Promise.all(userCart.map(async (item) => {
-          if (item.productId == productId) {
-            console.log(item, "item ")
-            const updated = await  updateQuantity(item.id, item.quantity + 1)
-                  return updated
-          } else {
-            return item;
-          }
-        }));
+        const mappedForUpdate = await Promise.all(
+          userCart.map(async (item) => {
+            if (item.productId == productId) {
+              console.log(item, "item ");
+              const updated = await updateQuantity(item.id, item.quantity + 1);
+              return updated;
+            } else {
+              return item;
+            }
+          })
+        );
         setUserCart(mappedForUpdate);
       } else {
         setUserCart([...userCart, addedToCart]);
       }
     }
-
   };
 
   async function addToCart(productId) {
     // console.log(productId, "id of the thing we clicked");
+    let existingItems
     let holder = await getProductsById(productId);
     let product = holder.products;
     const tempID = productId;
@@ -88,110 +85,136 @@ const Products = (props) => {
         image_url: product.image_url,
         name: product.name,
         id: product.id,
+        quantity: 1,
       },
-
-      
     };
 
-    // console.log(
-    //   localStorage.getItem("guestCart"),
-    //   "testing response empty pointer"
-    // );
+   
 
-    if (localStorage.getItem("guestCart") == "") {
+    if (localStorage.getItem("guestCart") == null) {
       existingItems = [];
+      existingItems.push(newCartItem);
+      localStorage.setItem("guestCart", JSON.stringify(existingItems))
+    
     } else {
       existingItems = JSON.parse(localStorage.getItem("guestCart"));
-    }
+   
+      const filteredItem =  existingItems.filter((item) => {
+       
+        return item.tempID == productId})
+     console.log(filteredItem.length, "filtered Item")
+       if (filteredItem.length) {
+        
+        filteredItem[0].product.quantity = filteredItem[0].product.quantity + 1
+      const filteredExistingItems = existingItems.filter((item)=> {
+        return item.tempID != productId
+      })
+        filteredExistingItems.push(filteredItem[0])
+        localStorage.setItem("guestCart", JSON.stringify(filteredExistingItems))
+       } else {
+        existingItems.push(newCartItem)
+        localStorage.setItem("guestCart", JSON.stringify(existingItems))
+       }
 
+      
+
+        };
     // console.log(typeof existingItems, "existing items type");
 
-    if (!existingItems) {
-      existingItems = [];
-    }
+    // if (!existingItems) {
+    //   existingItems = [];
+    // }
+    console.log(existingItems, "here is the guest cart!");
 
-    existingItems.push(newCartItem);
-    localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
-    let tester = localStorage.getItem("guestCart");
-    // console.log(tester, "tester right here");
- }
+      localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
+      let tester = localStorage.getItem("guestCart");
+  }
+  // console.log(tester, "tester right here");
 
   return (
     <div>
-
-{
-        loading ? <div id="theLoader"><RingLoader id="ringer"
-        
-        size={150}
-        color={"#d636d0"}
-        loading={loading}
-        /> </div>: 
-
-      <div id="wholeThing">
-        <h1 className="WholeProducts"></h1>
-        <div id="container">
-          {products.length ? (
-            products.map((product) => {
-              return (
-                <div key={`product-${product.id}`} className="productBox">
-                  <div className="productName">{product.name}</div>
-                  <div className="productDescription">
-                    {product.description}
-                  </div>
-                  {/* <div className="productDescription">
+      {loading ? (
+        <div id="theLoader">
+          <RingLoader
+            id="ringer"
+            size={150}
+            color={"#d636d0"}
+            loading={loading}
+          />{" "}
+        </div>
+      ) : (
+        <div id="wholeThing">
+          <h1 className="WholeProducts"></h1>
+          <div id="container">
+            {products.length ? (
+              products.map((product) => {
+                return (
+                  <div key={`product-${product.id}`} className="productBox">
+                    <div className="productName">{product.name}</div>
+                    <div className="productDescription">
+                      {product.description}
+                    </div>
+                    {/* <div className="productDescription">
                   {` testing product id ${product.id}`}
                 </div> */}
 
-                  <div className="productInStock">{product.stock} In Stock</div>
-                  <div className="productPrice">${product.price / 100}</div>
-                  <img id="productImage" src={`${product.image_url}`} />
+                    <div className="productInStock">
+                      {product.stock} In Stock
+                    </div>
+                    <div className="productPrice">${product.price / 100}</div>
+                    <img id="productImage" src={`${product.image_url}`} />
 
-                  <div id="buttonContainer">
-                    {user ? (
+                    <div id="buttonContainer">
+                      {user ? (
+                        <button
+                          id="leftButton"
+                          className="productButton"
+                          onClick={() => {
+                            addProduct(product.id, product.price);
+                            successNotify();
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      ) : (
+                        <button
+                          id="leftButton"
+                          className="productButton"
+                          onClick={() => {
+                            addToCart(product.id, product.price);
+                            successNotify();
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      )}
+
+                      <Link to={`/product/${product.id}`}>
+                        <button id="middleButton" className="productButton">
+                          More Info
+                        </button>
+                      </Link>
+
                       <button
-                        id="leftButton"
+                        id="rightButton"
                         className="productButton"
-                        onClick={() => {addProduct(product.id, product.price); successNotify();}}
+                        onClick={handleBackToMyCart}
                       >
-                        Add to Cart
+                        My Cart
                       </button>
-                    ) : (
-                      <button
-                        id="leftButton"
-                        className="productButton"
-                        onClick={() => {addToCart(product.id, product.price); successNotify();}}
-                      >
-                        Add to Cart
-                      </button>
-                    )}
-
-                    <Link to={`/product/${product.id}`}>
-                      <button id="middleButton" className="productButton">
-                        More Info
-                      </button>
-                    </Link>
-
-                    <button
-                      id="rightButton"
-                      className="productButton"
-                      onClick={handleBackToMyCart}
-                    >
-                      My Cart
-                    </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <div id="loadingProducts">Loading your products... </div>
-          )}
+                );
+              })
+            ) : (
+              <div id="loadingProducts">Loading your products... </div>
+            )}
+          </div>
+          <Footer />
         </div>
-        <Footer />
-
-      </div>
-}
+      )}
     </div>
   );
 };
