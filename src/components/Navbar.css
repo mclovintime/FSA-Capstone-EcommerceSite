@@ -1,23 +1,76 @@
 #navbar {
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/seamless-repeating-background-tile-terryfic3d.jpg");
     box-shadow: 3px 3px 3px 3px #2222;
     text-decoration: none;
     
 }
 
+.mainNav {
+    display: flex;
+    justify-content: space-between;
+}
+
 #logo   {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     -webkit-text-stroke: .5px  black;
-    font-size: 25px;
-    margin-left: -60px;
+    font-size: 40px;
+    margin-left: -80px;
     text-decoration: none;
 }
 
-#cartIcon  {
- 
+.leftNav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightNav {
+
+}
+
+.loginIcon  {
+    font-size: xx-large;
+    margin-left: 50px;
+}
+
+.shoppingIcon {
+    font-size: xx-large;
+    margin-left: 50px;
+}
+
+.profileIcon {
+    font-size: xx-large;
+    margin-left: 50px;
+}
+
+.adminIcon {
+    text-decoration: none;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    -webkit-text-stroke: .5px black;
+    font-size: 25px;
+    margin-left: 50px;
+    border: 2px solid rgb(87, 47, 113);
+    border-radius: 5px;
+    background-color: rgba(137, 223, 249, 0);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#productsThing:hover, .loginIcon:hover, .shoppingIcon:hover, .profileIcon:hover, .adminIcon:hover, #logoutBtn:hover {
+    transform: scale(1.10);
+}
+
+#logoutBtn {
+    font-size: 25px;
+    margin-left: 75px;
+    margin-right: -100px;
+    border: 2px solid rgb(87, 47, 113);
+    border-radius: 5px;
+    background-color: rgba(137, 223, 249, 0);
 }
 
 #homeThing  {
@@ -34,4 +87,9 @@
     font-size: 25px;
     margin-left: -60px;
     text-decoration: none;
+    border: 2px solid rgb(87, 47, 113);
+    border-radius: 5px;
+    background-color: rgba(137, 223, 249, 0);
+    padding-left: 5px;
+    padding-right: 5px;
 }
