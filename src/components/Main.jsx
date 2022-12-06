@@ -139,7 +139,18 @@ const Main = () => {
           <Footer />
         </Router>
 
-        <ToastContainer />
+        <ToastContainer 
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+        />
       </div>
       }
     </main>
