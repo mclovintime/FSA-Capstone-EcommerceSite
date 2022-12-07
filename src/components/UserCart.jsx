@@ -34,7 +34,7 @@ const UserCart = (props) => {
   const [selectedItem, setSelectedItem] = useState();
   //--------FUNCTIONS--------//
   async function handleNewDelete(productId) {
-    console.log(productId, "DELETE PRODUCTID");
+   
     const cartItemId = Number(productId);
     const deleted = await deleteCartItem(cartItemId);
   }
@@ -60,7 +60,7 @@ const UserCart = (props) => {
     if (deleted.success) {
       const newCart = userCart.filter((item) => {
         const bool = !(item.id == cartItemId);
-        console.log("IAM IRONMAN", item.id, cartItemId, bool);
+     
         return bool;
       });
       setUserCart(newCart);
@@ -71,18 +71,18 @@ const UserCart = (props) => {
 
   async function handleCheckout() {
     const checkout = await checkoutCart();
-    console.log(checkout);
+  
     setUserCart(userCart)
   }
 
-  console.log(userCart, " is userCart from user cart ok");
+
 
   let totalPrice = 0;
 
   if (userCart !== []) {
     for (let i = 0; i < userCart.length; i++) {
       totalPrice = totalPrice + (userCart[i].price * userCart[i].quantity);
-      console.log("$", totalPrice / 100, "totalPrice");
+      
     }
   }
 
@@ -118,7 +118,7 @@ const UserCart = (props) => {
       <div id="cartContainer">
         {userCart && userCart.length ? (
           userCart.map((cartItem) => {
-            console.log(cartItem, "cartItem");
+          
             return (
               <div key={`cartItem-${cartItem.id}`}>
                 {products && products.length ? (

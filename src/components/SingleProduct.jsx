@@ -106,16 +106,6 @@ const SingleProduct = (props) => {
     // console.log(addedToCart)
   };
 
-  let incrementCount = () => {
-    props.setCount(props.quantity + 1);
-  };
-
-  let decrementCount = () => {
-    if (props.quantity > 0) {
-      props.setCount(props.quantity - 1);
-    }
-  };
-
   function handleBack() {
     navigate("/products");
   }
@@ -163,18 +153,18 @@ const SingleProduct = (props) => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <button class="buttons" onClick={settingNewQuant} id="submitnewQuantity">
+          <button className="buttons" onClick={settingNewQuant} id="submitnewQuantity">
             Update Quantity
           </button>
         </div>
         {user ? (
-          <button class="buttons" onClick={() => {addProduct(); successNotify(); }}>Add to cart</button>
+          <button className="buttons" onClick={() => {addProduct(); successNotify(); }}>Add to cart</button>
         ) : (
-          <button class="buttons"onClick={()=> {addGuestProduct(); successNotify(); }}>Add to cart</button>
+          <button className="buttons"onClick={()=> {addGuestProduct(); successNotify(); }}>Add to cart</button>
         )}
 
-        <button class="buttons" onClick={handleBack}>Back To Products</button>
-        <button class="buttons" onClick={handleBackToMyCart}>My Cart</button>
+        <button className="buttons" onClick={handleBack}>Back To Products</button>
+        <button className="buttons" onClick={handleBackToMyCart}>My Cart</button>
       </div>
       </div>
   ) : (

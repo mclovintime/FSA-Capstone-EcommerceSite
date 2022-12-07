@@ -51,7 +51,7 @@ const Navbar = (props) => {
           </Link>
         )}
 
-{/* {user ? (
+{user ? (
           <Link to="/orderhistory">
             Order History
           </Link>
@@ -60,7 +60,7 @@ const Navbar = (props) => {
           <Link to="/Home">
             <i className="fa-solid fa-address-card profileIcon"></i>
           </Link>
-        )} */}
+        )}
         
 
         {user && user.is_admin === true ? <Link to="/Admin" className="adminIcon">Admin</Link> : null}
