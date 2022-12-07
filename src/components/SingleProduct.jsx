@@ -106,16 +106,6 @@ const SingleProduct = (props) => {
     // console.log(addedToCart)
   };
 
-  let incrementCount = () => {
-    props.setCount(props.quantity + 1);
-  };
-
-  let decrementCount = () => {
-    if (props.quantity > 0) {
-      props.setCount(props.quantity - 1);
-    }
-  };
-
   function handleBack() {
     navigate("/products");
   }
@@ -163,7 +153,9 @@ const SingleProduct = (props) => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
+
           <button className="updateButton" onClick={settingNewQuant} >
+
             Update Quantity
           </button>
         </div>

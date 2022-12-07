@@ -48,7 +48,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchUserCart();
-  }, []);
+  }, [user]);
 
 
   useEffect(() => {
