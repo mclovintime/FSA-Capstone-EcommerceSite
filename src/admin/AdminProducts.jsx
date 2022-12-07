@@ -3,7 +3,8 @@ import { getProducts, deleteProduct } from "../api-adapter";
 import { Link } from "react-router-dom";
 import CreateProduct from "./CreateProduct";
 import EditProduct from "./EditProduct";
-import "./loading.css"
+import "./loading.css";
+import "./adminproducts.css"
 
 
 const AdminProducts = () => {
@@ -23,7 +24,6 @@ const AdminProducts = () => {
     const token = localStorage.getItem("token");
     const deleted = await deleteProduct(adminProductId, token);
 
-    
     if (products) {
       let allProducts = await fetchProducts();
       if (allProducts) {
@@ -35,7 +35,7 @@ const AdminProducts = () => {
 
   return (
     <div>
-      <h2>All Products</h2>
+      <h2 className="adminproducts-header">Product Data</h2>
       <CreateProduct
         products={products}
         fetchProducts={fetchProducts}
@@ -46,7 +46,7 @@ const AdminProducts = () => {
         {products.length ? (
           products.map((product) => {
             return (
-              <div key={`product-${product.id}`} className="productBox">
+              <div key={`product-${product.id}`} className="productBox-admin">
                 <div className="productName">{product.name}</div>
                 <div className="productDescription">
                   Description: {product.description}
@@ -55,8 +55,8 @@ const AdminProducts = () => {
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
-                <button>Add to cart</button>
-                <Link to={`/product/${product.id}`}>
+                {/* <button>Add to cart</button> */}
+                <Link to={`/product/${product.id}` }className="moreinfo">
                   <button>Display More Info</button>
                 </Link>
 
