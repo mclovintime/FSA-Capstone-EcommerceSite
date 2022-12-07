@@ -1,7 +1,9 @@
 
 #guestCartContainer {
+    margin-bottom: 100px;
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -10,4 +12,31 @@
     align-items: center;
     justify-content: center;
     margin-top: 30px;
+}
+
+#rightButtonCart {
+    
+    height: 40px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background: rgb(248, 173, 248);
+    border: 5px outset rgb(80, 218, 160);
+}
+
+#leftButtonCart {
+    height: 40px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background: rgb(162, 200, 243);
+    border: 5px outset violet;
+}
+
+#selectedQuantity {
+    font-family: "Zen Dots", cursive;
+    width: 60px;
+    height: 40px;
+    border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background: rgb(123, 235, 188);
+    border: 5px outset rgb(111, 170, 236);
 }

@@ -139,12 +139,12 @@ const GuestCart = () => {
                   </div>
                   <div className="quantity">Quantity: {product.quantity}</div>
                   <img id="productImage" src={`${product.product.image_url}`} />
-                  <button onClick={() => handleDelete(product.product.id)}>
+                  <button id="leftButtonCart" onClick={() => handleDelete(product.product.id)}>
                     Delete
                   </button>
 
-                  <select onChange={handleQuantityChange}>
-                    <option id="selectedQuantity" value="0">
+                  <select id="selectedQuantity" onChange={handleQuantityChange}>
+                    <option  value="0">
                       0
                     </option>
                     <option value="1">1</option>
@@ -155,7 +155,7 @@ const GuestCart = () => {
                   </select>
                   <button
                     onClick={() => handleUpdateQuantity(product.product.id)}
-                    id="submitnewQuantity"
+                    id="rightButtonCart"
                   >
                     Update Quantity
                   </button>
