@@ -33,19 +33,19 @@
 }
 
 .loginIcon {
-  font-size: xx-large;
+  font-size: x-large;
   margin-left: 50px;
   -webkit-text-stroke: 0.3px white;
 }
 
 .shoppingIcon {
-  font-size: xx-large;
+  font-size: x-large;
   margin-left: 50px;
   -webkit-text-stroke: 0.3px white;
 }
 
 .profileIcon {
-  font-size: xx-large;
+  font-size: x-large;
   margin-left: 50px;
   -webkit-text-stroke: 0.3px white;
 }
@@ -53,13 +53,13 @@
 .adminIcon {
   text-decoration: none;
   -webkit-text-stroke: 0.3px white;
-  font-size: 25px;
+  font-size: 20px;
   margin-left: 50px;
   border: 2px solid rgb(87, 47, 113);
   border-radius: 5px;
   background-color: rgba(137, 223, 249, 0);
   padding-left: 5px;
-  padding-right: 5px;
+  /* padding-right: 5px; */
 }
 
 #productsThing:hover,
@@ -72,7 +72,7 @@
 }
 
 #logoutBtn {
-  font-size: 25px;
+  font-size: 20px;
   margin-left: 75px;
   margin-right: -100px;
   border: 2px solid rgb(87, 47, 113);
@@ -101,3 +101,4 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+
