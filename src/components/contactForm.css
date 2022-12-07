@@ -1,25 +1,45 @@
-#whole  {
+.contact-form  {
     display:flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-top: 300px;
+    align-items: center; 
     border: 2px solid black;
-    margin-left: 600px;
-    margin-right: 600px;
     padding: 30px;
     padding-bottom: 50px;
     border-radius: 25px;
     background: rgba(245, 229, 229, 0.699);
+    width: 500px;
+    margin: auto;
+    padding: 15px;
+    flex-wrap:wrap;
+    margin-top: 50px;
 }
 
-#forms  {
+.contact-input  {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    justify-content: space-between;
+    padding: 15px;
     
 }
 
-#header{
-    margin-top: -50px;
+.contact-form-button {
+    width: 100px;
+    display:flex;
+    justify-content: center;
+
+}
+
+.contactFirstName, .contactLastName, .contactEmail  {
+    width: 400px;
+    height:25px;
+    margin-bottom:5px
+}
+
+.contactMessage {
+    width: 400px;
+    height: 120px;
+    margin-bottom:5px;
+    font-family: Arial, Helvetica, sans-serif  
 }
