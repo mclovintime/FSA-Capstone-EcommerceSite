@@ -4,7 +4,6 @@ import { registerUser } from "../api-adapter";
 import { toast } from "react-toastify";
 import "./register.css";
 
-
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,11 +33,10 @@ const Register = () => {
     }
 
     if (password.length < 8) {
-      toast.error("Password must be 8 characters or more")
+      toast.error("Password must be 8 characters or more");
     }
   }
 
-    
   return (
     <div className="register-container">
       <h2 className="register-header">Register</h2>
@@ -56,7 +54,6 @@ const Register = () => {
         />
         <input
           className="registerUsername"
-
           type="text"
           name="username"
           placeholder="username *"
@@ -82,12 +79,11 @@ const Register = () => {
         </button>
       </form>
       <div className="login-link-container">
-
-      <h3 className="login-link">Already a User?</h3>
-      <Link to="/login" className="link">
-        Login
-      </Link>
-    </div>
+        <h3 className="login-link">Already a User?</h3>
+        <Link to="/login" className="link">
+          Login
+        </Link>
+      </div>
     </div>
   );
 };
