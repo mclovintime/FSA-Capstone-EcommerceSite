@@ -1,0 +1,17 @@
+#theForms   {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.myInputs   {
+    height: 30px;
+    margin: 10px;
+}
+
+h3{
+    text-align: center;
+}

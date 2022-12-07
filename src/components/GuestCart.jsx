@@ -6,6 +6,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
 import "./loading.css"
+import "./userCart.css"
 
 const GuestCart = () => {
   const [loading, setLoading] = useState(false);
@@ -136,7 +137,7 @@ const GuestCart = () => {
                   <div className="productPrice">
                     Price: ${product.product.price / 100}
                   </div>
-                  <div className="quantity">Quantity: {product.product.quantity}</div>
+                  <div className="quantity">Quantity: {product.quantity}</div>
                   <img id="productImage" src={`${product.product.image_url}`} />
                   <button onClick={() => handleDelete(product.product.id)}>
                     Delete

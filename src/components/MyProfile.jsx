@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { updateUser, getAllUsers } from "../api-adapter/index";
+import "./myProfile.css"
 
 
 const MyProfile = (props) => {
@@ -53,6 +54,8 @@ const MyProfile = (props) => {
 
 
   return (
+    <div id="wholeThing">
+    <div id="newIDWrapper">
     <div className="edit-user">
         <h3 className="myprofile-header"> My Profile</h3>
         <div>
@@ -91,6 +94,10 @@ const MyProfile = (props) => {
               }}
             ></input>
 
+                <div id="twobuttons">
+            <button type="submit" className="updateuser-button">
+              Update info
+            </button>
             <button
               type="button"
               className="myproducts-button"
@@ -98,11 +105,9 @@ const MyProfile = (props) => {
                 setUpdate(false);
               }}
             >
-              Undo
+              Cancel
             </button>
-            <button type="submit" className="updateuser-button">
-              Update info
-            </button>
+            </div>
           </form>
         ) : (
           <button
@@ -114,7 +119,10 @@ const MyProfile = (props) => {
           >
             Edit Info
           </button>
+          
         )}
+      </div>
+      </div>
       </div>
   )
 }
