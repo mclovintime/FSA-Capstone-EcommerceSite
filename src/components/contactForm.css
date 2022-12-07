@@ -1,45 +1,58 @@
-.contact-form  {
-    display:flex;
-    justify-content: center;
-    align-items: center; 
-    border: 2px solid black;
-    padding: 30px;
-    padding-bottom: 50px;
-    border-radius: 25px;
-    background: rgba(245, 229, 229, 0.699);
-    width: 500px;
-    margin: auto;
-    padding: 15px;
-    flex-wrap:wrap;
-    margin-top: 50px;
+.contact-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  padding: 30px;
+  padding-bottom: 50px;
+  border-radius: 25px;
+  background: rgba(245, 229, 229, 0.699);
+  width: 500px;
+  margin: auto;
+  padding: 15px;
+  flex-wrap: wrap;
+  margin-top: 50px;
 }
 
-.contact-input  {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    justify-content: space-between;
-    padding: 15px;
-    
+.contact-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  justify-content: space-between;
+  padding: 15px;
 }
 
 .contact-form-button {
-    width: 100px;
-    display:flex;
-    justify-content: center;
-
+  width: 100px;
+  display: flex;
+  justify-content: center;
 }
 
-.contactFirstName, .contactLastName, .contactEmail  {
-    width: 400px;
-    height:25px;
-    margin-bottom:5px
+.contactFirstName,
+.contactLastName,
+.contactEmail {
+  width: 400px;
+  height: 25px;
+  margin-bottom: 5px;
 }
 
 .contactMessage {
-    width: 400px;
-    height: 120px;
-    margin-bottom:5px;
-    font-family: Arial, Helvetica, sans-serif  
+  width: 400px;
+  height: 120px;
+  margin-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 960px) {
+  .contact-form {
+    width: 350px;
+  }
+
+  .contactFirstName,
+  .contactLastName,
+  .contactEmail,
+  .contactMessage {
+    width: 300px;
+  }
 }
