@@ -153,8 +153,8 @@ const SingleProduct = (props) => {
 
 
         <div>
-          <select onChange={handleQuantChange}>
-            <option id="selectedQuantity" value="0">
+          <select className="updateDrop" onChange={handleQuantChange}>
+            <option value="0">
               0
             </option>
             <option value="1">1</option>
@@ -163,18 +163,18 @@ const SingleProduct = (props) => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <button class="buttons" onClick={settingNewQuant} id="submitnewQuantity">
+          <button className="updateButton" onClick={settingNewQuant} >
             Update Quantity
           </button>
         </div>
         {user ? (
-          <button class="buttons" onClick={() => {addProduct(); successNotify(); }}>Add to cart</button>
+          <button className="buttons" onClick={() => {addProduct(); successNotify(); }}>Add to cart</button>
         ) : (
-          <button class="buttons"onClick={()=> {addGuestProduct(); successNotify(); }}>Add to cart</button>
+          <button className="buttons"onClick={()=> {addGuestProduct(); successNotify(); }}>Add to cart</button>
         )}
 
-        <button class="buttons" onClick={handleBack}>Back To Products</button>
-        <button class="buttons" onClick={handleBackToMyCart}>My Cart</button>
+        <button className="buttons" onClick={handleBack}>Back To Products</button>
+        <button className="buttons" onClick={handleBackToMyCart}>My Cart</button>
       </div>
       </div>
   ) : (
