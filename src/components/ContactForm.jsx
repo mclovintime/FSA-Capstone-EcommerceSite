@@ -21,11 +21,10 @@ import React, {useState} from 'react'
 
 
   return (
-    <div id="whole">
+ 
     <div className="contact-form">
-    <h2 id="header">We would love to hear from you!</h2>
-    <div id="forms">
-    <form onSubmit={handleSubmit}>
+      <h2 className="cf-header">We would love to hear from you!</h2>
+    <form onSubmit={handleSubmit} className="contact-input">
     <input 
           type="text"
           name="first-name"
@@ -33,6 +32,7 @@ import React, {useState} from 'react'
           onChange={(e) => setFirstName(e.target.value)}
           label="First Name"
           placeholder="First name"
+          className="contactFirstName"
         />
     <input
           type="text"
@@ -41,6 +41,8 @@ import React, {useState} from 'react'
           onChange={(e) => setLastName(e.target.value)}
           label="Last Name"
           placeholder="Last name"
+          className="contactLastName"
+
         />
     <input
           type="text"
@@ -49,23 +51,26 @@ import React, {useState} from 'react'
           onChange={(e) => setEmail(e.target.value)}
           label="Email"
           placeholder="Email"
+          className="contactEmail"
+
         />
-    <input
+    <textarea
           type="text"
           name="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           label="Message"
           placeholder="Message"
+          className="contactMessage"
+
         />
-        
-    </form>
-    <button className="contact-form-button" type="submit">
+        <button className="contact-form-button" type="submit">
           Submit
         </button>
+    </form>
+    
     </div>
-    </div>
-    </div>
+    
   )
 }
 
