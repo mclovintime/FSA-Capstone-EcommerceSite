@@ -12,9 +12,7 @@ const Navbar = (props) => {
 
   return (
     <div>
-      
       <div id="navbar">
-        {/* <div className="leftNav"> */}
         <Link to="/" id="logo">
           DimTECH
         </Link>
@@ -22,59 +20,55 @@ const Navbar = (props) => {
           Products
         </Link>
         {/* </div> */}
-      <div className="mainNav">
-        
-        <LoggedIn user={user} className="loggedin"/>
-        <Link to="/Login">
-          <i className="fa-solid fa-user loginIcon"></i>
-        </Link>
-        <Link to="/mycart/cart_items"></Link>
+        <div className="mainNav">
+          <LoggedIn user={user} className="loggedin" />
+          <Link to="/Login">
+            <i className="fa-solid fa-user loginIcon"></i>
+          </Link>
+          <Link to="/mycart/cart_items"></Link>
 
-        {user ? (
-          <Link to="/mycart/cart_items">
-            <i className="fa-solid fa-cart-shopping shoppingIcon"></i>
-          </Link>
-        ) : (
-          <Link to="/guestcart">
-            <i id="cartIcon" className="fa-solid fa-cart-shopping shoppingIcon"></i>
-          </Link>
-        )}
+          {user ? (
+            <Link to="/mycart/cart_items">
+              <i className="fa-solid fa-cart-shopping shoppingIcon"></i>
+            </Link>
+          ) : (
+            <Link to="/guestcart">
+              <i
+                id="cartIcon"
+                className="fa-solid fa-cart-shopping shoppingIcon"
+              ></i>
+            </Link>
+          )}
 
-        {user ? (
-          <Link to="/MyProfile">
-            <i className="fa-solid fa-address-card profileIcon"></i>
-          </Link>
-          
-        ) : (
-          <Link to="/Home">
-            <i className="fa-solid fa-address-card profileIcon"></i>
-          </Link>
-        )}
+          {user && user.username ? (
+            <Link to="/MyProfile">
+              <i className="fa-solid fa-address-card profileIcon"></i>
+            </Link>
+          ) : null}
 
-{user ? (
-          <Link to="/orderhistory">
-            Order History
-          </Link>
-          
-        ) : (
-          <Link to="/Home">
-            <i className="fa-solid fa-address-card profileIcon"></i>
-          </Link>
-        )}
-        
+          {user ? (
+            <Link to="/orderhistory">Order History</Link>
+          ) : (
+            <Link to="/Home">
+              <i className="fa-solid fa-address-card profileIcon"></i>
+            </Link>
+          )}
 
-        {user && user.is_admin === true ? <Link to="/Admin" className="adminIcon">Admin</Link> : null}
+          {user && user.is_admin === true ? (
+            <Link to="/Admin" className="adminIcon">
+              Admin
+            </Link>
+          ) : null}
           {/* <div className="rightNav"> */}
-        
-        {isLoggedIn ? (
-          <Logout
-            handleLogout={handleLogout}
-            setUser={setUser}
-            setIsLoggedIn={setIsLoggedIn}
-          />
-         
-        ) : null}
-        {/* </div>  */}
+
+          {isLoggedIn ? (
+            <Logout
+              handleLogout={handleLogout}
+              setUser={setUser}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          ) : null}
+          {/* </div>  */}
         </div>
       </div>
       <Outlet></Outlet>
