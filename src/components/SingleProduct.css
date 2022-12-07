@@ -31,24 +31,44 @@
 }
 
 .buttons {
-  background-color: #84da86; /* Green */
-  border: 2px solid black;
-  color: white;
-  padding: 15px 32px;
-
+  background-color: #f282f0; /* Green */
+  border: 5px outset rgb(208, 92, 232);
+  color: black;
+  padding: 10px 25px;
+  height: 50px;
+  margin: 10px;
+  margin-left: 0;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  /* font-size: 20px; */
   border-radius: 20px;
   box-shadow: 3px 3px 3px 3px #4444;
-  font-weight: bold;
-    
-
+  font-weight: 500;
 }
 
-.buttons:hover {
+.buttons:hover, .updateButton:hover, .updateDrop:hover {
   box-shadow: 1px 1px 1px 1px #4444;
+  transform: scale(1.1);
+}
+
+.updateButton {
+  height: 40px;
+  width: 100px;
+  padding-bottom: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background: rgb(123, 235, 188);
+  border: 5px outset rgb(111, 170, 236);
+}
+
+.updateDrop {
+  padding-top: .1px;
+  padding-bottom: 13px;
+  border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background: rgb(123, 235, 188);
+  border: 5px outset rgb(111, 170, 236);
 }
 
 .productNameH {

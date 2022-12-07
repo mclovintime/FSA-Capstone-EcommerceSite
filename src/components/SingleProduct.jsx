@@ -143,8 +143,8 @@ const SingleProduct = (props) => {
 
 
         <div>
-          <select onChange={handleQuantChange}>
-            <option id="selectedQuantity" value="0">
+          <select className="updateDrop" onChange={handleQuantChange}>
+            <option value="0">
               0
             </option>
             <option value="1">1</option>
@@ -153,7 +153,9 @@ const SingleProduct = (props) => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          <button className="buttons" onClick={settingNewQuant} id="submitnewQuantity">
+
+          <button className="updateButton" onClick={settingNewQuant} >
+
             Update Quantity
           </button>
         </div>

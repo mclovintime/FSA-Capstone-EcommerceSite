@@ -24,7 +24,7 @@ const Navbar = (props) => {
         {/* </div> */}
       <div className="mainNav">
         
-        <LoggedIn user={user} />
+        <LoggedIn user={user} className="loggedin"/>
         <Link to="/Login">
           <i className="fa-solid fa-user loginIcon"></i>
         </Link>
