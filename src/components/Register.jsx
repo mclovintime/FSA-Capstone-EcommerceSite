@@ -32,12 +32,19 @@ const Register = () => {
       toast.error("Register Failed");
       navigate("/Register");
     }
+
+    if (password.length < 8) {
+      toast.error("Password must be 8 characters or more")
+    }
   }
+
+    
   return (
     <div className="register-container">
       <h2 className="register-header">Register</h2>
       <form onSubmit={handleRegister} className="register-form">
         <input
+          className="registerEmail"
           type="text"
           name="email"
           placeholder="email *"
@@ -48,6 +55,8 @@ const Register = () => {
           }}
         />
         <input
+          className="registerUsername"
+
           type="text"
           name="username"
           placeholder="username *"
@@ -58,6 +67,7 @@ const Register = () => {
           }}
         />
         <input
+          className="registerPassword"
           type="password"
           name="password"
           placeholder="password *"
@@ -71,14 +81,13 @@ const Register = () => {
           Register
         </button>
       </form>
-      <small>*password must be 8 characters or more</small>
-      {/*can you toastify to create an error message of short password */}
-      <br />
-      <h3>Already a User?</h3>
+      <div className="login-link-container">
+
+      <h3 className="login-link">Already a User?</h3>
       <Link to="/login" className="link">
         Login
       </Link>
-      <div id="registerMessage">{registerMessage}</div>
+    </div>
     </div>
   );
 };
