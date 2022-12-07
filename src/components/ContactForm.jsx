@@ -1,72 +1,68 @@
 import "./contactForm.css";
 
-import React, {useState} from 'react'
+import React, { useState } from "react";
 
- const ContactForm = () => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
+const ContactForm = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        alert(
-            "Thank you for reaching out! We'll be in touch shortly."
-        );
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setMessage("");
-    }
-
+  async function handleSubmit(e) {
+    e.preventDefault();
+    alert("Thank you for reaching out! We'll be in touch shortly.");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setMessage("");
+  }
 
   return (
-    <div id="whole">
     <div className="contact-form">
-    <h2 id="header">We would love to hear from you!</h2>
-    <div id="forms">
-    <form onSubmit={handleSubmit}>
-    <input
+      <h2 className="cf-header">We would love to hear from you!</h2>
+      <form onSubmit={handleSubmit} className="contact-input">
+        <input
           type="text"
           name="first-name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           label="First Name"
           placeholder="First name"
+          className="contactFirstName"
         />
-    <input
+        <input
           type="text"
           name="last-name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           label="Last Name"
           placeholder="Last name"
+          className="contactLastName"
         />
-    <input
+        <input
           type="text"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           label="Email"
           placeholder="Email"
+          className="contactEmail"
         />
-    <input
+        <textarea
           type="text"
           name="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           label="Message"
           placeholder="Message"
+          className="contactMessage"
         />
-        
-    </form>
-    <button className="contact-form-button" type="submit">
+        <button className="contact-form-button" type="submit">
           Submit
         </button>
+      </form>
     </div>
-    </div>
-    </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

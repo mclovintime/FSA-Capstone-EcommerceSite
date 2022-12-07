@@ -1,0 +1,52 @@
+.edit-user {
+  width: 500px;
+  border: 5px outset violet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(245, 245, 245, 0.61);
+  border-radius: 20px;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.twobuttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.myprofile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.updateUsername,
+.updateEmail,
+.updateAddress {
+  width: 400px;
+  height: 25px;
+  margin-bottom: 5px;
+}
+
+.myprofile-button {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 960px) {
+  .edit-user {
+    width: 350px;
+  }
+
+  .updateUsername,
+  .updateEmail,
+  .updateAddress {
+    width: 280px;
+  }
+}

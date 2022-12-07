@@ -3,7 +3,7 @@
     color:rgb(255, 255, 255);
     margin-right: -30px;
     margin-top: -50px;
-    z-index: 9999;
+    z-index: 9;
     position: absolute;
     border: 2px solid rgb(255, 255, 255);
     background-color: rgb(45, 221, 98);
@@ -63,7 +63,6 @@
 .productInStock {
     font-size: 15px;
     margin-top: 6px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #priceAndStock  {
@@ -78,7 +77,7 @@
     display: flex;
     justify-content: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     border-bottom: 4px solid rgb(213, 150, 238);
     margin: 0px -10px;
     padding: 6px 15px;
@@ -86,7 +85,6 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: rgba(9, 243, 173, 0.467);
-    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     /* background: linear-gradient(132deg, rgba(245, 109, 164, 1) 0%, rgba(188, 185, 254, 1) 50%, rgba(112, 227, 204, 1) 100%); */
 
     background: linear-gradient( 132deg, rgba(112, 227, 204, 1) 100%, 132deg, rgba(188, 185, 254, 1) 50%,  rgba(245, 109, 164, 1) 0%);
@@ -94,9 +92,8 @@
 
 .productDescription {
    padding-top: 10px;
-   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-   font-size: 20px;
-   
+   font-size: 17px;
+   height: 50px;
    
    
 }

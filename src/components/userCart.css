@@ -25,6 +25,7 @@
 .cartItemName    {
     text-transform: capitalize;
     display: flex;
+
     justify-content: center;
     font-weight: bold;
     font-size: 16px;
@@ -64,6 +65,7 @@
     
     
     
+
 }
 
 .cartItemPrice  {
@@ -117,9 +119,11 @@
 }
 .cartButtons    {
     background-color: rgb(243, 239, 233);
+
     height: 40px;
     margin-top: -13px;
     
+
 }
 
 .cartButtons:hover{
