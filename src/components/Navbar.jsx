@@ -5,11 +5,11 @@ import "./Navbar.css";
 
 const Navbar = (props) => {
   const user = props.user;
-
   const setUser = props.setUser;
   const handleLogout = props.handleLogout;
   const isLoggedIn = props.isLoggedIn;
   const setIsLoggedIn = props.setIsLoggedIn;
+
   return (
     <div>
       
@@ -28,7 +28,6 @@ const Navbar = (props) => {
         <Link to="/Login">
           <i className="fa-solid fa-user loginIcon"></i>
         </Link>
-        {/* <Link to="/Register">Register</Link> */}
         <Link to="/mycart/cart_items"></Link>
 
         {user ? (

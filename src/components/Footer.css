@@ -13,15 +13,21 @@
   height: 45px;
   border-top: 1px solid rgba(78, 14, 96, 0.622);
   box-shadow: 2px 2px 2px 2px;
-  
+  justify-content: center;
   align-items: center;
 }
 
 #contactLink {
   text-decoration: none;
   -webkit-text-stroke: 0.5px black;
-  font-size: 25px;
-  margin-left: 30px;
+  font-size: 20px;
   display:flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 960px) {
+    #contactLink {
+      font-size: 15px;
+    }
+  }
+  
