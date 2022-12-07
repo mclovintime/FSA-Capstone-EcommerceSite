@@ -4,9 +4,11 @@ import {
   deleteCartItem,
   updateQuantity,
   checkoutCart,
+  getOrderHistory
 } from "../api-adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Checkout.css";
+import "./userCart.css";
 import StripeCheckout from "react-stripe-checkout";
 import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
@@ -70,6 +72,7 @@ const UserCart = (props) => {
   async function handleCheckout() {
     const checkout = await checkoutCart();
     console.log(checkout);
+    setUserCart(userCart)
   }
 
   console.log(userCart, " is userCart from user cart ok");
@@ -96,7 +99,7 @@ const UserCart = (props) => {
                     amount={totalPrice}
                     className="wholeCheckout"
                   >
-                    <button className="checkoutButton">
+                    <button onClick={handleCheckout} className="checkoutButton">
                       Checkout Your Cart
                     </button>
                   </StripeCheckout>
@@ -112,22 +115,22 @@ const UserCart = (props) => {
         ))}
       </select> */}
 
-      <div id="container">
+      <div id="cartContainer">
         {userCart && userCart.length ? (
           userCart.map((cartItem) => {
             console.log(cartItem, "cartItem");
             return (
               <div key={`cartItem-${cartItem.id}`}>
-                {products.length ? (
+                {products && products.length ? (
                   products.map((product) => {
                     // console.log(product, 'product')
                     if (cartItem.productId === product.id) {
                       return (
                         <div
                           key={`product-${product.id}`}
-                          className="productBox"
+                          className="cartItemBox"
                         >
-                          <div className="productName">{product.name}</div>
+                          <div className="cartItemName">{product.name}</div>
                           {/* <div className="productDescription">
                             Description: {product.description}
                           </div> */}
@@ -135,15 +138,15 @@ const UserCart = (props) => {
                             {` testing product id ${product.id}`}
                           </div> */}
 
-                          <div className="productInStock">
+                          <div className="cartItemInStock">
                             In stock: {product.stock > 0 ? "Yes" : "No"}
                           </div>
-                          <div className="productID">
+                          <div className="cartItemID">
                             Price: ${product.price / 100}
                           </div>
                           <div>Quantity: {cartItem.quantity}</div>
 
-                          <img id="productImage" src={`${product.image_url}`} />
+                          <img id="cartItemImage" src={`${product.image_url}`} />
                           {/* <button>Add to cart</button> */}
 
                           <div id="bottomRowContainer">

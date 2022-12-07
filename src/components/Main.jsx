@@ -15,6 +15,7 @@ import ContactForm from "./ContactForm";
 import AdminPage from "../admin/AdminPage";
 import AdminUsers from "../admin/AdminUsers";
 import AdminProducts from "../admin/AdminProducts";
+import OrderHistory from "./OrderHistory";
 import MyProfile from "./MyProfile";
 // import "./loading.css"
 
@@ -98,6 +99,7 @@ const Main = () => {
                 <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
               }
             />
+            <Route path ="/orderhistory" element={<OrderHistory products={products}/>}/>
             <Route path="/register" element={<Register />} />
             <Route path="/products" element={<Products user={user} userCart ={userCart} setUserCart={setUserCart} fetchUserCart = {fetchUserCart} products = {products} setProducts = {setProducts} />} />
             <Route path="/guestcart" element={<GuestCart />} />

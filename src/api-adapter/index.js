@@ -125,6 +125,36 @@ export async function getUserCart() {
   }
 }
 
+export async function getOrderHistory() {
+  
+ 
+  try {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      },
+      
+    };
+    const response = await fetch(
+      `${BASE_URL}users/orderHistory`,
+      options
+    );
+    const result = await response.json();
+    console.log(result);
+    
+    if (result.message) {
+      setLoginMessage(result.message)
+    }
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 export async function addProductToUserCart(productId, price, quantity) {
   const options = {
     method: "POST",

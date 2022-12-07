@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 const Logout = (props) => {
   const user = useState("");
- 
+  const navigate = useNavigate();
 
   async function handleLogout(e) {
     e.preventDefault();
@@ -12,7 +12,9 @@ const Logout = (props) => {
     localStorage.removeItem("username");
     props.setIsLoggedIn(false);
     props.setUser("");
-    window.location.reload()
+    // window.location.reload()
+    navigate(
+      "/login")
   }
 
   return (

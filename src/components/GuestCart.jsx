@@ -26,10 +26,11 @@ const GuestCart = () => {
 
   //getting total price
   let priceForStripe = 0
+  let displayQuantity = 1
   useEffect(() => {
   
     for (let i = 0 ; i < cart.length ; i++) {
-      priceForStripe = priceForStripe + (cart[i].product.price * cart[i].quantity)
+      priceForStripe = priceForStripe + (cart[i].product.price * cart[i].product.quantity)
       console.log(priceForStripe, "price here")
     }
   }, [cart]);
@@ -57,11 +58,11 @@ const GuestCart = () => {
     setCart(JSON.parse(localStorage.getItem("guestCart")));
   }
 
-  const [quantityToSend, setQuantityToSend] = useState("");
+  const [quantityToSend, setQuantityToSend] = useState(0);
 
   async function handleQuantityChange(e) {
     e.preventDefault();
-    setQuantityToSend(e.target.value);
+    setQuantityToSend(parseInt(e.target.value));
   }
 
   async function clearCart() {
@@ -75,10 +76,7 @@ const GuestCart = () => {
   }
 
   async function updateQuantity(productID, quantityGiven) {
-    if (quantityGiven == 0) {
-      handleDelete(productID);
-      return;
-    }
+  
 
     let preexistingCart = JSON.parse(localStorage.getItem("guestCart"));
     let newCart = [];
@@ -90,14 +88,15 @@ const GuestCart = () => {
       if (tempCart.tempID == productID) {
         console.log("entering slice?");
 
-        preexistingCart[i].quantity = quantityGiven;
+        preexistingCart[i].product.quantity = quantityGiven;
         console.log(preexistingCart[i].quantity, "new quantity here");
         break;
       }
     }
 
-    console.log(preexistingCart, "new cart out of loop");
+    console.log(preexistingCart, "line 97");
     let toBeSet = JSON.stringify(preexistingCart);
+    console.log(toBeSet, "!!!!!!!!!!")
     localStorage.setItem("guestCart", toBeSet);
 
     setCart(JSON.parse(localStorage.getItem("guestCart")));
@@ -153,7 +152,7 @@ const GuestCart = () => {
                     <option value="5">5</option>
                   </select>
                   <button
-                    onClick={() => handleUpdateQuantity(product.product.id)}
+                    onClick={() => handleUpdateQuantity(product.product.id, product.product.quantity)}
                     id="submitnewQuantity"
                   >
                     Update Quantity

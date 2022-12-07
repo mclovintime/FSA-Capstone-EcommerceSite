@@ -7,6 +7,7 @@ export {default as Logout} from  './Logout'
 export {default as UserCart} from './UserCart'
 export {default as ContactForm} from './ContactForm'
 export {default as Footer} from './Footer'
+export {default as OrderHistory} from './OrderHistory'
 
 
 
