@@ -44,6 +44,18 @@ const Navbar = (props) => {
           <Link to="/MyProfile">
             <i className="fa-solid fa-address-card profileIcon"></i>
           </Link>
+          
+        ) : (
+          <Link to="/Home">
+            <i className="fa-solid fa-address-card profileIcon"></i>
+          </Link>
+        )}
+
+{user ? (
+          <Link to="/orderhistory">
+            Order History
+          </Link>
+          
         ) : (
           <Link to="/Home">
             <i className="fa-solid fa-address-card profileIcon"></i>
