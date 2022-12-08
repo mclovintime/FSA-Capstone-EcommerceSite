@@ -75,7 +75,7 @@ fetch
     const checkout = await checkoutCart();
   
   if (checkout) {
-    setUserCart(userCart)}
+    setUserCart([])}
   }
 
 
