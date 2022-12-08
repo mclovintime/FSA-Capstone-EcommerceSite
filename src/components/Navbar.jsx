@@ -16,12 +16,25 @@ const Navbar = (props) => {
         <Link to="/" id="logo">
           DimTECH
         </Link>
-        <Link id="productsThing" to="/Products">
+        <Link className="productsNav" to="/Products">
           Products
         </Link>
         {/* </div> */}
-        <div className="mainNav">
-          <LoggedIn user={user} className="loggedin" />
+
+        {/* <div className="mainNav"> */}
+          
+
+          {/* {user ? (
+            <Link to="/orderhistory">Order History</Link>
+          ) : (
+            <Link to="/Home">
+            </Link>
+          )} */}
+        {/* </div> */}
+      
+      <div className="rightNav">
+      <LoggedIn user={user} className="loggedin" />
+          <div className="navbuttons">
           <Link to="/Login">
             <i className="fa-solid fa-user loginIcon"></i>
           </Link>
@@ -46,16 +59,8 @@ const Navbar = (props) => {
             </Link>
           ) : null}
 
-          {user ? (
-            <Link to="/orderhistory">Order History</Link>
-          ) : (
-            <Link to="/Home">
-              <i className="fa-solid fa-address-card profileIcon"></i>
-            </Link>
-          )}
-
           {user && user.is_admin === true ? (
-            <Link to="/Admin" className="adminIcon">
+            <Link to="/Admin" className="adminBtn">
               Admin
             </Link>
           ) : null}
@@ -66,11 +71,12 @@ const Navbar = (props) => {
               handleLogout={handleLogout}
               setUser={setUser}
               setIsLoggedIn={setIsLoggedIn}
-            />
+            className="logoutBtn"/>
           ) : null}
           {/* </div>  */}
-        </div>
-      </div>
+          </div>
+          </div>
+          </div>
       <Outlet></Outlet>
     </div>
   );
