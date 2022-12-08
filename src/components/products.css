@@ -50,10 +50,11 @@
   margin-right: 30px;
   padding-top: 40px;
   padding-bottom: 40px;
-  margin-bottom: 70px;
+  margin-bottom: -133px;
   border-radius: 20px;
   background-color: rgba(205, 231, 197, 0.308);
   box-shadow: 2px 2px 4px 3px rgba(119, 119, 119, 0.685);
+  margin-top: 50px;
 }
 
 .productInStock {

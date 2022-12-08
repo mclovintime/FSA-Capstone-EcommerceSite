@@ -89,6 +89,7 @@ const UserCart = (props) => {
   return (
     <div>
       <h1 className="cartTitle">My Cart</h1>
+      
       <button onClick={handleBack} className="checkoutButton">
         Continue Shopping
       </button>

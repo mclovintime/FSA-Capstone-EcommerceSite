@@ -32,12 +32,18 @@ const GuestCart = () => {
   //getting total price
   let priceForStripe = 0;
   let displayQuantity = 1;
+
+  const [priceholder, setPriceholder] = useState(0)
+
   useEffect(() => {
     for (let i = 0; i < cart.length; i++) {
       priceForStripe =
         priceForStripe + cart[i].product.price * cart[i].product.quantity;
+        console.log(priceForStripe)
     }
+    setPriceholder(priceForStripe)
   }, [cart]);
+  console.log(priceholder)
 
   async function handleDelete(productID) {
     let preexistingCart = JSON.parse(localStorage.getItem("guestCart"));
@@ -109,18 +115,7 @@ const GuestCart = () => {
         </div>
       ) : (
         <div id="newWhole">
-          <button onClick={handleBack} className="checkoutButton">
-            Continue Shopping
-          </button>
-          <StripeCheckout
-            stripeKey={STRIPE_PUBLISHABLE}
-            token={makePayment}
-            name="Guest cart"
-            amount={priceForStripe}
-            className="wholeCheckout"
-          >
-            <button className="checkoutButton">Checkout Your Cart</button>
-          </StripeCheckout>
+       
           <h1 id="header">Cart</h1>
           <div id="guestCartContainer">
             {cart.length ? (
@@ -178,7 +173,21 @@ const GuestCart = () => {
               <div>No Items In Your Cart </div>
             )}
           </div>
-          <button onClick={() => clearCart()}>Clear cart</button>
+          <div id="theTwoButtons">
+          <button id="clearCartButton" onClick={() => clearCart()}>Clear cart</button>
+          <button onClick={handleBack} className="checkoutButton">
+            Continue Shopping
+          </button>
+          <StripeCheckout
+            stripeKey={STRIPE_PUBLISHABLE}
+            token={makePayment}
+            name="Guest cart"
+            amount={priceholder}
+            className="wholeCheckout"
+          >
+            <button className="checkoutButton">Checkout Your Cart</button>
+          </StripeCheckout>
+          </div>
         </div>
       )}
     </div>
