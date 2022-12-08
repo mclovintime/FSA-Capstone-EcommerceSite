@@ -142,11 +142,12 @@
     -webkit-text-stroke: 0.2px white;
   }
 
+
 @media screen and (max-width: 960px) {
   #logo {
     font-size: 30px;
   }
-
+}
   .mainNav {
     width: 300px;
   }
