@@ -15,7 +15,6 @@
 }
 
 #rightButtonCart {
-    
     height: 40px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
@@ -28,7 +27,9 @@
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     background: rgb(162, 200, 243);
+
     border: 5px outset rgb(194, 173, 203);
+
 }
 
 #selectedQuantity {
@@ -43,4 +44,12 @@
 
 #rightButtonCart:hover, #leftButtonCart:hover, #selectedQuantity:hover {
     transform: scale(1.05);
+}
+
+#allthebuttons  {
+    display:flex;
+    height: 50px;
+    justify-content: center;
+    margin-bottom: -10px;
+    margin-top: -5px;
 }

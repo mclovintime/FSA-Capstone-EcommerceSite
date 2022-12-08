@@ -164,8 +164,18 @@
 }
 
 #submitnewQuantity  {
+    background: rgb(83, 221, 226);
 border-radius: 0px;
+  
+  /* width: 160px;
+border: 5px outset violet;
+margin-bottom: 10px;
+
+border-bottom-right-radius: 20px;
+border-top-right-radius: 20px; */
+
 width: 80px;
 background: rgb(173, 234, 208);
 border: 5px outset rgb(194, 173, 203);
+
 }
