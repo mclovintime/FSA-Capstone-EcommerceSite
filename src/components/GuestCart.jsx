@@ -98,79 +98,68 @@ const GuestCart = () => {
 
   return (
     <div>
-      {loading ? (
-        <div id="theLoader">
-          <RingLoader
-            id="ringer"
-            size={150}
-            color={"#d636d0"}
-            loading={loading}
-          />{" "}
-        </div>
-      ) : (
-        <div id="newWhole">
-          <button onClick={handleBack} className="checkoutButton">
-            Continue Shopping
-          </button>
-          <StripeCheckout
-            stripeKey={STRIPE_PUBLISHABLE}
-            token={makePayment}
-            name="Guest cart"
-            amount={priceForStripe}
-            className="wholeCheckout"
-          >
-            <button className="checkoutButton">Checkout Your Cart</button>
-          </StripeCheckout>
-          <h1 id="header">Cart</h1>
-          <div id="guestCartContainer">
-            {cart.length ? (
-              cart.map((product) => {
-                return (
-                  <div key={`product-${product.id}`} className="productBox">
-                    <div className="productName">{product.product.name}</div>
 
-                    <div className="productPrice">
-                      Price: ${product.product.price / 100}
-                    </div>
-                    <div className="quantity">
-                      Quantity: {product.product.quantity}
-                    </div>
-                    <img
-                      id="productImage"
-                      src={`${product.product.image_url}`}
-                    />
+      {
+        loading ? <div id="theLoader"><RingLoader id="ringer"
+        
+        size={150}
+        color={"#d636d0"}
+        loading={loading}
+        /> </div>: 
+      <div id="newWhole">
+        <button onClick={handleBack} className="checkoutButton">
+      Continue Shopping
+    </button>
+        <StripeCheckout
+                    stripeKey={STRIPE_PUBLISHABLE}
+                    token={makePayment}
+                    name="Guest cart"
+                    amount={priceForStripe}
+                    className="wholeCheckout"
+                  >
+                    <button onClick={clearCart} className="checkoutButton">
+                      Checkout Your Cart
+                    </button>
+                  </StripeCheckout>
+        <h1 id="header">Cart</h1>
+        <div id="guestCartContainer">
+          {cart.length ? (
+            cart.map((product) => {
+              console.log(product)
+              return (
+                <div key={`product-${product.id}`} className="productBox">
+                  <div className="productName">{product.product.name}</div>
 
-                    <div id="allthebuttons">
-                      <button
-                        id="leftButtonCart"
-                        onClick={() => handleDelete(product.product.id)}
-                      >
-                        Delete
-                      </button>
+                  <div className="productPrice">
+                    Price: ${product.product.price / 100}
+                  </div>
+                  <div className="quantity">Quantity: {product.product.quantity}</div>
+                  <img id="productImage" src={`${product.product.image_url}`} />
 
-                      <select
-                        id="selectedQuantity"
-                        onChange={handleQuantityChange}
-                      >
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                      <button
-                        onClick={() =>
-                          handleUpdateQuantity(
-                            product.product.id,
-                            product.product.quantity
-                          )
-                        }
-                        id="rightButtonCart"
-                      >
-                        Update Quantity
-                      </button>
-                    </div>
+                <div id="allthebuttons">
+                  <button id="leftButtonCart" onClick={() => handleDelete(product.product.id)}>
+                    Delete
+                  </button>
+
+                  <select id="selectedQuantity" onChange={handleQuantityChange}>
+                    <option  value="0">
+                      0
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <button
+
+                    onClick={() => handleUpdateQuantity(product.product.id, product.product.quantity)}
+                    id="rightButtonCart"
+
+                  >
+                    Update Quantity
+                  </button>
+
                   </div>
                 );
               })

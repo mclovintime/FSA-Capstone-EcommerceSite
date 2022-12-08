@@ -73,6 +73,13 @@ const UserCart = (props) => {
   async function handleCheckout() {
     const checkout = await checkoutCart();
 
+  
+  if (checkout) {
+    setUserCart([])}
+  }
+
+
+
     if (checkout) {
       setUserCart(userCart);
     }
