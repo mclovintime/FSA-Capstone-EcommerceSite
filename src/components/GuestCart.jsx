@@ -5,8 +5,8 @@ import { RingLoader } from "react-spinners";
 import StripeCheckout from "react-stripe-checkout";
 import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
-import "./loading.css"
-import "./userCart.css"
+import "./loading.css";
+import "./userCart.css";
 import { useNavigate } from "react-router-dom";
 
 const GuestCart = () => {
@@ -28,16 +28,14 @@ const GuestCart = () => {
   );
 
   // let cart = ;
-  console.log(cart);
 
   //getting total price
-  let priceForStripe = 0
-  let displayQuantity = 1
+  let priceForStripe = 0;
+  let displayQuantity = 1;
   useEffect(() => {
-  
-    for (let i = 0 ; i < cart.length ; i++) {
-      priceForStripe = priceForStripe + (cart[i].product.price * cart[i].product.quantity)
-      console.log(priceForStripe, "price here")
+    for (let i = 0; i < cart.length; i++) {
+      priceForStripe =
+        priceForStripe + cart[i].product.price * cart[i].product.quantity;
     }
   }, [cart]);
 
@@ -49,15 +47,12 @@ const GuestCart = () => {
     for (let i = 0; i < preexistingCart.length; i++) {
       tempCart = preexistingCart[i];
 
-      console.log(tempCart.tempID, "is temp ID");
-      console.log(productID, "productID");
       if (tempCart.tempID == productID) {
-        console.log("entering slice?");
         preexistingCart.splice(i, 1);
         break;
       }
     }
-    console.log(preexistingCart, "the new cart");
+
     let toBeSet = JSON.stringify(preexistingCart);
     localStorage.setItem("guestCart", toBeSet);
 
@@ -76,14 +71,10 @@ const GuestCart = () => {
   }
 
   async function handleUpdateQuantity(productID) {
-    console.log(productID, "testing prod id");
-    console.log(quantityToSend);
     updateQuantity(productID, quantityToSend);
   }
 
   async function updateQuantity(productID, quantityGiven) {
-  
-
     let preexistingCart = JSON.parse(localStorage.getItem("guestCart"));
     let newCart = [];
     let tempCart = 0;
@@ -92,17 +83,14 @@ const GuestCart = () => {
       tempCart = preexistingCart[i];
 
       if (tempCart.tempID == productID) {
-        console.log("entering slice?");
-
         preexistingCart[i].product.quantity = quantityGiven;
-        console.log(preexistingCart[i].quantity, "new quantity here");
+
         break;
       }
     }
 
-    console.log(preexistingCart, "line 97");
     let toBeSet = JSON.stringify(preexistingCart);
-    console.log(toBeSet, "!!!!!!!!!!")
+
     localStorage.setItem("guestCart", toBeSet);
 
     setCart(JSON.parse(localStorage.getItem("guestCart")));
@@ -110,6 +98,7 @@ const GuestCart = () => {
 
   return (
     <div>
+
       {
         loading ? <div id="theLoader"><RingLoader id="ringer"
         
@@ -170,17 +159,17 @@ const GuestCart = () => {
                   >
                     Update Quantity
                   </button>
+
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <div>No Items In Your Cart </div>
-          )}
+                );
+              })
+            ) : (
+              <div>No Items In Your Cart </div>
+            )}
+          </div>
+          <button onClick={() => clearCart()}>Clear cart</button>
         </div>
-        <button onClick={() => clearCart()}>Clear cart</button>
-      </div>
-}
+      )}
     </div>
   );
 };

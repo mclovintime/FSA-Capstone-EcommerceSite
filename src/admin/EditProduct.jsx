@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { updateProduct } from "../api-adapter/index";
 import "./editproduct.css";
 
-
 const EditProduct = (props) => {
   const product = props.product;
   const products = props.products;
@@ -51,7 +50,11 @@ const EditProduct = (props) => {
     <>
       <div className="edit-product">
         {update ? (
-          <form onSubmit={handleSubmit} id={product.id} className="editproduct-container">
+          <form
+            onSubmit={handleSubmit}
+            id={product.id}
+            className="editproduct-container"
+          >
             <h3>Update your product!</h3>
             <input
               className="editproduct-name"
@@ -74,7 +77,6 @@ const EditProduct = (props) => {
               }}
             ></input>
 
-            
             <input
               className="editproduct-stock"
               name="stock"
@@ -96,7 +98,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
-            className="editproduct-price"
+              className="editproduct-price"
               name="price"
               type="text"
               value={newPrice}
@@ -106,7 +108,7 @@ const EditProduct = (props) => {
               }}
             ></input>
 
-              <textarea
+            <textarea
               className="editproduct-detailed-description"
               name="detailed description"
               type="text"
