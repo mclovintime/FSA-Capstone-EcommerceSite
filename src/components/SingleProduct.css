@@ -21,6 +21,9 @@
 }
 
 .productBoxH {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 2px solid black;
   padding: 30px 30px;
   margin: 30px 30px;
@@ -73,6 +76,7 @@
   border-bottom-left-radius: 0px;
   background: rgb(123, 235, 188);
   border: 5px outset rgb(111, 170, 236);
+  font-family: "Zen Dots", cursive;
 }
 
 .productNameH {
