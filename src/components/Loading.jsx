@@ -10,7 +10,7 @@ const Loading = () => {
 
 
         <div>loading</div>
-    </div>
+\    </div>
     
     )
 }
