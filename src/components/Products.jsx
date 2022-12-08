@@ -162,8 +162,11 @@ const Products = (props) => {
                       {product.stock} In Stock
                     </div>
                     <div className="productPrice">${product.price / 100}</div>
-                    <img id="productImage" src={`${product.image_url}`} />
 
+                    <div id="frame">
+                      <img id="productImage" src={`${product.image_url}`} />
+                    </div>
+                    
                     <div id="buttonContainer">
                       {user ? (
                         <button
