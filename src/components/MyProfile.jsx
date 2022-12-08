@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { updateUser, getAllUsers } from "../api-adapter/index";
+import { Link } from "react-router-dom";
 import "./myProfile.css";
+import OrderHistory from "./OrderHistory";
 
 const MyProfile = (props) => {
   const user = props.user;
@@ -111,6 +113,14 @@ const MyProfile = (props) => {
           Edit Info
         </button>
       )}
+      <div className="orderBtn">
+    {user ? (
+      <Link to="/orderhistory">Order History</Link>
+      ) : (
+        <Link to="/Home">
+            </Link>
+          )} 
+         </div>
     </div>
   );
 };

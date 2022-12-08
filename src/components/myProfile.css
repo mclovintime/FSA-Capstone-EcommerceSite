@@ -50,3 +50,18 @@
     width: 280px;
   }
 }
+
+.orderBtn {
+
+  font-size: 25px;
+  margin-top: 15px;
+  margin-right: 8px;
+  border: 2px solid rgb(87, 47, 113);
+  border-radius: 5px;
+  background-color: rgba(137, 223, 249, 0);
+
+  -webkit-text-stroke: 0.2px white;
+  font-family: "Zen Dots", cursive;
+  color: rgb(87, 47, 113);
+  text-decoration: none;
+}
