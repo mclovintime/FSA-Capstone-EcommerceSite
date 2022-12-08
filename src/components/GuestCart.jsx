@@ -7,10 +7,15 @@ import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
 import "./loading.css"
 import "./userCart.css"
+import { useNavigate } from "react-router-dom";
 
 const GuestCart = () => {
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  function handleBack() {
+    navigate("/products");
+  }
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -113,6 +118,9 @@ const GuestCart = () => {
         loading={loading}
         /> </div>: 
       <div id="newWhole">
+        <button onClick={handleBack} className="checkoutButton">
+      Continue Shopping
+    </button>
         <StripeCheckout
                     stripeKey={STRIPE_PUBLISHABLE}
                     token={makePayment}
@@ -155,7 +163,7 @@ const GuestCart = () => {
                   <button
 
                     onClick={() => handleUpdateQuantity(product.product.id, product.product.quantity)}
-                    id="submitnewQuantity"
+                    id="rightButtonCart"
 
                   >
                     Update Quantity
