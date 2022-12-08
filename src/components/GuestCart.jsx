@@ -28,7 +28,6 @@ const GuestCart = () => {
   );
 
   // let cart = ;
-  console.log(cart);
 
   //getting total price
   let priceForStripe = 0;
@@ -37,7 +36,6 @@ const GuestCart = () => {
     for (let i = 0; i < cart.length; i++) {
       priceForStripe =
         priceForStripe + cart[i].product.price * cart[i].product.quantity;
-      console.log(priceForStripe, "price here");
     }
   }, [cart]);
 
@@ -49,15 +47,12 @@ const GuestCart = () => {
     for (let i = 0; i < preexistingCart.length; i++) {
       tempCart = preexistingCart[i];
 
-      console.log(tempCart.tempID, "is temp ID");
-      console.log(productID, "productID");
       if (tempCart.tempID == productID) {
-        console.log("entering slice?");
         preexistingCart.splice(i, 1);
         break;
       }
     }
-    console.log(preexistingCart, "the new cart");
+
     let toBeSet = JSON.stringify(preexistingCart);
     localStorage.setItem("guestCart", toBeSet);
 
@@ -76,8 +71,6 @@ const GuestCart = () => {
   }
 
   async function handleUpdateQuantity(productID) {
-    console.log(productID, "testing prod id");
-    console.log(quantityToSend);
     updateQuantity(productID, quantityToSend);
   }
 
@@ -90,17 +83,14 @@ const GuestCart = () => {
       tempCart = preexistingCart[i];
 
       if (tempCart.tempID == productID) {
-        console.log("entering slice?");
-
         preexistingCart[i].product.quantity = quantityGiven;
-        console.log(preexistingCart[i].quantity, "new quantity here");
+
         break;
       }
     }
 
-    console.log(preexistingCart, "line 97");
     let toBeSet = JSON.stringify(preexistingCart);
-    console.log(toBeSet, "!!!!!!!!!!");
+
     localStorage.setItem("guestCart", toBeSet);
 
     setCart(JSON.parse(localStorage.getItem("guestCart")));
@@ -135,7 +125,6 @@ const GuestCart = () => {
           <div id="guestCartContainer">
             {cart.length ? (
               cart.map((product) => {
-                console.log(product);
                 return (
                   <div key={`product-${product.id}`} className="productBox">
                     <div className="productName">{product.product.name}</div>

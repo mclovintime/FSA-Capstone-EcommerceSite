@@ -11,7 +11,6 @@ const OrderHistory = (props) => {
   //   return item[0]})
 
   const indexed = history[0];
-  console.log(indexed);
 
   const products = props.products;
   const navigate = useNavigate();
@@ -42,12 +41,10 @@ const OrderHistory = (props) => {
       <div id="cartContainer">
         {indexed && indexed.length ? (
           indexed.map((cart) => {
-            console.log(cart);
             return (
               <div key={`cartItem-${cart.id}`}>
                 {products && products.length ? (
                   products.map((product) => {
-                    // console.log(product, 'product')
                     if (cart.productId === product.id) {
                       return (
                         <div

@@ -13,14 +13,11 @@ const SingleProduct = (props) => {
   const user = props.user;
   const userCart = props.userCart;
   const setUserCart = props.setUserCart;
-  // console.log(user, "testing user");
 
   const [quantityCounter, setQuantityCounter] = useState(0);
 
-  // console.log(props, "props on single product here");
-
   const { productId, quantity, setCount } = useParams();
-  // console.log(productId, "productID");
+
   const [product, setProduct] = useState("");
   const [updatedQuantity, setUpdatedQuantity] = useState(0);
   const navigate = useNavigate();
@@ -29,28 +26,10 @@ const SingleProduct = (props) => {
   useEffect(() => {
     async function getSingleProduct() {
       let placeholder = await getProductsById(productId);
-      // console.log(placeholder.products, "placeholder");
       setProduct(placeholder.products);
     }
     getSingleProduct();
   }, []);
-
-  // console.log(selectedQuantity);
-
-  // async function handleQuantChange(e) {
-  //   const val = Number(e.target.value);
-  //   setSelectedQuantity(val);
-  //   // console.log(selectedQuantity, "this is selected");
-  //   const Num = Number(selectedQuantity);
-  //   setUpdatedQuantity(Num);
-  //   // console.log(updatedQuantity, "this is updatedQuant");
-  // }
-
-  // async function settingNewQuant() {
-  //   let id = product.id;
-  //   // console.log(selectedQuantity, "trying to feed this quant");
-  //   await updateQuantity(id, selectedQuantity);
-  // }
 
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
@@ -71,10 +50,9 @@ const SingleProduct = (props) => {
   }
 
   async function addToGuestCart() {
-    // console.log(productId, "id of the thing we clicked");
     let existingItems;
     let holder = await getProductsById(productId);
-    console.log(holder, "holder, line 13, guest cart test");
+
     let product = holder.products;
     const tempID = productId;
     const newCartItem = {
@@ -98,10 +76,8 @@ const SingleProduct = (props) => {
       const filteredItem = existingItems.filter((item) => {
         return item.tempID == productId;
       });
-      console.log(filteredItem.length, "filtered Item");
-      if (filteredItem.length) {
-        console.log(typeof filteredItem[0].product.quantity);
 
+      if (filteredItem.length) {
         filteredItem[0].product.quantity = parseInt(
           filteredItem[0].product.quantity + 1
         );
@@ -119,8 +95,6 @@ const SingleProduct = (props) => {
       }
     }
 
-    console.log(existingItems, "here is the guest cart!");
-
     localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
     let tester = localStorage.getItem("guestCart");
@@ -134,7 +108,6 @@ const SingleProduct = (props) => {
   }
 
   const addUserProduct = async () => {
-    console.log("HELLO???");
     const price = product.price;
 
     if (userCart) {
@@ -144,12 +117,11 @@ const SingleProduct = (props) => {
         price,
         quantity
       );
-      console.log("addedToCart", addedToCart);
+
       if (addedToCart.message) {
         const mappedForUpdate = await Promise.all(
           userCart.map(async (item) => {
             if (item.productId == productId) {
-              console.log(item, "item ");
               const updated = await updateQuantity(item.id, item.quantity + 1);
               return updated;
             } else {

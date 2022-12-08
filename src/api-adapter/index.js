@@ -1,11 +1,11 @@
 // const BASE_URL = "https://dimtechtrue.onrender.com/api/"
-const BASE_URL = "http://localhost:3000/api/"
+const BASE_URL = "http://localhost:3000/api/";
 
 export async function getProductsById(productId) {
   try {
     const response = await fetch(`${BASE_URL}products/${productId}`);
     const result = await response.json();
-    console.log(result, "result from getProductsById")
+
     return result;
   } catch (error) {
     console.error(error);
@@ -44,20 +44,17 @@ export async function registerUser(email, username, password, setRegisterUser) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email, 
+      email,
       username,
       password,
     }),
   };
   try {
-    const response = await fetch(
-      `${BASE_URL}users/register`,
-      options
-    );
+    const response = await fetch(`${BASE_URL}users/register`, options);
     const result = await response.json();
-    console.log(result);
+
     if (result.message) {
-      setRegisterUser(result.message)
+      setRegisterUser(result.message);
     }
     return result;
   } catch (error) {
@@ -66,7 +63,6 @@ export async function registerUser(email, username, password, setRegisterUser) {
 }
 
 export async function loginUser(username, password, setLoginMessage) {
-  console.log(username)
   const options = {
     method: "POST",
     headers: {
@@ -78,15 +74,11 @@ export async function loginUser(username, password, setLoginMessage) {
     }),
   };
   try {
-    const response = await fetch(
-      `${BASE_URL}users/login`,
-      options
-    );
+    const response = await fetch(`${BASE_URL}users/login`, options);
     const result = await response.json();
-    console.log(result);
-    
+
     if (result.message) {
-      setLoginMessage(result.message)
+      setLoginMessage(result.message);
     }
 
     return result;
@@ -95,28 +87,20 @@ export async function loginUser(username, password, setLoginMessage) {
   }
 }
 
-
 export async function getUserCart() {
-  
- 
   try {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      
     };
-    const response = await fetch(
-      `${BASE_URL}users/mycart/cart_items`,
-      options
-    );
+    const response = await fetch(`${BASE_URL}users/mycart/cart_items`, options);
     const result = await response.json();
-    console.log(result);
-    
+
     if (result.message) {
-      setLoginMessage(result.message)
+      setLoginMessage(result.message);
     }
 
     return result;
@@ -126,26 +110,19 @@ export async function getUserCart() {
 }
 
 export async function getOrderHistory() {
-  
- 
   try {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      
     };
-    const response = await fetch(
-      `${BASE_URL}users/orderHistory`,
-      options
-    );
+    const response = await fetch(`${BASE_URL}users/orderHistory`, options);
     const result = await response.json();
-    console.log(result);
-    
+
     if (result.message) {
-      setLoginMessage(result.message)
+      setLoginMessage(result.message);
     }
 
     return result;
@@ -154,28 +131,23 @@ export async function getOrderHistory() {
   }
 }
 
-
 export async function addProductToUserCart(productId, price, quantity) {
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       productId,
       price,
-      quantity
+      quantity,
     }),
   };
   try {
-    const response = await fetch(
-      `${BASE_URL}users/mycart/cart_items`,
-      options
-    );
+    const response = await fetch(`${BASE_URL}users/mycart/cart_items`, options);
     const result = await response.json();
-    console.log(result);
-  
+
     return result;
   } catch (error) {
     console.error(error);
@@ -187,25 +159,28 @@ export async function deleteCartItem(cartItemId) {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")} `
+      Authorization: `Bearer ${localStorage.getItem("token")} `,
     },
   };
-  console.log(cartItemId, "cartItemId in delete fetch call")
-  const response = await fetch(`${BASE_URL}users/mycart/cart_items/${cartItemId}`, options);
-  const result = await response.json();
-  console.log(result);
-  
 
- 
+  const response = await fetch(
+    `${BASE_URL}users/mycart/cart_items/${cartItemId}`,
+    options
+  );
+  const result = await response.json();
+
   return result;
 }
 
-export async function updateProduct(id, {name, description, detailed_description, stock, image_url, price} ) {
+export async function updateProduct(
+  id,
+  { name, description, detailed_description, stock, image_url, price }
+) {
   const options = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")} `
+      Authorization: `Bearer ${localStorage.getItem("token")} `,
     },
     body: JSON.stringify({
       name: name,
@@ -213,13 +188,13 @@ export async function updateProduct(id, {name, description, detailed_description
       detailed_description: detailed_description,
       stock: stock,
       image_url: image_url,
-      price: price
+      price: price,
     }),
   };
   try {
     const response = await fetch(`${BASE_URL}products/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -231,19 +206,25 @@ export async function deleteProduct(id) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")} `
+      Authorization: `Bearer ${localStorage.getItem("token")} `,
     },
-  }
+  };
   try {
     const response = await fetch(`${BASE_URL}products/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
-export async function createProduct (name, description, detailed_description, stock, image_url, price ) {
+export async function createProduct(
+  name,
+  description,
+  detailed_description,
+  stock,
+  image_url,
+  price
+) {
   const options = {
     method: "POST",
     headers: {
@@ -251,42 +232,39 @@ export async function createProduct (name, description, detailed_description, st
       // Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      name, 
+      name,
       description,
       detailed_description,
       stock,
       image_url,
-      price
+      price,
     }),
   };
   try {
     const response = await fetch(`${BASE_URL}products`, options);
     const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-  }
-}
 
+    return result;
+  } catch (error) {}
+}
 
 export async function updateQuantity(id, quantity) {
   const options = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
-     quantity 
+      quantity,
     }),
-  }
+  };
   try {
     const response = await fetch(`${BASE_URL}cart_items/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 export async function checkoutCart() {
@@ -294,14 +272,13 @@ export async function checkoutCart() {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")} `
+      Authorization: `Bearer ${localStorage.getItem("token")} `,
     },
-
   };
   try {
     const response = await fetch(`${BASE_URL}users/mycart/checkout`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -328,7 +305,6 @@ export async function getAllEmails() {
   }
 }
 
-
 export async function makePayment(token) {
   const options = {
     method: "POST",
@@ -343,35 +319,33 @@ export async function makePayment(token) {
   };
   try {
     const response = await fetch(`${BASE_URL}payment`, options);
-     const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-   console.error(error);
-  }
-}
-
-export async function updateUser(id, {username, email, address}) {
-  console.log(username, email, address)
-  const options = {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("token")} `
-    },
-    body: JSON.stringify({
-      username: username,
-      email: email,
-      address: address
-    }),
-  };
-  try {
-    const response = await fetch(`${BASE_URL}users/me/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
   }
 }
 
+export async function updateUser(id, { username, email, address }) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")} `,
+    },
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      address: address,
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}users/me/${id}`, options);
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -122,7 +122,7 @@ const UserCart = (props) => {
               <div key={`cartItem-${cartItem.id}`}>
                 {products && products.length ? (
                   products.map((product) => {
-                    // console.log(product, 'product')
+                    
                     if (cartItem.productId === product.id) {
                       return (
                         <div

@@ -10,7 +10,7 @@ const StripeComponent = () => {
       email: "customer@example.com",
     });
 
-    console.log(customer.id);
+    
   })();
 };
 

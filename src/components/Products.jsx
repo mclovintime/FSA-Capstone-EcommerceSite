@@ -43,7 +43,6 @@ const Products = (props) => {
   }
 
   const addProduct = async (productId, price) => {
-    console.log("HELLO???");
     // pass props.quantitity into APTUC later, once that is fixed
     if (userCart) {
       const quantity = 1;
@@ -52,12 +51,10 @@ const Products = (props) => {
         price,
         quantity
       );
-      console.log("addedToCart", addedToCart);
       if (addedToCart.message) {
         const mappedForUpdate = await Promise.all(
           userCart.map(async (item) => {
             if (item.productId == productId) {
-              console.log(item, "item ");
               const updated = await updateQuantity(item.id, item.quantity + 1);
               return updated;
             } else {
@@ -73,7 +70,6 @@ const Products = (props) => {
   };
 
   async function addToCart(productId) {
-    // console.log(productId, "id of the thing we clicked");
     let existingItems;
     let holder = await getProductsById(productId);
     let product = holder.products;
@@ -99,10 +95,7 @@ const Products = (props) => {
       const filteredItem = existingItems.filter((item) => {
         return item.tempID == productId;
       });
-      console.log(filteredItem.length, "filtered Item");
       if (filteredItem.length) {
-        console.log(typeof filteredItem[0].product.quantity);
-
         filteredItem[0].product.quantity = parseInt(
           filteredItem[0].product.quantity + 1
         );
@@ -119,8 +112,6 @@ const Products = (props) => {
         localStorage.setItem("guestCart", JSON.stringify(existingItems));
       }
     }
-
-    console.log(existingItems, "here is the guest cart!");
 
     localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
