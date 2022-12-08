@@ -8,7 +8,6 @@
   box-shadow: 3px 3px 3px 3px rgba(206, 205, 205, 0.133);
   text-decoration: none;
   background-size: cover;
-  
 }
 
 .mainNav {
@@ -27,9 +26,6 @@
 .leftNav {
   display: flex;
   justify-content: space-between;
-}
-
-.rightNav {
 }
 
 .loginIcon {
@@ -59,7 +55,6 @@
   border-radius: 5px;
   background-color: rgba(137, 223, 249, 0);
   padding-left: 5px;
-  /* padding-right: 5px; */
 }
 
 #productsThing:hover,
@@ -83,6 +78,10 @@
   color: rgb(87, 47, 113);
 }
 
+#logoutBtn:hover {
+  color: rgb(152, 49, 132);
+}
+
 #homeThing {
   -webkit-text-stroke: 0.3px white;
   font-size: 25px;
@@ -103,10 +102,8 @@
 }
 
 @media screen and (max-width: 960px) {
-
   #logo {
     font-size: 30px;
-
   }
 
   .mainNav {
@@ -119,6 +116,5 @@
   .shoppingIcon {
     font-size: large;
     margin-left: 30px;
-
   }
 }

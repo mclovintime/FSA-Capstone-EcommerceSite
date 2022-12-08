@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { updateProduct } from "../api-adapter/index";
+import "./editproduct.css";
+
 
 const EditProduct = (props) => {
   const product = props.product;
@@ -9,12 +11,11 @@ const EditProduct = (props) => {
 
   const [newName, setNewName] = useState("");
   const [newDescription, setNewDescription] = useState("");
-  const [newDetailedDescription, setNewDetailedDescription] =useState("")
+  const [newDetailedDescription, setNewDetailedDescription] = useState("");
   const [newStock, setNewStock] = useState("");
   const [newImage_URL, setNewImage_URL] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [update, setUpdate] = useState(false);
- 
 
   useEffect(() => {
     setNewName(product.name);
@@ -24,7 +25,6 @@ const EditProduct = (props) => {
     setNewImage_URL(product.image_url);
     setNewPrice(product.price);
   }, [product]);
-
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -44,16 +44,17 @@ const EditProduct = (props) => {
         fetchProducts();
       }
     }
-    setUpdate(false)
+    setUpdate(false);
   }
 
   return (
     <>
       <div className="edit-product">
         {update ? (
-          <form onSubmit={handleSubmit} id={product.id}>
+          <form onSubmit={handleSubmit} id={product.id} className="editproduct-container">
             <h3>Update your product!</h3>
             <input
+              className="editproduct-name"
               name="name"
               type="text"
               value={newName}
@@ -63,6 +64,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
+              className="editproduct-description"
               name="description"
               type="text"
               value={newDescription}
@@ -72,16 +74,9 @@ const EditProduct = (props) => {
               }}
             ></input>
 
-<input
-              name="detailed description"
-              type="text"
-              value={newDetailedDescription}
-              placeholder="detailed description"
-              onChange={(e) => {
-                setNewDetailedDescription(e.target.value);
-              }}
-            ></input>
+            
             <input
+              className="editproduct-stock"
               name="stock"
               type="number"
               value={newStock}
@@ -91,6 +86,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
+              className="editproduct-image"
               name="image"
               type="text"
               value={newImage_URL}
@@ -100,6 +96,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
+            className="editproduct-price"
               name="price"
               type="text"
               value={newPrice}
@@ -108,6 +105,17 @@ const EditProduct = (props) => {
                 setNewPrice(e.target.value);
               }}
             ></input>
+
+              <textarea
+              className="editproduct-detailed-description"
+              name="detailed description"
+              type="text"
+              value={newDetailedDescription}
+              placeholder="detailed description"
+              onChange={(e) => {
+                setNewDetailedDescription(e.target.value);
+              }}
+            ></textarea>
 
             <button
               type="button"

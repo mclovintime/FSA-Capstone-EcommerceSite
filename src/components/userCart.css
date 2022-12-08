@@ -22,6 +22,11 @@
     background-color: rgba(205, 231, 197, 0.308);
     box-shadow: 2px 2px 4px 3px rgba(119, 119, 119, 0.685);
 }
+
+.cartTitle {
+    margin-left: 30px;
+}
+
 .cartItemName    {
     text-transform: capitalize;
     display: flex;
@@ -29,17 +34,19 @@
     justify-content: center;
     font-weight: bold;
     font-size: 16px;
-    border-bottom: 4px solid rgb(213, 150, 238);
+    border-bottom: 4px solid rgb(194, 173, 203);
     margin: 0px -10px;
     padding: 6px 15px;
     margin-top: -10px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: rgba(9, 243, 173, 0.467);
+    color: white;
+    letter-spacing: .5px;
+    background-color: rgb(87, 47, 113);
     /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     /* background: linear-gradient(132deg, rgba(245, 109, 164, 1) 0%, rgba(188, 185, 254, 1) 50%, rgba(112, 227, 204, 1) 100%); */
     
-    background: linear-gradient( 132deg, rgba(112, 227, 204, 1) 100%, 132deg, rgba(188, 185, 254, 1) 50%,  rgba(245, 109, 164, 1) 0%);
+    background: linear-gradient( 132deg, rgb(194, 173, 203) 100%, 132deg, rgba(188, 185, 254, 1) 50%,  rgba(245, 109, 164, 1) 0%);
 }
 
 .cartItemDescription {
@@ -89,7 +96,7 @@
 
 
 .cartItemBox {
-    border: 7px outset rgba(238, 130, 238, 0.692);
+    border: 7px outset rgb(194, 173, 203);
     padding: 5px;
     margin: 10px 10px;
     
@@ -103,9 +110,13 @@
 
 
 #dropdown   {
+    font-family: "Zen Dots", cursive;
     border-bottom-right-radius: 20px;
-    width: 50px;
-    border: 5px outset violet;
+    width: 65px;
+    margin-right: -5px;
+    margin-left: -1px;
+    background-color: rgb(222, 135, 197);
+    border: 5px outset rgb(194, 173, 203);
 }
 
 
@@ -134,7 +145,7 @@
     display: flex;
     flex-direction: right;
     color:rgb(51, 51, 51);
-    transform: none;
+    transform: scale(1.05);
     
 }
 
@@ -146,17 +157,25 @@
 #deleteButton   {
     width: 100px;
     border-bottom-left-radius: 10px;
-    border: 5px outset violet;
+    margin-left: -5px;
+    margin-right: -4px;
+    background: rgb(162, 200, 243);
+    border: 5px outset rgb(194, 173, 203);
 }
 
 #submitnewQuantity  {
     background: rgb(83, 221, 226);
 border-radius: 0px;
-width: 160px;
+  
+  /* width: 160px;
 border: 5px outset violet;
 margin-bottom: 10px;
 
 border-bottom-right-radius: 20px;
-border-top-right-radius: 20px;
+border-top-right-radius: 20px; */
+
+width: 80px;
+background: rgb(173, 234, 208);
+border: 5px outset rgb(194, 173, 203);
 
 }
