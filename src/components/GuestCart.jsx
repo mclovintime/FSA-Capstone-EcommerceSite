@@ -7,10 +7,15 @@ import { makePayment } from "../api-adapter";
 import STRIPE_PUBLISHABLE from "../constants/Stripe";
 import "./loading.css"
 import "./userCart.css"
+import { useNavigate } from "react-router-dom";
 
 const GuestCart = () => {
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  function handleBack() {
+    navigate("/products");
+  }
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -113,6 +118,9 @@ const GuestCart = () => {
         loading={loading}
         /> </div>: 
       <div id="newWhole">
+        <button onClick={handleBack} className="checkoutButton">
+      Continue Shopping
+    </button>
         <StripeCheckout
                     stripeKey={STRIPE_PUBLISHABLE}
                     token={makePayment}
@@ -136,8 +144,10 @@ const GuestCart = () => {
                   <div className="productPrice">
                     Price: ${product.product.price / 100}
                   </div>
-                  <div className="quantity">Quantity: {product.quantity}</div>
+                  <div className="quantity">Quantity: {product.product.quantity}</div>
                   <img id="productImage" src={`${product.product.image_url}`} />
+
+                <div id="allthebuttons">
                   <button id="leftButtonCart" onClick={() => handleDelete(product.product.id)}>
                     Delete
                   </button>
@@ -155,11 +165,12 @@ const GuestCart = () => {
                   <button
 
                     onClick={() => handleUpdateQuantity(product.product.id, product.product.quantity)}
-                    id="submitnewQuantity"
+                    id="rightButtonCart"
 
                   >
                     Update Quantity
                   </button>
+                  </div>
                 </div>
               );
             })
