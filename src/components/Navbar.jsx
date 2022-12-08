@@ -24,13 +24,6 @@ const Navbar = (props) => {
         {/* <div className="mainNav"> */}
           
 
-          {/* {user ? (
-            <Link to="/orderhistory">Order History</Link>
-          ) : (
-            <Link to="/Home">
-            </Link>
-          )} */}
-        {/* </div> */}
       
       <div className="rightNav">
       <LoggedIn user={user} className="loggedin" />
