@@ -48,7 +48,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchUserCart();
-  }, [user]);
+  }, []);
 
 
   useEffect(() => {
@@ -107,6 +107,9 @@ const Main = () => {
               path="/product/:productId"
               element={
                 <SingleProduct
+                  userCart ={userCart}
+                  setUserCart= {setUserCart}
+                  products={products}
                   user={user}
                   quantity={quantity}
                   setCount={setCount}
