@@ -36,23 +36,23 @@ const SingleProduct = (props) => {
   }, []);
 
   // console.log(selectedQuantity);
-  
+
   // async function handleQuantChange(e) {
-    //   const val = Number(e.target.value);
-    //   setSelectedQuantity(val);
-    //   // console.log(selectedQuantity, "this is selected");
-    //   const Num = Number(selectedQuantity);
-    //   setUpdatedQuantity(Num);
-    //   // console.log(updatedQuantity, "this is updatedQuant");
-    // }
-    
-    // async function settingNewQuant() {
-      //   let id = product.id;
-      //   // console.log(selectedQuantity, "trying to feed this quant");
-      //   await updateQuantity(id, selectedQuantity);
-      // }
-      
-      const [selectedQuantity, setSelectedQuantity] = useState(1);
+  //   const val = Number(e.target.value);
+  //   setSelectedQuantity(val);
+  //   // console.log(selectedQuantity, "this is selected");
+  //   const Num = Number(selectedQuantity);
+  //   setUpdatedQuantity(Num);
+  //   // console.log(updatedQuantity, "this is updatedQuant");
+  // }
+
+  // async function settingNewQuant() {
+  //   let id = product.id;
+  //   // console.log(selectedQuantity, "trying to feed this quant");
+  //   await updateQuantity(id, selectedQuantity);
+  // }
+
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   function handleQuantChange(e) {
     const val = Number(e.target.value);
@@ -70,14 +70,11 @@ const SingleProduct = (props) => {
     setUserCart(mappedForUpdate);
   }
 
- 
-  
-
   async function addToGuestCart() {
     // console.log(productId, "id of the thing we clicked");
-    let existingItems
+    let existingItems;
     let holder = await getProductsById(productId);
-    console.log(holder, "holder, line 13, guest cart test")
+    console.log(holder, "holder, line 13, guest cart test");
     let product = holder.products;
     const tempID = productId;
     const newCartItem = {
@@ -91,47 +88,43 @@ const SingleProduct = (props) => {
       },
     };
 
-   
-
     if (localStorage.getItem("guestCart") == null) {
       existingItems = [];
       existingItems.push(newCartItem);
-      localStorage.setItem("guestCart", JSON.stringify(existingItems))
-    
+      localStorage.setItem("guestCart", JSON.stringify(existingItems));
     } else {
       existingItems = JSON.parse(localStorage.getItem("guestCart"));
-   
-      const filteredItem =  existingItems.filter((item) => {
-       
-        return item.tempID == productId})
-     console.log(filteredItem.length, "filtered Item")
-       if (filteredItem.length) {
-        console.log(typeof filteredItem[0].product.quantity)
 
-        filteredItem[0].product.quantity = parseInt(filteredItem[0].product.quantity + 1)
-      const filteredExistingItems = existingItems.filter((item)=> {
-        return item.tempID != productId
-      })
-        filteredExistingItems.push(filteredItem[0])
-        localStorage.setItem("guestCart", JSON.stringify(filteredExistingItems))
-       } else {
-        existingItems.push(newCartItem)
-        localStorage.setItem("guestCart", JSON.stringify(existingItems))
-       }
+      const filteredItem = existingItems.filter((item) => {
+        return item.tempID == productId;
+      });
+      console.log(filteredItem.length, "filtered Item");
+      if (filteredItem.length) {
+        console.log(typeof filteredItem[0].product.quantity);
 
-      
+        filteredItem[0].product.quantity = parseInt(
+          filteredItem[0].product.quantity + 1
+        );
+        const filteredExistingItems = existingItems.filter((item) => {
+          return item.tempID != productId;
+        });
+        filteredExistingItems.push(filteredItem[0]);
+        localStorage.setItem(
+          "guestCart",
+          JSON.stringify(filteredExistingItems)
+        );
+      } else {
+        existingItems.push(newCartItem);
+        localStorage.setItem("guestCart", JSON.stringify(existingItems));
+      }
+    }
 
-        };
-   
     console.log(existingItems, "here is the guest cart!");
 
+    localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
-      localStorage.setItem("guestCart", JSON.stringify(existingItems));
-
-      let tester = localStorage.getItem("guestCart");
+    let tester = localStorage.getItem("guestCart");
   }
- 
-
 
   function handleBack() {
     navigate("/products");
@@ -175,18 +168,15 @@ const SingleProduct = (props) => {
     <div>
       <div key={`product-${product.id}`} className="productBoxH">
         <div className="productNameH">{product.name}</div>
-        <div className="productDescriptionH">
-          {product.description}
-        </div>
+        <div className="productDescriptionH">{product.description}</div>
 
         <div className="productInStock">In stock: {product.stock}</div>
-        <div className="productID">Price: ${product.price /100}</div>
+        <div className="productID">Price: ${product.price / 100}</div>
         <img id="productImage" src={`${product.image_url}`} />
         <div id="productDescription">{product.detailed_description}</div>
 
         <div>
           <select className="updateDrop" onChange={handleQuantChange}>
-          
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

@@ -1,21 +1,18 @@
-
-
-#loadingProducts    {
-    -webkit-text-stroke: .5px rgb(48, 48, 48);
-    font-size: 25px;
-    margin-left: -60px;
-    text-decoration: none;
+#loadingProducts {
+  -webkit-text-stroke: 0.5px rgb(48, 48, 48);
+  font-size: 25px;
+  margin-left: -60px;
+  text-decoration: none;
 }
 
 #ringer {
   align-items: center;
 }
 
-#theLoader   {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 300px;
-    /* margin-bottom: -800px; */
-    
+#theLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+  /* margin-bottom: -800px; */
 }

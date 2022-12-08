@@ -114,13 +114,14 @@ const MyProfile = (props) => {
         </button>
       )}
       <div className="orderBtn">
-    {user ? (
-      <Link to="/orderhistory" className="orderhistory">Order History</Link>
-      ) : (
-        <Link to="/Home">
-            </Link>
-          )} 
-         </div>
+        {user ? (
+          <Link to="/orderhistory" className="orderhistory">
+            Order History
+          </Link>
+        ) : (
+          <Link to="/Home"></Link>
+        )}
+      </div>
     </div>
   );
 };
