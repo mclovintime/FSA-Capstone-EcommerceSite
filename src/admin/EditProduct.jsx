@@ -54,6 +54,7 @@ const EditProduct = (props) => {
           <form onSubmit={handleSubmit} id={product.id} className="editproduct-container">
             <h3>Update your product!</h3>
             <input
+              className="editproduct-name"
               name="name"
               type="text"
               value={newName}
@@ -63,6 +64,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
+              className="editproduct-description"
               name="description"
               type="text"
               value={newDescription}
@@ -74,6 +76,7 @@ const EditProduct = (props) => {
 
             
             <input
+              className="editproduct-stock"
               name="stock"
               type="number"
               value={newStock}
@@ -83,6 +86,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
+              className="editproduct-image"
               name="image"
               type="text"
               value={newImage_URL}
@@ -92,6 +96,7 @@ const EditProduct = (props) => {
               }}
             ></input>
             <input
+            className="editproduct-price"
               name="price"
               type="text"
               value={newPrice}
@@ -102,6 +107,7 @@ const EditProduct = (props) => {
             ></input>
 
               <textarea
+              className="editproduct-detailed-description"
               name="detailed description"
               type="text"
               value={newDetailedDescription}

@@ -3,7 +3,7 @@
   flex-direction: row;
   background: linear-gradient(
     130deg,
-    rgba(245, 109, 164, 1) 0%,
+    rgb(234, 131, 172) 0%,
     rgb(199, 168, 190) 50%,
     rgb(162, 95, 176) 100%
   );
@@ -17,6 +17,8 @@
   align-items: center;
   z-index: 20;
 }
+
+
 
 #contactLink {
   text-decoration: none;

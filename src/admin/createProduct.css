@@ -18,9 +18,11 @@
   width: 230px;
 }
 
-textarea {
+.createproduct-description {
   height:120px;
-  width: 220px;
+  width: 230px;
+  margin: 5px;
+  font-family: Arial, Helvetica, sans-serif;
 
 }
 
