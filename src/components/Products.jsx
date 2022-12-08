@@ -214,7 +214,6 @@ const Products = (props) => {
               <div id="loadingProducts">Loading your products... </div>
             )}
           </div>
-          <Footer />
         </div>
       )}
     </div>

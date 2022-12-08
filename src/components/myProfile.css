@@ -27,6 +27,12 @@
   padding: 15px;
 }
 
+.orderhistory {
+  text-decoration: none;
+  color: rgb(87, 47, 113);
+  font-size: 20px;
+}
+
 .updateUsername,
 .updateEmail,
 .updateAddress {
