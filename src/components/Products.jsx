@@ -128,7 +128,7 @@ const Products = (props) => {
 
       let tester = localStorage.getItem("guestCart");
   }
-  // console.log(tester, "tester right here");
+ 
 
   return (
     <div>
@@ -211,6 +211,7 @@ const Products = (props) => {
               <div id="loadingProducts">Loading your products... </div>
             )}
           </div>
+          <Footer />
         </div>
       )}
     </div>

@@ -6,14 +6,16 @@ const OrderHistory = (props) => {
   //// CHANGE THE STATE FROM AN ARRAY TO SOMETHING ELSE AND MAYBE YOU CAN MAKE IT WORK?
   const [history, setHistory] = useState([]);
 
-  const filteredItem =  history.filter((item) => {
+  // const filteredItem =  history.filter((item) => {
        
-    return item[0]})
-  console.log(filteredItem,"mapped")
+  //   return item[0]})
+
   const indexed = history[0]
   console.log(indexed)
 
-  console.log(history)
+   
+
+
   const products = props.products
   const navigate = useNavigate()
   //FUNCTIONS//
@@ -30,7 +32,9 @@ const OrderHistory = (props) => {
     e.preventDefault();
     navigate("/mycart/cart_items");
   }
-
+// make function outside of return that gives us product info 
+//map history, then map the carts from history
+// 
   return (
     <div>
       <h1>Order History</h1>
@@ -43,14 +47,14 @@ const OrderHistory = (props) => {
 
       <div id="cartContainer">
         {indexed && indexed.length ? (
-          indexed.map((cartItem) => {
-            
+          indexed.map((cart) => {
+         console.log(cart)
             return (
-              <div key={`cartItem-${cartItem.id}`}>
+              <div key={`cartItem-${cart.id}`}>
                 {products && products.length ? (
                   products.map((product) => {
                     // console.log(product, 'product')
-                    if (cartItem.productId === product.id) {
+                    if (cart.productId === product.id) {
                       return (
                         <div
                           key={`product-${product.id}`}
@@ -61,7 +65,7 @@ const OrderHistory = (props) => {
                           <div className="cartItemID">
                             Price: ${product.price / 100}
                           </div>
-                          <div>Quantity: {cartItem.quantity}</div>
+                          <div>Quantity: {cart.quantity}</div>
 
                           <img
                             id="cartItemImage"
