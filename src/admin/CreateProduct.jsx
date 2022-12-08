@@ -90,6 +90,7 @@ const CreateProduct = (props) => {
             label="Product Price"
           />
           <textarea
+            className="createproduct-description"
             type="text"
             name="detailed_description"
             placeholder="detailed description"
