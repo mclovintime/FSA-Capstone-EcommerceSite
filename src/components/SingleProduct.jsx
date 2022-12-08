@@ -132,14 +132,14 @@ const SingleProduct = (props) => {
       <div key={`product-${product.id}`} className="productBoxH">
         <div className="productNameH">{product.name}</div>
         <div className="productDescriptionH">
-          Description: {product.description}
+          {product.description}
         </div>
 
 
         <div className="productInStock">In stock: {product.stock}</div>
-        <div className="productID">Price: {product.price}</div>
+        <div className="productID">Price: ${product.price /100}</div>
         <img id="productImage" src={`${product.image_url}`} />
-        <div>{product.detailed_description}</div>
+        <div id="productDescription">{product.detailed_description}</div>
 
 
         <div>
