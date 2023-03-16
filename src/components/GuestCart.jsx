@@ -128,7 +128,7 @@ const GuestCart = () => {
                     amount={priceForStripe}
                     className="wholeCheckout"
                   >
-                    <button className="checkoutButton">
+                    <button onClick={clearCart}className="checkoutButton">
                       Checkout Your Cart
                     </button>
                   </StripeCheckout>

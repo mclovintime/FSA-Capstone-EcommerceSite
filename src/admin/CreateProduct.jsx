@@ -57,7 +57,6 @@ const CreateProduct = (props) => {
             label="Product Description"
           />
 
-          
           <input
             class="myInputs"
             type="text"
@@ -98,7 +97,6 @@ const CreateProduct = (props) => {
             onChange={(e) => setDetailedDescription(e.target.value)}
             label="Detailed Product Description"
           />
-
         </form>
         <button className="editproduct-button" type="submit">
           Create Product

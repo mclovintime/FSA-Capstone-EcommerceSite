@@ -1,18 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link } from "react-router-dom";
 import "./loading.css";
-
 
 const Loading = () => {
   return (
     <div>
+      <div>loading</div>\{" "}
+    </div>
+  );
+};
 
-
-        <div>loading</div>
-\    </div>
-    
-    )
-}
-
-export default Loading
+export default Loading;
