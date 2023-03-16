@@ -1,9 +1,7 @@
 .footer-container {
   padding: 20rem 0 0 0;
-  display:flex;
+  display: flex;
 }
-
-
 
 .footer {
   display: flex;
@@ -14,30 +12,24 @@
     rgb(199, 168, 190) 50%,
     rgb(162, 95, 176) 100%
   );
-  /* position: fixed; */
-  /* bottom: 0; */
   width: 100%;
   height: 50px;
   border-top: 1px solid rgba(78, 14, 96, 0.622);
   box-shadow: 2px 2px 2px 2px;
   justify-content: center;
   align-items: center;
-  /* z-index: 20; */
 }
-
-
 
 #contactLink {
   text-decoration: none;
   -webkit-text-stroke: 0.5px black;
   font-size: 20px;
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
-    #contactLink {
-      font-size: 15px;
-    }
+  #contactLink {
+    font-size: 15px;
   }
-  
+}
