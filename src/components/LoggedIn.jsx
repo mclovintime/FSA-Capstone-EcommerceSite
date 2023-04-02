@@ -7,7 +7,10 @@ const LoggedIn = (props) => {
 
   return (
     <div>
-      <h3 id="fixingWelcome" > Welcome, {user && user.username ? user.username : "Guest"} </h3>
+      <h3 id="fixingWelcome">
+        {" "}
+        Welcome, {user && user.username ? user.username : "Guest"}{" "}
+      </h3>
     </div>
   );
 };

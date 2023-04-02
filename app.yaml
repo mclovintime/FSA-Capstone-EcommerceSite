@@ -7,4 +7,4 @@ handlers:
   # Catch all handler to index.html
   - url: /.*
     static_files: build/index.html
-    upload: build/index.html
+    upload: build/index.html 

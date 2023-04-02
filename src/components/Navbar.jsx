@@ -19,57 +19,51 @@ const Navbar = (props) => {
         <Link className="productsNav" to="/Products">
           Products
         </Link>
-        {/* </div> */}
 
-        {/* <div className="mainNav"> */}
-          
-
-      
-      <div className="rightNav">
-      <LoggedIn user={user} className="loggedin" />
+        <div className="rightNav">
+          <LoggedIn user={user} className="loggedin" />
           <div className="navbuttons">
-          <Link to="/Login">
-            <i className="fa-solid fa-user loginIcon"></i>
-          </Link>
-          <Link to="/mycart/cart_items"></Link>
-
-          {user ? (
-            <Link to="/mycart/cart_items">
-              <i className="fa-solid fa-cart-shopping shoppingIcon"></i>
+            <Link to="/Login">
+              <i className="fa-solid fa-user loginIcon"></i>
             </Link>
-          ) : (
-            <Link to="/guestcart">
-              <i
-                id="cartIcon"
-                className="fa-solid fa-cart-shopping shoppingIcon"
-              ></i>
-            </Link>
-          )}
+            <Link to="/mycart/cart_items"></Link>
 
-          {user && user.username ? (
-            <Link to="/MyProfile">
-              <i className="fa-solid fa-address-card profileIcon"></i>
-            </Link>
-          ) : null}
+            {user ? (
+              <Link to="/mycart/cart_items">
+                <i className="fa-solid fa-cart-shopping shoppingIcon"></i>
+              </Link>
+            ) : (
+              <Link to="/guestcart">
+                <i
+                  id="cartIcon"
+                  className="fa-solid fa-cart-shopping shoppingIcon"
+                ></i>
+              </Link>
+            )}
 
-          {user && user.is_admin === true ? (
-            <Link to="/Admin" className="adminBtn">
-              Admin
-            </Link>
-          ) : null}
-          {/* <div className="rightNav"> */}
+            {user && user.username ? (
+              <Link to="/MyProfile">
+                <i className="fa-solid fa-address-card profileIcon"></i>
+              </Link>
+            ) : null}
 
-          {isLoggedIn ? (
-            <Logout
-              handleLogout={handleLogout}
-              setUser={setUser}
-              setIsLoggedIn={setIsLoggedIn}
-            className="logoutBtn"/>
-          ) : null}
-          {/* </div>  */}
+            {user && user.is_admin === true ? (
+              <Link to="/Admin" className="adminBtn">
+                Admin
+              </Link>
+            ) : null}
+
+            {isLoggedIn ? (
+              <Logout
+                handleLogout={handleLogout}
+                setUser={setUser}
+                setIsLoggedIn={setIsLoggedIn}
+                className="logoutBtn"
+              />
+            ) : null}
           </div>
-          </div>
-          </div>
+        </div>
+      </div>
       <Outlet></Outlet>
     </div>
   );

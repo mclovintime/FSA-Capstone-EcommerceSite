@@ -12,18 +12,15 @@ const Logout = (props) => {
     localStorage.removeItem("username");
     props.setIsLoggedIn(false);
     props.setUser("");
-    // window.location.reload()
-    navigate(
-      "/login")
+    navigate("/login");
   }
 
   return (
     <div>
       <form onSubmit={handleLogout}>
-        <button id="logoutBtn" type="submit" >
+        <button id="logoutBtn" type="submit">
           Logout
         </button>
-        
       </form>
     </div>
   );

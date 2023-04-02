@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
 import Footer from "./Footer";
 
-// import "./loading.css";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
@@ -43,8 +42,6 @@ const Products = (props) => {
   }
 
   const addProduct = async (productId, price) => {
-    console.log("HELLO???");
-    // pass props.quantitity into APTUC later, once that is fixed
     if (userCart) {
       const quantity = 1;
       const addedToCart = await addProductToUserCart(
@@ -52,7 +49,6 @@ const Products = (props) => {
         price,
         quantity
       );
-      console.log("addedToCart", addedToCart);
       if (addedToCart.message) {
         const mappedForUpdate = await Promise.all(
           userCart.map(async (item) => {
@@ -73,8 +69,7 @@ const Products = (props) => {
   };
 
   async function addToCart(productId) {
-    // console.log(productId, "id of the thing we clicked");
-    let existingItems
+    let existingItems;
     let holder = await getProductsById(productId);
     let product = holder.products;
     const tempID = productId;
@@ -89,46 +84,41 @@ const Products = (props) => {
       },
     };
 
-   
-
     if (localStorage.getItem("guestCart") == null) {
       existingItems = [];
       existingItems.push(newCartItem);
-      localStorage.setItem("guestCart", JSON.stringify(existingItems))
-    
+      localStorage.setItem("guestCart", JSON.stringify(existingItems));
     } else {
       existingItems = JSON.parse(localStorage.getItem("guestCart"));
-   
-      const filteredItem =  existingItems.filter((item) => {
-       
-        return item.tempID == productId})
-     console.log(filteredItem.length, "filtered Item")
-       if (filteredItem.length) {
-        console.log(typeof filteredItem[0].product.quantity)
 
-        filteredItem[0].product.quantity = parseInt(filteredItem[0].product.quantity + 1)
-      const filteredExistingItems = existingItems.filter((item)=> {
-        return item.tempID != productId
-      })
-        filteredExistingItems.push(filteredItem[0])
-        localStorage.setItem("guestCart", JSON.stringify(filteredExistingItems))
-       } else {
-        existingItems.push(newCartItem)
-        localStorage.setItem("guestCart", JSON.stringify(existingItems))
-       }
+      const filteredItem = existingItems.filter((item) => {
+        return item.tempID == productId;
+      });
+      console.log(filteredItem.length, "filtered Item");
+      if (filteredItem.length) {
+        console.log(typeof filteredItem[0].product.quantity);
 
-      
+        filteredItem[0].product.quantity = parseInt(
+          filteredItem[0].product.quantity + 1
+        );
+        const filteredExistingItems = existingItems.filter((item) => {
+          return item.tempID != productId;
+        });
+        filteredExistingItems.push(filteredItem[0]);
+        localStorage.setItem(
+          "guestCart",
+          JSON.stringify(filteredExistingItems)
+        );
+      } else {
+        existingItems.push(newCartItem);
+        localStorage.setItem("guestCart", JSON.stringify(existingItems));
+      }
+    }
 
-        };
-   
-    console.log(existingItems, "here is the guest cart!");
+    localStorage.setItem("guestCart", JSON.stringify(existingItems));
 
-
-      localStorage.setItem("guestCart", JSON.stringify(existingItems));
-
-      let tester = localStorage.getItem("guestCart");
+    let tester = localStorage.getItem("guestCart");
   }
- 
 
   return (
     <div>
@@ -153,10 +143,6 @@ const Products = (props) => {
                     <div className="productDescription">
                       {product.description}
                     </div>
-                    {/* <div className="productDescription">
-                  {` testing product id ${product.id}`}
-                </div> */}
-
 
                     <div className="productInStock">
                       {product.stock} In Stock
@@ -166,7 +152,7 @@ const Products = (props) => {
                     <div id="frame">
                       <img id="productImage" src={`${product.image_url}`} />
                     </div>
-                    
+
                     <div id="buttonContainer">
                       {user ? (
                         <button
@@ -197,7 +183,6 @@ const Products = (props) => {
                           More Info
                         </button>
                       </Link>
-
 
                       <button
                         id="rightButton"
