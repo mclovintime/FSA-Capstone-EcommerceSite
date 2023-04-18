@@ -63,8 +63,6 @@ const Products = (props) => {
         );
         setUserCart(mappedForUpdate);
       } else {
-        console.log(userCart, "line 62")
-        console.log(addedToCart, "addedtocart")
         setUserCart([...userCart, addedToCart]);
       }
     }

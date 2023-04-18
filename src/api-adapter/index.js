@@ -1,5 +1,5 @@
-// const BASE_URL = "http://localhost:3000/api/"
-const BASE_URL = "https://backend-dot-capstone-380221.uc.r.appspot.com/api/";
+const BASE_URL = "http://localhost:3000/api/"
+// const BASE_URL = "https://backend-dot-capstone-380221.uc.r.appspot.com/api/";
 
 export async function getProductsById(productId) {
   try {
