@@ -125,7 +125,7 @@ const GuestCart = () => {
               cart.map((product) => {
                 console.log(product);
                 return (
-                  <div key={`product-${product.id}`} className="productBox">
+                  <div key={`product-${product.product.id}`} className="productBox">
                     <div className="productName">{product.product.name}</div>
 
                     <div className="productPrice">

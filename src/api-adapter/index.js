@@ -102,9 +102,9 @@ export async function getUserCart() {
     const result = await response.json();
     console.log(result);
 
-    if (result.message) {
-      setLoginMessage(result.message);
-    }
+    // if (result.message) {
+    //   setLoginMessage(result.message);
+    // }
 
     return result;
   } catch (error) {
