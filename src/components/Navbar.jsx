@@ -19,9 +19,7 @@ const Navbar = (props) => {
         <Link className="productsNav" to="/Products">
           Products
         </Link>
-        {/* </div> */}
 
-        {/* <div className="mainNav"> */}
 
         <div className="rightNav">
           <LoggedIn user={user} className="loggedin" />
@@ -55,7 +53,7 @@ const Navbar = (props) => {
                 Admin
               </Link>
             ) : null}
-            {/* <div className="rightNav"> */}
+
 
             {isLoggedIn ? (
               <Logout
@@ -65,7 +63,7 @@ const Navbar = (props) => {
                 className="logoutBtn"
               />
             ) : null}
-            {/* </div>  */}
+
           </div>
         </div>
       </div>

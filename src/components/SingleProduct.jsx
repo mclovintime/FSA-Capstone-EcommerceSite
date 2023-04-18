@@ -77,6 +77,7 @@ const SingleProduct = (props) => {
         return item.tempID == productId;
       });
 
+
       if (filteredItem.length) {
         filteredItem[0].product.quantity = parseInt(
           filteredItem[0].product.quantity + 1
@@ -155,10 +156,6 @@ const SingleProduct = (props) => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-
-          {/* <button className="updateButton" onClick={settingNewQuant}>
-            Update Quantity
-          </button> */}
         </div>
         {user ? (
           <button

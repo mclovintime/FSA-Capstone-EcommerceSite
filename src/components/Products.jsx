@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom";
 import AdminProducts from "../admin/AdminProducts";
 import Footer from "./Footer";
 
-// import "./loading.css";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
@@ -43,7 +42,7 @@ const Products = (props) => {
   }
 
   const addProduct = async (productId, price) => {
-    // pass props.quantitity into APTUC later, once that is fixed
+
     if (userCart) {
       const quantity = 1;
       const addedToCart = await addProductToUserCart(
@@ -95,6 +94,7 @@ const Products = (props) => {
       const filteredItem = existingItems.filter((item) => {
         return item.tempID == productId;
       });
+
       if (filteredItem.length) {
         filteredItem[0].product.quantity = parseInt(
           filteredItem[0].product.quantity + 1
@@ -141,9 +141,7 @@ const Products = (props) => {
                     <div className="productDescription">
                       {product.description}
                     </div>
-                    {/* <div className="productDescription">
-                  {` testing product id ${product.id}`}
-                </div> */}
+
 
                     <div className="productInStock">
                       {product.stock} In Stock

@@ -1,5 +1,6 @@
-// const BASE_URL = "https://dimtechtrue.onrender.com/api/"
-const BASE_URL = "http://localhost:3000/api/";
+const BASE_URL = "http://localhost:3000/api/"
+// const BASE_URL = "https://backend-dot-capstone-380221.uc.r.appspot.com/api/";
+
 
 export async function getProductsById(productId) {
   try {
@@ -63,6 +64,7 @@ export async function registerUser(email, username, password, setRegisterUser) {
 }
 
 export async function loginUser(username, password, setLoginMessage) {
+
   const options = {
     method: "POST",
     headers: {
@@ -76,6 +78,7 @@ export async function loginUser(username, password, setLoginMessage) {
   try {
     const response = await fetch(`${BASE_URL}users/login`, options);
     const result = await response.json();
+
 
     if (result.message) {
       setLoginMessage(result.message);
@@ -98,10 +101,12 @@ export async function getUserCart() {
     };
     const response = await fetch(`${BASE_URL}users/mycart/cart_items`, options);
     const result = await response.json();
+    console.log(result);
 
-    if (result.message) {
-      setLoginMessage(result.message);
-    }
+    // if (result.message) {
+    //   setLoginMessage(result.message);
+    // }
+
 
     return result;
   } catch (error) {
@@ -120,6 +125,7 @@ export async function getOrderHistory() {
     };
     const response = await fetch(`${BASE_URL}users/orderHistory`, options);
     const result = await response.json();
+
 
     if (result.message) {
       setLoginMessage(result.message);
@@ -148,6 +154,7 @@ export async function addProductToUserCart(productId, price, quantity) {
     const response = await fetch(`${BASE_URL}users/mycart/cart_items`, options);
     const result = await response.json();
 
+
     return result;
   } catch (error) {
     console.error(error);
@@ -168,6 +175,7 @@ export async function deleteCartItem(cartItemId) {
     options
   );
   const result = await response.json();
+
 
   return result;
 }
@@ -328,6 +336,7 @@ export async function makePayment(token) {
 }
 
 export async function updateUser(id, { username, email, address }) {
+
   const options = {
     method: "PATCH",
     headers: {

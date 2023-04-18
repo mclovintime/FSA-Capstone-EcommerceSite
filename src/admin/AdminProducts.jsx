@@ -54,7 +54,7 @@ const AdminProducts = () => {
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
-                {/* <button>Add to cart</button> */}
+
                 <Link to={`/product/${product.id}`} className="moreinfo">
                   <button>Display More Info</button>
                 </Link>

@@ -144,7 +144,7 @@ const Main = () => {
                   />
                 }
               />
-              {/* <Route path="/checkout" element={<Checkout />} /> */}
+
               <Route path="/contactform" element={<ContactForm />} />
               <Route path="/Admin" element={<AdminPage user={user} />} />
               <Route path="/AdminUsers" element={<AdminUsers user={user} />} />

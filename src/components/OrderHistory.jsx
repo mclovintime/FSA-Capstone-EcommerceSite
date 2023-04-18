@@ -6,15 +6,12 @@ const OrderHistory = (props) => {
   //// CHANGE THE STATE FROM AN ARRAY TO SOMETHING ELSE AND MAYBE YOU CAN MAKE IT WORK?
   const [history, setHistory] = useState([]);
 
-  // const filteredItem =  history.filter((item) => {
-
-  //   return item[0]})
 
   const indexed = history[0];
 
   const products = props.products;
   const navigate = useNavigate();
-  //FUNCTIONS//
+
   async function fetchHistory() {
     const items = await getOrderHistory();
     setHistory(items);
@@ -28,9 +25,7 @@ const OrderHistory = (props) => {
     e.preventDefault();
     navigate("/mycart/cart_items");
   }
-  // make function outside of return that gives us product info
-  //map history, then map the carts from history
-  //
+
   return (
     <div>
       <h1>Order History</h1>
