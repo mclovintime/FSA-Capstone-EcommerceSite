@@ -1,18 +1,17 @@
 import React from "react";
-import Stripe from 'stripe';
-import STRIPE_PUBLISHABLE from '../constants/Stripe'
+import Stripe from "stripe";
+import STRIPE_PUBLISHABLE from "../constants/Stripe";
 
 const StripeComponent = () => {
   const stripe = new Stripe(STRIPE_PUBLISHABLE);
-  
+
   (async () => {
     const customer = await stripe.customers.create({
-      email: 'customer@example.com',
+      email: "customer@example.com",
     });
-  
-    console.log(customer.id);
+
+    
   })();
+};
 
-}
-
-export default StripeComponent
+export default StripeComponent;

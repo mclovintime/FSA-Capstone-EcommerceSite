@@ -6,10 +6,12 @@ const OrderHistory = (props) => {
   //// CHANGE THE STATE FROM AN ARRAY TO SOMETHING ELSE AND MAYBE YOU CAN MAKE IT WORK?
   const [history, setHistory] = useState([]);
 
+
   const indexed = history[0];
 
   const products = props.products;
   const navigate = useNavigate();
+
   async function fetchHistory() {
     const items = await getOrderHistory();
     setHistory(items);

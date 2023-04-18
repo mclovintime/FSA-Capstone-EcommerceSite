@@ -17,6 +17,7 @@ const SingleProduct = (props) => {
   const [quantityCounter, setQuantityCounter] = useState(0);
 
   const { productId, quantity, setCount } = useParams();
+
   const [product, setProduct] = useState("");
   const [updatedQuantity, setUpdatedQuantity] = useState(0);
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ const SingleProduct = (props) => {
   async function addToGuestCart() {
     let existingItems;
     let holder = await getProductsById(productId);
+
     let product = holder.products;
     const tempID = productId;
     const newCartItem = {
@@ -74,6 +76,8 @@ const SingleProduct = (props) => {
       const filteredItem = existingItems.filter((item) => {
         return item.tempID == productId;
       });
+
+
       if (filteredItem.length) {
         filteredItem[0].product.quantity = parseInt(
           filteredItem[0].product.quantity + 1
@@ -114,7 +118,7 @@ const SingleProduct = (props) => {
         price,
         quantity
       );
-      console.log("addedToCart", addedToCart);
+
       if (addedToCart.message) {
         const mappedForUpdate = await Promise.all(
           userCart.map(async (item) => {

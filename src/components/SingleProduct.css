@@ -54,7 +54,9 @@
   font-weight: 500;
 }
 
-.buttons:hover, .updateButton:hover, .updateDrop:hover {
+.buttons:hover,
+.updateButton:hover,
+.updateDrop:hover {
   box-shadow: 1px 1px 1px 1px #4444;
   transform: scale(1.1);
 }
@@ -70,7 +72,7 @@
 }
 
 .updateDrop {
-  padding-top: .1px;
+  padding-top: 0.1px;
   padding-bottom: 13px;
   border-bottom-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -105,7 +107,6 @@
   color: rgba(0, 0, 0, 0.829);
   transition: all 0.2s ease;
   margin-top: -15px;
-  
 }
 
 .productButton:hover {

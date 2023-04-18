@@ -54,6 +54,7 @@ const AdminProducts = () => {
                 <div className="productInStock">In stock: {product.stock}</div>
                 <div className="productID">Price: {product.price}</div>
                 <img id="productImage" src={`${product.image_url}`} />
+
                 <Link to={`/product/${product.id}`} className="moreinfo">
                   <button>Display More Info</button>
                 </Link>

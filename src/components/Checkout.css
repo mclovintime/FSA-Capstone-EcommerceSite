@@ -1,21 +1,46 @@
 .wholeCheckout {
-    display: flex;
-    align-self: center;
+  display: flex;
+  align-self: center;
 }
 
 .checkoutButton {
-    -webkit-text-stroke: .5px  black;
-    font-size: 20px;
-    color: white;
-    background-color: rgb(87, 47, 113);
-    padding: 10px;
-    border-radius: 10px;
-    border: 3px outset rgb(208, 132, 238);
-    margin-top: 10px;
-    margin-left: 30px;
-    margin-bottom: 10px;
+  -webkit-text-stroke: 0.5px black;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(87, 47, 113);
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px outset rgb(208, 132, 238);
+  margin-top: 10px;
+  margin-left: 475px;
+  margin-bottom: 10px;
+  float: center;
+  
 }
 
 .checkoutButton:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+#clearCartButton    {
+    -webkit-text-stroke: 0.5px black;
+font-size: 20px;
+color: white;
+background-color: rgb(87, 47, 113);
+padding: 10px;
+border-radius: 10px;
+border: 3px outset rgb(208, 132, 238);
+margin-top: 10px;
+
+margin-bottom: 10px;
+float: center;
+}
+
+#theTwoButtons  {
+ display:flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+margin-top: -80px;
+margin-left: 20px;
+margin-right: 20px;
 }

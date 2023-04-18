@@ -170,6 +170,7 @@ const GuestCart = () => {
                         Update Quantity
                       </button>
                     </div>
+
                   </div>
                 );
               })

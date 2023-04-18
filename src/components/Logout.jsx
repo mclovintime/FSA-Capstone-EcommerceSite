@@ -12,6 +12,7 @@ const Logout = (props) => {
     localStorage.removeItem("username");
     props.setIsLoggedIn(false);
     props.setUser("");
+
     navigate("/login");
   }
 

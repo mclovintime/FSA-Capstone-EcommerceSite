@@ -20,6 +20,7 @@ const Navbar = (props) => {
           Products
         </Link>
 
+
         <div className="rightNav">
           <LoggedIn user={user} className="loggedin" />
           <div className="navbuttons">
@@ -53,6 +54,7 @@ const Navbar = (props) => {
               </Link>
             ) : null}
 
+
             {isLoggedIn ? (
               <Logout
                 handleLogout={handleLogout}
@@ -61,6 +63,7 @@ const Navbar = (props) => {
                 className="logoutBtn"
               />
             ) : null}
+
           </div>
         </div>
       </div>

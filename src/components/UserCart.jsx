@@ -36,6 +36,7 @@ const UserCart = (props) => {
     const deleted = await deleteCartItem(cartItemId);
   }
 
+
   function handleQuantChange(e) {
     const val = Number(e.target.value);
     setSelectedQuantity(val);

@@ -1,11 +1,12 @@
 const BASE_URL = "http://localhost:3000/api/"
 // const BASE_URL = "https://backend-dot-capstone-380221.uc.r.appspot.com/api/";
 
+
 export async function getProductsById(productId) {
   try {
     const response = await fetch(`${BASE_URL}products/${productId}`);
     const result = await response.json();
-    console.log(result, "result from getProductsById");
+
     return result;
   } catch (error) {
     console.error(error);
@@ -52,7 +53,7 @@ export async function registerUser(email, username, password, setRegisterUser) {
   try {
     const response = await fetch(`${BASE_URL}users/register`, options);
     const result = await response.json();
-    console.log(result);
+
     if (result.message) {
       setRegisterUser(result.message);
     }
@@ -63,7 +64,7 @@ export async function registerUser(email, username, password, setRegisterUser) {
 }
 
 export async function loginUser(username, password, setLoginMessage) {
-  console.log(username);
+
   const options = {
     method: "POST",
     headers: {
@@ -77,7 +78,7 @@ export async function loginUser(username, password, setLoginMessage) {
   try {
     const response = await fetch(`${BASE_URL}users/login`, options);
     const result = await response.json();
-    console.log(result);
+
 
     if (result.message) {
       setLoginMessage(result.message);
@@ -106,6 +107,7 @@ export async function getUserCart() {
     //   setLoginMessage(result.message);
     // }
 
+
     return result;
   } catch (error) {
     console.error(error);
@@ -123,7 +125,7 @@ export async function getOrderHistory() {
     };
     const response = await fetch(`${BASE_URL}users/orderHistory`, options);
     const result = await response.json();
-    console.log(result);
+
 
     if (result.message) {
       setLoginMessage(result.message);
@@ -151,7 +153,7 @@ export async function addProductToUserCart(productId, price, quantity) {
   try {
     const response = await fetch(`${BASE_URL}users/mycart/cart_items`, options);
     const result = await response.json();
-    console.log(result);
+
 
     return result;
   } catch (error) {
@@ -167,13 +169,13 @@ export async function deleteCartItem(cartItemId) {
       Authorization: `Bearer ${localStorage.getItem("token")} `,
     },
   };
-  console.log(cartItemId, "cartItemId in delete fetch call");
+
   const response = await fetch(
     `${BASE_URL}users/mycart/cart_items/${cartItemId}`,
     options
   );
   const result = await response.json();
-  console.log(result);
+
 
   return result;
 }
@@ -200,7 +202,7 @@ export async function updateProduct(
   try {
     const response = await fetch(`${BASE_URL}products/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -218,7 +220,7 @@ export async function deleteProduct(id) {
   try {
     const response = await fetch(`${BASE_URL}products/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {}
 }
@@ -249,7 +251,7 @@ export async function createProduct(
   try {
     const response = await fetch(`${BASE_URL}products`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {}
 }
@@ -268,7 +270,7 @@ export async function updateQuantity(id, quantity) {
   try {
     const response = await fetch(`${BASE_URL}cart_items/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {}
 }
@@ -284,7 +286,7 @@ export async function checkoutCart() {
   try {
     const response = await fetch(`${BASE_URL}users/mycart/checkout`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -326,7 +328,7 @@ export async function makePayment(token) {
   try {
     const response = await fetch(`${BASE_URL}payment`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -334,7 +336,7 @@ export async function makePayment(token) {
 }
 
 export async function updateUser(id, { username, email, address }) {
-  console.log(username, email, address);
+
   const options = {
     method: "PATCH",
     headers: {
@@ -350,7 +352,7 @@ export async function updateUser(id, { username, email, address }) {
   try {
     const response = await fetch(`${BASE_URL}users/me/${id}`, options);
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.error(error);
